@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+@theme {
+  --font-default: ;
+
+  --color-primary: #e9bd00;
+  --color-secondary: #004f9e;
+}
+
+@layer components {
+}
+
+body {
+  padding: 0;
+  margin: 0;
+}
