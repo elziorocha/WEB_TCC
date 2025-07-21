@@ -5,6 +5,9 @@
 
   --color-primary: #e9bd00;
   --color-secondary: #004f9e;
+
+  --color-blackText: #09090b;
+  --color-whiteText: #e4e4e7;
 }
 
 @layer components {
@@ -13,4 +16,5 @@
 body {
   padding: 0;
   margin: 0;
+  color: var(--color-blackText);
 }
