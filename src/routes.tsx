@@ -15,7 +15,10 @@ export const router = createBrowserRouter([
     children: [
       { path: "/", element: <Inicio /> },
       { path: "/fale-conosco", element: <FaleConosco /> },
-      { path: "/portal-do-aluno/registrar", element: <PortalDoAlunoRegistro /> },
+      {
+        path: "/portal-do-aluno/registrar",
+        element: <PortalDoAlunoRegistro />,
+      },
     ],
   },
   {
@@ -23,7 +26,7 @@ export const router = createBrowserRouter([
     element: <PortalDoAlunoLayout />,
     errorElement: <Error />,
     children: [
-      { path: "/portal-do-aluno/:id", element: <PortalDoAlunoDashboard />},
+      { path: "/portal-do-aluno/:id", element: <PortalDoAlunoDashboard /> },
     ],
-  }
+  },
 ]);

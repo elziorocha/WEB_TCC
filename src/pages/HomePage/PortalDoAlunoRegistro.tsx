@@ -1,5 +1,5 @@
 import { useState } from "react";
-import instanciaAPI from '../../utils/api.ts';
+import instanciaAPI from "../../utils/api.ts";
 
 const PortalDoAlunoRegistro = () => {
   const [dadosAluno, setDadosAluno] = useState({
@@ -15,7 +15,7 @@ const PortalDoAlunoRegistro = () => {
     setDadosAluno((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const enviarFormularioRegistro = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
       const response = await instanciaAPI.post("/aluno", dadosAluno);
@@ -26,50 +26,56 @@ const PortalDoAlunoRegistro = () => {
   };
 
   return (
-    <main>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-2 p-4">
+    <main className="flex items-center justify-center w-full p-8 h-full">
+      <form
+        onSubmit={enviarFormularioRegistro}
+        className="flex flex-col gap-2 p-4 bg-zinc-400 rounded-lg shadow-md"
+      >
         <input
           type="text"
           name="nome"
-          placeholder="Nome"
+          placeholder="Seu Nome"
           value={dadosAluno.nome}
           onChange={handleChange}
-          className="bg-green-400 p-2"
+          className="bg-zinc-300 rounded-lg p-2"
         />
         <input
           type="email"
           name="email"
-          placeholder="Email"
           value={dadosAluno.email}
+          placeholder="Seu Email"
           onChange={handleChange}
-          className="bg-green-400 p-2"
+          className="bg-zinc-300 rounded-lg p-2"
         />
         <input
           type="password"
           name="senha"
-          placeholder="Senha"
+          placeholder="Sua Senha"
           value={dadosAluno.senha}
           onChange={handleChange}
-          className="bg-green-400 p-2"
+          className="bg-zinc-300 rounded-lg p-2"
         />
         <input
           type="text"
           name="telefone"
-          placeholder="Telefone"
+          placeholder="Seu Telefone"
           value={dadosAluno.telefone}
           onChange={handleChange}
-          className="bg-green-400 p-2"
+          className="bg-zinc-300 rounded-lg p-2"
         />
         <input
           type="date"
           name="data_nascimento"
-          placeholder="Data de nascimento"
+          placeholder="Sua Data de nascimento"
           value={dadosAluno.data_nascimento}
           onChange={handleChange}
-          className="bg-green-400 p-2"
+          className="bg-zinc-300 rounded-lg p-2"
         />
 
-        <button type="submit" className="bg-blue-500 text-white p-2 rounded">
+        <button
+          type="submit"
+          className="bg-secondary text-white p-2 rounded-md cursor-pointer"
+        >
           Registrar
         </button>
       </form>
