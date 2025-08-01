@@ -21,10 +21,10 @@ export const HomeHeader = () => {
         style={{ transition: "transform 0.3s ease, opacity 0.3s ease" }}
       >
         <ul className="flex flex-col sm:flex-col md:flex-row">
-          <li>rota 1</li>
-          <li>rota 2</li>
-          <li>rota 3</li>
-          <li>rota 4</li>
+          <li>Home</li>
+          <li>Nossa História</li>
+          <li>Fale Conosco</li>
+          <li>Horários e Itinerários</li>
           <li>rota 5</li>
         </ul>
       </section>
