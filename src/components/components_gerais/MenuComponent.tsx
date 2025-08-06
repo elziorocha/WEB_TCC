@@ -6,21 +6,17 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import {
-  BookUserIcon,
-  BusFrontIcon,
-  ClockIcon,
-  HistoryIcon,
-  Home,
-  Menu,
-  MessageCircleMoreIcon,
-} from "lucide-react";
+import { Menu } from "lucide-react";
+import { Link } from "react-router-dom";
+import { navHome, navUsuarios } from "@/utils/objetosMapeaveis";
 
 const MenuComponent = () => {
   const [menuAtivo, setMenuAtivo] = useState(false);
 
+  const fecharMenu = () => setMenuAtivo(false);
+
   return (
-    <Sheet>
+    <Sheet open={menuAtivo} onOpenChange={setMenuAtivo}>
       <SheetTrigger>
         <Menu
           onClick={() => setMenuAtivo(!menuAtivo)}
@@ -39,39 +35,32 @@ const MenuComponent = () => {
           Menu de navegação
         </SheetTitle>
         <SheetDescription hidden>menu de navegação do website</SheetDescription>
-        <section className="px-2 pb-4 flex -mt-1">
-          <ul className="px-2 flex flex-col gap-1.5">
-            <li className="botao_menu">
-              <Home size={20} />
-              Home
-            </li>
-            <li className="botao_menu">
-              <HistoryIcon size={20} />
-              Nossa História
-            </li>
-            <li className="botao_menu">
-              <MessageCircleMoreIcon size={20} />
-              Fale Conosco
-            </li>
-            <li className="botao_menu">
-              <ClockIcon size={20} />
-              Horários e Itinerários
-            </li>
+
+        <section className="px-2 pb-4 flex flex-col gap-2">
+          <ul className="px-2 flex flex-col gap-1.5 -mt-1">
+            {navHome.map((item) => (
+              <Link key={item.key} to={item.key} onClick={fecharMenu}>
+                <li className="botao_menu">
+                  <item.icon size={20} />
+                  <label>{item.label}</label>
+                </li>
+              </Link>
+            ))}
           </ul>
         </section>
 
         <hr className="border-zinc-300 -mt-5" />
 
-        <section className="px-2 pb-4 gap-2">
-          <ul className="px-2 flex flex-col gap-1">
-            <li className="botao_menu">
-              <BookUserIcon size={20} />
-              Portal do Aluno
-            </li>
-            <li className="botao_menu">
-              <BusFrontIcon size={20} />
-              Área do Colaborador
-            </li>
+        <section className="px-2 pb-4 flex flex-col gap-2">
+          <ul className="px-2 flex flex-col gap-1.5 -mt-1">
+            {navUsuarios.map((item) => (
+              <Link key={item.key} to={item.key}>
+                <li className="botao_menu">
+                  <item.icon size={20} />
+                  <label>{item.label}</label>
+                </li>
+              </Link>
+            ))}
           </ul>
         </section>
       </SheetContent>
