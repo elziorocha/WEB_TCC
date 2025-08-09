@@ -1,5 +1,5 @@
 import logo from "../..//assets/logo1.png";
-import MenuComponent from "../components_gerais/MenuComponent";
+import MenuComponent from "../componentesUI/MenuComponent";
 
 export const HomeHeader = () => {
   return (

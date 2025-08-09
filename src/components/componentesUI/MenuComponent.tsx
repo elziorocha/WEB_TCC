@@ -8,9 +8,9 @@ import {
 } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
 import { Link } from "react-router-dom";
-import { navHome, navUsuarios } from "@/utils/objetosMapeaveis";
+import { navHome, navUsuarios } from "@/utils/objetosMenu";
 
-const MenuComponent = () => {
+export default function MenuComponent() {
   const [menuAtivo, setMenuAtivo] = useState(false);
 
   const fecharMenu = () => setMenuAtivo(false);
@@ -66,6 +66,4 @@ const MenuComponent = () => {
       </SheetContent>
     </Sheet>
   );
-};
-
-export default MenuComponent;
+}
