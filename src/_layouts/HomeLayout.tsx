@@ -5,9 +5,7 @@ import HomeHeader from "../components/HomeComponents/HomeHeader";
 export function HomeLayout() {
   return (
     <main className="flex flex-col min-h-screen">
-      <div className="p-2">
-        <HomeHeader />
-      </div>
+      <HomeHeader />
       <section className="flex-1">
         <Outlet />
       </section>

@@ -1,38 +1,21 @@
-import { Card, CardContent } from "@/components/ui/card";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
+import CarrosselInicio from "@/components/HomeComponents/InicioComponents/CarrosselInicio";
 
 export function Inicio() {
   return (
-    <main className="p-2 -mt-8">
-      <section className="bg-secondary px-4 py-3 rounded-b-2xl">
-        <Carousel className="w-full">
-          <CarouselContent>
-            {Array.from({ length: 5 }).map((_, index) => (
-              <CarouselItem key={index}>
-                <div className="p-1">
-                  <Card className="relative h-56 border-none shadow-md">
-                    <CardContent className="flex aspect-square items-center justify-center p-6">
-                      <span className="text-4xl font-semibold">
-                        {index + 1}
-                      </span>
-                      <div className="absolute inset-0 flex items-center justify-between p-4 pointer-events-none">
-                        <CarouselPrevious className="pointer-events-auto relative left-0 top-0 translate-y-0 bg-white/80 hover:bg-white shadow-md border-none" />
-                        <CarouselNext className="pointer-events-auto relative right-0 top-0 translate-y-0 bg-white/80 hover:bg-white shadow-md border-none" />
-                      </div>
-                    </CardContent>
-                  </Card>
-                </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-        </Carousel>
+    <main className="flex flex-col gap-4">
+      <section className="bg-secondary px-2 pt-1 pb-4">
+        <div className="text-center text-whiteText flex flex-col gap-2">
+          <h2 className="text-2xl font-bold lg:text-4xl">
+            Viaje com <span className="text-primary">Segurança</span> e Conforto
+          </h2>
+          <h3 className="text-sm text md:text-2xl">
+            Conectamos você aos seus destinos com qualidade, pontualidade e o
+            melhor atendimento do Paraná!
+          </h3>
+        </div>
       </section>
+
+      <CarrosselInicio />
     </main>
   );
 }
