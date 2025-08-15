@@ -70,8 +70,10 @@ export const Tarifas = () => {
           o direito do valor da passagem ser de{" "}
           <span className="font-semibold text-green-600 underline underline-offset-3">
             R$1,00
-          </span>
-          , conforme a Lei Municipal 3026, de 16 de dezembro de 2019.
+          </span>{" "}
+          com a utilização do cartão{" "}
+          <span className="font-bold text-secondary">EDUCARD</span>, conforme a
+          Lei Municipal 3026, de 16 de dezembro de 2019.
         </p>
       </article>
     </main>
