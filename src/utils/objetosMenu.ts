@@ -5,6 +5,7 @@ import {
   HistoryIcon,
   Home,
   MessageCircleMoreIcon,
+  TicketIcon,
 } from "lucide-react";
 
 export const navHome = [
@@ -15,6 +16,11 @@ export const navHome = [
     key: "horarios-itinerarios",
     icon: ClockIcon,
     label: "Horários e Itinerários",
+  },
+  {
+    key: "tarifas",
+    icon: TicketIcon,
+    label: "Tarifas",
   },
 ];
 

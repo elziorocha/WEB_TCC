@@ -8,6 +8,7 @@ import PortalDoAlunoDashboard from "./pages/PortalDoAluno/PortalDoAlunoDashboard
 import PortalDoAlunoRegistro from "./pages/HomePage/PortalDoAlunoRegistro";
 import MattosLeao from "./pages/HomePage/HorariosItinerarios/MattosLeao";
 import HorariosItinerarios from "./pages/HomePage/HorariosItinerarios";
+import { Tarifas } from "./pages/HomePage/Tarifas";
 
 export const router = createBrowserRouter([
   {
@@ -17,6 +18,7 @@ export const router = createBrowserRouter([
     children: [
       { path: "/", element: <Inicio /> },
       { path: "/fale-conosco", element: <FaleConosco /> },
+      { path: "/tarifas", element: <Tarifas /> },
       { path: "/horarios-itinerarios", element: <HorariosItinerarios /> },
       { path: "/horarios-itinerarios/mattos-leao", element: <MattosLeao /> },
       {
