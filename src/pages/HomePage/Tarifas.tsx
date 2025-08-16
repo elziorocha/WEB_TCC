@@ -1,80 +1,39 @@
-import {
-  CreditCardIcon,
-  HandCoins,
-  IdCardIcon,
-  TicketsIcon,
-} from "lucide-react";
+import TarifasCardsInfo from "@/components/HomeComponents/InicioComponents/TarifasCardsInfo";
+import { MegaphoneIcon } from "lucide-react";
 
 export const Tarifas = () => {
   return (
-    <main className="p-4 flex flex-col gap-5">
+    <main className="p-4 flex flex-col gap-4">
       <h2 className="text-tertiary font-semibold text-xl text-center">
         Quais os custos{" "}
         <span className="font-semibold text-green-600 italic">tarifários</span>{" "}
         dos nossos serviços?
       </h2>
 
-      <article className="shadow-md rounded-2xl flex items-center gap-3 p-4 bg-white">
-        <div className="rounded-full bg-primary/10 p-2 flex items-center justify-center self-center shadow-md">
-          <HandCoins className="text-primary size-10 flex-shrink-0" />
-        </div>
-        <p className="text-sm text-justify leading-5 text-zinc-700">
-          A tarifa do transporte coletivo atualmente em{" "}
-          <span className="font-bold text-primary">Guarapuava</span> para o
-          usuário que paga em dinheiro é de{" "}
-          <span className="font-semibold text-green-600 underline underline-offset-3">
-            R$6,50
-          </span>
-          .
-        </p>
-      </article>
+      <TarifasCardsInfo />
 
-      <article className="shadow-md rounded-2xl flex justify-between p-3 bg-white">
-        <section className="flex flex-1 flex-col items-center justify-center gap-2 p-1 text-center">
-          <div className="rounded-full bg-secondary/10 p-2 flex items-center justify-center self-center shadow-md">
-            <TicketsIcon className="text-tertiary size-8 flex-shrink-0" />
+      <hr className="border-zinc-400 w-11/12 self-center" />
+
+      <article className="flex flex-col gap-4">
+        <h2 className="text-tertiary font-semibold text-xl text-center">
+          Como saber qual cartão devo utilizar?
+        </h2>
+
+        <article className="flex items-center gap-3 p-1">
+          <div className="rounded-full bg-primary/5 p-2 flex items-center justify-center self-center shadow-md">
+            <MegaphoneIcon className="text-primary size-8 flex-shrink-0" />
           </div>
-          <p className="text-sm leading-5 text-zinc-700">
-            A tarifa do cartão{" "}
-            <span className="font-bold text-secondary">GUARACARD</span> é de{" "}
-            <span className="font-semibold text-green-600 underline underline-offset-3">
-              R$4,00
-            </span>
-            .
-          </p>
-        </section>
-
-        <hr className="border border-zinc-200 h-26 self-center" />
-
-        <section className="flex flex-1 flex-col items-center justify-center gap-2 p-1 text-center">
-          <div className="rounded-full bg-secondary/10 p-2 flex items-center justify-center self-center shadow-md">
-            <CreditCardIcon className="text-tertiary size-8 flex-shrink-0" />
+          <div className="flex flex-col gap-2">
+            <h3 className="font-bold">
+              Quem pode ter um <span className="text-tertiary">EDUCARD</span>?
+            </h3>
+            <p className="text-sm text-justify leading-5 text-zinc-800 font-semibold">
+              Todo <span className="text-secondary">Estudante</span> da{" "}
+              <span className="text-secondary">Rede Pública</span>, seja do
+              ensino fundamental, médio ou superior.
+            </p>
           </div>
-          <p className="text-sm leading-5 text-zinc-700">
-            A tarifa do cartão{" "}
-            <span className="font-bold text-secondary">VEM ESCOLAR</span> é de{" "}
-            <span className="font-semibold text-green-600 underline underline-offset-3">
-              R$3,25
-            </span>
-            .
-          </p>
-        </section>
-      </article>
-
-      <article className="shadow-md rounded-2xl flex items-center gap-3 p-4 bg-white">
-        <div className="rounded-full bg-secondary/10 p-2 flex items-center justify-center self-center shadow-md">
-          <IdCardIcon className="text-tertiary size-8 flex-shrink-0" />
-        </div>
-        <p className="text-sm text-justify leading-5 text-zinc-700">
-          Os <span className="font-bold text-primary">Estudantes</span> possuem
-          o direito do valor da passagem ser de{" "}
-          <span className="font-semibold text-green-600 underline underline-offset-3">
-            R$1,00
-          </span>{" "}
-          com a utilização do cartão{" "}
-          <span className="font-bold text-secondary">EDUCARD</span>, conforme a
-          Lei Municipal 3026, de 16 de dezembro de 2019.
-        </p>
+        </article>
       </article>
     </main>
   );
