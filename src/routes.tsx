@@ -10,6 +10,7 @@ import MattosLeao from "./pages/HomePage/HorariosItinerarios/MattosLeao";
 import HorariosItinerarios from "./pages/HomePage/HorariosItinerarios";
 import { Tarifas } from "./pages/HomePage/Tarifas";
 import NossaHistoria from "./pages/HomePage/NossaHistoria";
+import PortalDoAlunoLogin from "./pages/HomePage/PortalDoAlunoLogin";
 
 export const router = createBrowserRouter([
   {
@@ -23,6 +24,7 @@ export const router = createBrowserRouter([
       { path: "/nossa-historia", element: <NossaHistoria /> },
       { path: "/horarios-itinerarios", element: <HorariosItinerarios /> },
       { path: "/horarios-itinerarios/mattos-leao", element: <MattosLeao /> },
+      { path: "/portal-do-aluno/login", element: <PortalDoAlunoLogin /> },
       {
         path: "/portal-do-aluno/registrar",
         element: <PortalDoAlunoRegistro />,

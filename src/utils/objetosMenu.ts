@@ -25,7 +25,11 @@ export const navHome = [
 ];
 
 export const navUsuarios = [
-  { key: "portal-do-aluno", icon: BookUserIcon, label: "Portal do Aluno" },
+  {
+    key: "portal-do-aluno/login",
+    icon: BookUserIcon,
+    label: "Portal do Aluno",
+  },
   {
     key: "area-do-colaborador",
     icon: BusFrontIcon,
