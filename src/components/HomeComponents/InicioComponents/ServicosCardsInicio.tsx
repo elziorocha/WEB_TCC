@@ -1,4 +1,4 @@
-import { cardsMenu } from "@/utils/objetosCardsInicio";
+import { cardsInicio } from "@/utils/objetosExportaveis";
 
 const ServicosCardsInicio = () => {
   return (
@@ -6,7 +6,7 @@ const ServicosCardsInicio = () => {
       <h2 className="text-tertiary font-bold text-2xl">Nossos Serviços</h2>
 
       <article className="flex flex-wrap justify-center gap-4">
-        {cardsMenu.map((item) => (
+        {cardsInicio.map((item) => (
           <section
             key={item.key}
             className="bg-white hover:bg-tertiary/5 transition-colors rounded-2xl shadow-md px-2 py-4 flex flex-col gap-4 w-36"
