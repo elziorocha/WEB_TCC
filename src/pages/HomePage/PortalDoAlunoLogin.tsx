@@ -2,11 +2,11 @@ import { Mail, Lock, User, ArrowRight } from "lucide-react";
 
 const PortalDoAlunoLogin = () => {
   return (
-    <main className="bg-gradient-to-br from-tertiary/15 via-tertiary/20 to-tertiary/25 flex items-center justify-center p-4 -mb-8">
-      <div className="w-full max-w-md flex flex-col gap-4">
+    <main className="flex items-center justify-center p-6 -mb-8">
+      <div className="w-full max-w-md flex flex-col gap-3">
         <section className="flex flex-col items-center gap-2">
-          <User className="text-whiteText size-14 p-2 bg-secondary rounded-2xl shadow-md" />
-          <div className="text-center flex flex-col gap-1">
+          <User className="text-whiteText size-14 p-2 bg-gradient-to-bl from-tertiary to-quarter rounded-2xl shadow-md" />
+          <div className="text-center flex flex-col gap-0.5">
             <h2 className="text-3xl font-bold text-gray-800">
               Portal do Aluno
             </h2>
@@ -17,50 +17,48 @@ const PortalDoAlunoLogin = () => {
         <form
           action="/"
           method="post"
-          className="bg-white/80 backdrop-blur-sm shadow-2xl rounded-3xl p-8 border border-white/20"
+          className="bg-white/80 shadow-xl rounded-3xl p-4 border border-zinc-300"
         >
-          <h2 className="text-2xl font-bold text-tertiary text-center">
+          <h2 className="text-2xl font-bold text-tertiary text-center mb-2">
             Login
           </h2>
 
-          <div className="space-y-6">
-            <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                <Mail className="h-5 w-5 text-gray-400" />
+          <section className="flex flex-col gap-2">
+            <div className="flex flex-col gap-3">
+              <div className="flex items-center gap-2 px-4 py-2.5 bg-white border border-zinc-400 rounded-xl shadow-sm">
+                <Mail className="size-5 text-gray-400" />
+                <input
+                  type="email"
+                  placeholder="Seu e-mail"
+                  required
+                  className="outline-none placeholder:text-gray-400 text-sm"
+                />
               </div>
-              <input
-                type="email"
-                placeholder="Seu e-mail"
-                className="w-full pl-12 pr-4 py-4 bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-gray-700 placeholder-gray-400"
-                required
-              />
+
+              <div className="flex items-center gap-2 px-4 py-2.5 bg-white border border-zinc-400 rounded-xl shadow-sm">
+                <Lock className="size-5 text-gray-400" />
+                <input
+                  type="password"
+                  placeholder="Sua Senha"
+                  required
+                  className="outline-none placeholder:text-gray-400 text-sm"
+                />
+              </div>
             </div>
 
-            <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                <Lock className="h-5 w-5 text-gray-400" />
-              </div>
-              <input
-                type="password"
-                placeholder="Sua senha"
-                className="w-full pl-12 pr-4 py-4 bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-gray-700 placeholder-gray-400"
-                required
-              />
-            </div>
-
-            <a
-              href="#"
-              className="text-blue-600 hover:text-blue-700 font-medium text-sm self-end"
-            >
+            <span className="text-quarter hover:text-tertiary font-medium text-sm self-end mr-1 cursor-pointer">
               Esqueci minha senha
-            </a>
+            </span>
+          </section>
 
+          <section className="flex flex-col gap-1 mt-6">
             <button
               type="submit"
-              className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold py-4 rounded-2xl hover:from-blue-700 hover:to-indigo-700 transform hover:scale-[1.02] transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+              className="bg-secondary hover:bg-tertiary transform hover:scale-[1.01] transition-all duration-300 shadow-lg
+              flex items-center justify-center gap-1 text-whiteText font-semibold py-4 rounded-2xl"
             >
               Entrar
-              <ArrowRight className="w-5 h-5" />
+              <ArrowRight className="size-5" />
             </button>
 
             <div className="flex items-center gap-2">
@@ -71,11 +69,12 @@ const PortalDoAlunoLogin = () => {
 
             <button
               type="button"
-              className="w-full bg-white border-2 border-blue-200 text-blue-600 font-semibold py-4 rounded-2xl hover:bg-blue-50 hover:border-blue-300 transition-all duration-200 shadow-sm hover:shadow-md"
+              className="bg-white border-2 border-blue-300 text-secondary hover:border-quarter transition-all duration-200
+              shadow-xs font-semibold py-4 rounded-2xl hover:shadow-quarter"
             >
               Ainda não sou cadastrado!
             </button>
-          </div>
+          </section>
         </form>
       </div>
     </main>

@@ -1,6 +1,6 @@
 export const HomeFooter = () => {
   return (
-    <main className="py-4 px-5 bg-secondary mt-8">
+    <main className="py-4 px-5 bg-secondary mt-8 lg:mt-0">
       <h2 className="text-whiteText text-center text-xs sm:text-sm md:text-lg">
         Rua Sorocaba, 277 - Bonsucesso - Cep: 85055-090
         <br />

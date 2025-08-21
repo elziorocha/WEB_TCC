@@ -109,6 +109,7 @@
   --color-primary: #e9bd00;
   --color-secondary: #004f9e;
   --color-tertiary: #033b73;
+  --color-quarter: #0761ba;
 
   --color-blackText: #09090b;
   --color-whiteText: #e4e4e7;
@@ -131,6 +132,13 @@
   .input_login {
     @apply px-4 py-2 font-medium rounded-lg bg-whiteText shadow-md;
   }
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  box-shadow: 0 0 0px 1000px white inset !important;
 }
 
 body {
