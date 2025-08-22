@@ -54,7 +54,7 @@ export default function MenuComponent() {
         <section className="px-2 pb-4 flex flex-col gap-2">
           <ul className="px-2 flex flex-col gap-1.5 -mt-1">
             {navUsuarios.map((item) => (
-              <Link key={item.key} to={item.key}>
+              <Link key={item.key} to={item.key} onClick={fecharMenu}>
                 <li className="botao_menu">
                   <item.icon size={20} />
                   <label>{item.label}</label>
