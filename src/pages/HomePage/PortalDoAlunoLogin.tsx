@@ -1,4 +1,5 @@
 import { Mail, Lock, User, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const PortalDoAlunoLogin = () => {
   return (
@@ -67,13 +68,13 @@ const PortalDoAlunoLogin = () => {
               <hr className="w-full border-zinc-400" />
             </div>
 
-            <button
-              type="button"
+            <Link
+              to="/portal-do-aluno/registrar"
               className="bg-white border-2 border-blue-300 text-secondary hover:border-quarter transition-all duration-200
-              shadow-xs font-semibold py-4 rounded-2xl hover:shadow-quarter"
+              shadow-xs font-semibold py-4 rounded-2xl hover:shadow-quarter text-center"
             >
               Ainda não sou cadastrado!
-            </button>
+            </Link>
           </section>
         </form>
       </div>
