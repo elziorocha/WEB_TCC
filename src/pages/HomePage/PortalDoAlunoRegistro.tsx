@@ -1,84 +1,111 @@
-import { useState } from "react";
-import instanciaAPI from "../../utils/api.ts";
+import {
+  ArrowRight,
+  CalendarDaysIcon,
+  CircleUserIcon,
+  Mail,
+  MailCheck,
+  SmartphoneIcon,
+} from "lucide-react";
+import { Link } from "react-router-dom";
 
 const PortalDoAlunoRegistro = () => {
-  const [dadosAluno, setDadosAluno] = useState({
-    nome: "",
-    email: "",
-    senha: "",
-    telefone: "",
-    data_nascimento: "",
-  });
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setDadosAluno((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const enviarFormularioRegistro = async (e: React.FormEvent) => {
-    e.preventDefault();
-    try {
-      const response = await instanciaAPI.post("/aluno", dadosAluno);
-      console.log("Resposta da API:", response.data);
-    } catch (error) {
-      console.error("Erro ao enviar dados:", error);
-    }
-  };
-
   return (
-    <main className="flex items-center justify-center w-full p-8 h-full">
-      <form
-        onSubmit={enviarFormularioRegistro}
-        className="flex flex-col gap-2 p-4 bg-zinc-400 rounded-lg shadow-md"
-      >
-        <input
-          type="text"
-          name="nome"
-          placeholder="Seu Nome"
-          value={dadosAluno.nome}
-          onChange={handleChange}
-          className="bg-zinc-300 rounded-lg p-2"
-        />
-        <input
-          type="email"
-          name="email"
-          value={dadosAluno.email}
-          placeholder="Seu Email"
-          onChange={handleChange}
-          className="bg-zinc-300 rounded-lg p-2"
-        />
-        <input
-          type="password"
-          name="senha"
-          placeholder="Sua Senha"
-          value={dadosAluno.senha}
-          onChange={handleChange}
-          className="bg-zinc-300 rounded-lg p-2"
-        />
-        <input
-          type="text"
-          name="telefone"
-          placeholder="Seu Telefone"
-          value={dadosAluno.telefone}
-          onChange={handleChange}
-          className="bg-zinc-300 rounded-lg p-2"
-        />
-        <input
-          type="date"
-          name="data_nascimento"
-          placeholder="Sua Data de nascimento"
-          value={dadosAluno.data_nascimento}
-          onChange={handleChange}
-          className="bg-zinc-300 rounded-lg p-2"
-        />
+    <main className="w-full min-h-screen p-6 -mb-8">
+      <div className="w-full max-w-md flex flex-col gap-3">
+        <section className="text-center flex flex-col gap-0.5">
+          <h2 className="text-3xl font-bold text-gray-800">Portal do Aluno</h2>
+          <h3 className="text-gray-600">Crie sua conta</h3>
+        </section>
 
-        <button
-          type="submit"
-          className="bg-secondary text-white p-2 rounded-md cursor-pointer"
+        <form
+          action="/"
+          method="post"
+          className="bg-white/80 shadow-xl rounded-3xl p-4 border border-zinc-300 flex flex-col gap-5"
         >
-          Registrar
-        </button>
-      </form>
+          <h2 className="text-2xl font-bold text-tertiary text-center">
+            Registro
+          </h2>
+
+          <section className="flex flex-col gap-2">
+            <div className="flex items-center gap-2 px-4 py-2.5 bg-white border border-zinc-400 rounded-xl shadow-sm">
+              <Mail className="size-5 text-gray-400" />
+              <input
+                type="email"
+                placeholder="Seu e-mail"
+                required
+                className="outline-none placeholder:text-gray-400 text-sm"
+              />
+            </div>
+
+            <div className="flex items-center gap-2 px-4 py-2.5 bg-white border border-zinc-400 rounded-xl shadow-sm">
+              <MailCheck className="size-5 text-gray-400" />
+              <input
+                type="email"
+                placeholder="Confirme seu e-mail"
+                required
+                className="outline-none placeholder:text-gray-400 text-sm"
+              />
+            </div>
+          </section>
+
+          <section className="flex flex-col gap-2">
+            <div className="flex items-center gap-2 px-4 py-2.5 bg-white border border-zinc-400 rounded-xl shadow-sm">
+              <CircleUserIcon className="size-5 text-gray-400" />
+              <input
+                type="text"
+                placeholder="Seu nome completo"
+                required
+                className="outline-none placeholder:text-gray-400 text-sm"
+              />
+            </div>
+
+            <div className="flex items-center gap-2 px-4 py-2.5 bg-white border border-zinc-400 rounded-xl shadow-sm">
+              <CalendarDaysIcon className="size-5 text-gray-400" />
+              <input
+                type="date"
+                placeholder="Sua data de nascimento"
+                required
+                className="outline-none placeholder:text-gray-400 text-sm"
+              />
+            </div>
+          </section>
+
+          <div className="flex items-center gap-2 px-4 py-2.5 bg-white border border-zinc-400 rounded-xl shadow-sm">
+            <SmartphoneIcon className="size-5 text-gray-400" />
+            <input
+              type="text"
+              placeholder="Seu número de telefone"
+              required
+              className="outline-none placeholder:text-gray-400 text-sm"
+            />
+          </div>
+
+          <section className="flex flex-col gap-1">
+            <button
+              type="submit"
+              className="bg-secondary hover:bg-tertiary transform hover:scale-[1.01] transition-all duration-300 shadow-lg
+              flex items-center justify-center gap-1 text-whiteText font-semibold py-4 rounded-2xl"
+            >
+              Entrar
+              <ArrowRight className="size-5" />
+            </button>
+
+            <div className="flex items-center gap-2">
+              <hr className="w-full border-zinc-400" />
+              <span className="font-semibold">ou</span>
+              <hr className="w-full border-zinc-400" />
+            </div>
+
+            <Link
+              to="/portal-do-aluno/login"
+              className="bg-white border-2 border-blue-300 text-secondary hover:border-quarter transition-all duration-200
+              shadow-xs font-semibold py-4 rounded-2xl hover:shadow-quarter text-center"
+            >
+              Já possuo uma conta!
+            </Link>
+          </section>
+        </form>
+      </div>
     </main>
   );
 };
