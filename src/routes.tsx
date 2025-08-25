@@ -32,11 +32,11 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: "/portal-do-aluno/:id",
+    path: "/portal-do-aluno/",
     element: <PortalDoAlunoLayout />,
     errorElement: <Error />,
     children: [
-      { path: "/portal-do-aluno/:id", element: <PortalDoAlunoDashboard /> },
+      { path: "/portal-do-aluno/", element: <PortalDoAlunoDashboard /> },
     ],
   },
 ]);

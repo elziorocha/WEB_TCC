@@ -3,6 +3,7 @@ import Cookies from "js-cookie";
 
 const instanciaAPI = axios.create({
   baseURL: "http://localhost:3000/api/",
+  withCredentials: true,
 });
 
 instanciaAPI.interceptors.request.use((config) => {

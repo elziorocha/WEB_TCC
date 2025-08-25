@@ -1,4 +1,3 @@
-import axios from "axios";
 import instanciaAPI from "./api";
 import Cookies from "js-cookie";
 import type {
@@ -7,28 +6,26 @@ import type {
 } from "@/utils/interfaces";
 
 export const register = async (userData: AlunoRegistroInterface) => {
-  const response = await axios.post(`${instanciaAPI}/registro`, userData, {
-    withCredentials: true,
-  });
+  const response = await instanciaAPI.post("aluno/registro", userData);
 
   Cookies.set("token", response.data.token, {
     expires: 0.25,
     secure: true,
     sameSite: "Strict",
   });
+
   return response.data.aluno;
 };
 
 export const login = async (credentials: AlunoLoginInterface) => {
-  const response = await axios.post(`${instanciaAPI}/login`, credentials, {
-    withCredentials: true,
-  });
+  const response = await instanciaAPI.post("aluno/login", credentials);
 
   Cookies.set("token", response.data.token, {
     expires: 0.25,
     secure: true,
     sameSite: "Strict",
   });
+
   return response.data.alunoAuth;
 };
 

@@ -1,7 +1,21 @@
+import { login } from "@/services/auth";
 import { Mail, Lock, User, ArrowRight } from "lucide-react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const PortalDoAlunoLogin = () => {
+  const [formData, setFormData] = useState({ email: "", senha: "" });
+
+  const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      const aluno = await login(formData);
+      console.log("Logado como:", aluno);
+    } catch (err) {
+      console.log(err.response?.data?.error || "Erro ao logar");
+    }
+  };
+
   return (
     <main className="flex items-center justify-center p-6 -mb-8">
       <div className="w-full max-w-md flex flex-col gap-3">
@@ -16,8 +30,8 @@ const PortalDoAlunoLogin = () => {
         </section>
 
         <form
-          action="/"
           method="post"
+          onSubmit={handleRegister}
           className="bg-white/80 shadow-xl rounded-3xl p-4 border border-zinc-300"
         >
           <h2 className="text-2xl font-bold text-tertiary text-center mb-2">
@@ -32,6 +46,10 @@ const PortalDoAlunoLogin = () => {
                   type="email"
                   placeholder="Seu e-mail"
                   required
+                  value={formData.email}
+                  onChange={(e) =>
+                    setFormData({ ...formData, email: e.target.value })
+                  }
                   className="outline-none placeholder:text-gray-400 text-sm"
                 />
               </div>
@@ -42,6 +60,10 @@ const PortalDoAlunoLogin = () => {
                   type="password"
                   placeholder="Sua Senha"
                   required
+                  value={formData.senha}
+                  onChange={(e) =>
+                    setFormData({ ...formData, senha: e.target.value })
+                  }
                   className="outline-none placeholder:text-gray-400 text-sm"
                 />
               </div>
