@@ -6,7 +6,9 @@ import type {
 } from "@/utils/interfaces";
 
 export const register = async (userData: AlunoRegistroInterface) => {
-  const response = await instanciaAPI.post("aluno/registro", userData);
+  const response = await instanciaAPI.post("aluno/registro", userData, {
+    withCredentials: true,
+  });
 
   Cookies.set("token", response.data.token, {
     expires: 0.25,
@@ -18,7 +20,9 @@ export const register = async (userData: AlunoRegistroInterface) => {
 };
 
 export const login = async (credentials: AlunoLoginInterface) => {
-  const response = await instanciaAPI.post("aluno/login", credentials);
+  const response = await instanciaAPI.post("aluno/login", credentials, {
+    withCredentials: true,
+  });
 
   Cookies.set("token", response.data.token, {
     expires: 0.25,

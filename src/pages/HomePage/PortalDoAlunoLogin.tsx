@@ -1,16 +1,21 @@
+import { getAluno } from "@/services/aluno";
 import { login } from "@/services/auth";
 import { Mail, Lock, User, ArrowRight } from "lucide-react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const PortalDoAlunoLogin = () => {
   const [formData, setFormData] = useState({ email: "", senha: "" });
+  const navigate = useNavigate();
 
-  const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const aluno = await login(formData);
-      console.log("Logado como:", aluno);
+      await login(formData);
+      const alunoDados = await getAluno();
+
+      console.log("Aluno logado:", alunoDados);
+      navigate("/portal-do-aluno/dashboard");
     } catch (err) {
       console.log(err.response?.data?.error || "Erro ao logar");
     }
@@ -31,7 +36,7 @@ const PortalDoAlunoLogin = () => {
 
         <form
           method="post"
-          onSubmit={handleRegister}
+          onSubmit={handleLogin}
           className="bg-white/80 shadow-xl rounded-3xl p-4 border border-zinc-300"
         >
           <h2 className="text-2xl font-bold text-tertiary text-center mb-2">
