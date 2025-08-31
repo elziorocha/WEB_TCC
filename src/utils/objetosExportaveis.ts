@@ -10,6 +10,9 @@ import {
   Home,
   MessageCircleMoreIcon,
   TicketIcon,
+  FileInputIcon,
+  UniversityIcon,
+  BookAlertIcon,
 } from "lucide-react";
 
 export const cardsInicio = [
@@ -53,5 +56,24 @@ export const navUsuarios = [
     key: "area-do-colaborador",
     icon: BusFrontIcon,
     label: "Área do Colaborador",
+  },
+];
+
+export const cardsDashboardPortalAluno = [
+  { key: "1", icon: SquareUserRoundIcon, label: "Perfil de usuário" },
+  {
+    key: "2",
+    icon: FileInputIcon,
+    label: "Processos Digitais",
+  },
+  {
+    key: "3",
+    icon: UniversityIcon,
+    label: "Matrícula",
+  },
+  {
+    key: "4",
+    icon: BookAlertIcon,
+    label: "Formulários",
   },
 ];
