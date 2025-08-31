@@ -8,7 +8,7 @@ const PortalDoAlunoLogin = () => {
   const [formData, setFormData] = useState({ email: "", senha: "" });
   const navigate = useNavigate();
 
-  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+  const Login = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       await login(formData);
@@ -16,8 +16,8 @@ const PortalDoAlunoLogin = () => {
 
       console.log("Aluno logado:", alunoDados);
       navigate("/portal-do-aluno/dashboard");
-    } catch (err) {
-      console.log(err.response?.data?.error || "Erro ao logar");
+    } catch (err: unknown) {
+      console.error("Falha no Login", err);
     }
   };
 
@@ -36,7 +36,7 @@ const PortalDoAlunoLogin = () => {
 
         <form
           method="post"
-          onSubmit={handleLogin}
+          onSubmit={Login}
           className="bg-white/80 shadow-xl rounded-3xl p-4 border border-zinc-300"
         >
           <h2 className="text-2xl font-bold text-tertiary text-center mb-2">
