@@ -1,4 +1,4 @@
-import instanciaAPI from "./api";
+import instanciaAPI from "./instanciaApi";
 import Cookies from "js-cookie";
 import type {
   AlunoLoginInterface,

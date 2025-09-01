@@ -1,4 +1,4 @@
-import { getAluno } from "@/services/aluno";
+import { getAluno } from "@/services/api";
 import { login } from "@/services/auth";
 import { Mail, Lock, User, ArrowRight } from "lucide-react";
 import { useState } from "react";

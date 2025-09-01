@@ -1,12 +1,17 @@
 import { useEffect, useState } from "react";
-import { getAluno } from "@/services/aluno";
-import type { AlunoInterface } from "@/utils/interfaces.interface";
+import { getAluno, getAlunoDocumentos } from "@/services/api";
+import type {
+  AlunoDocumentoInterface,
+  AlunoInterface,
+} from "@/utils/interfaces.interface";
 import { useNavigate } from "react-router-dom";
 import { alunoEstaLogado } from "@/services/auth";
 import { cardsDashboardPortalAluno } from "@/utils/objetosExportaveis";
 
 export function PortalDoAlunoDashboard() {
   const [aluno, setAluno] = useState<AlunoInterface | null>(null);
+  const [alunoDocumento, setAlunoDocumento] =
+    useState<AlunoDocumentoInterface | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
@@ -19,8 +24,8 @@ export function PortalDoAlunoDashboard() {
 
     const fetchAluno = async () => {
       try {
-        const dados = await getAluno();
-        setAluno(dados);
+        const dadosAluno = await getAluno();
+        setAluno(dadosAluno);
       } catch (err: unknown) {
         console.error(err);
         setError("Erro ao carregar dados do aluno");
@@ -32,6 +37,27 @@ export function PortalDoAlunoDashboard() {
     fetchAluno();
   }, []);
 
+  useEffect(() => {
+    if (!alunoEstaLogado()) {
+      navigate("/portal-do-aluno/login");
+      return;
+    }
+
+    const fetchAlunoDocumentos = async () => {
+      try {
+        const dadosAlunoDocumentos = await getAlunoDocumentos();
+        setAlunoDocumento(dadosAlunoDocumentos);
+      } catch (err: unknown) {
+        console.error(err);
+        setError("Erro ao carregar documentos do aluno");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchAlunoDocumentos();
+  }, []);
+
   if (loading) return <main>Carregando...</main>;
   if (error) return <main>{error}</main>;
 
@@ -39,7 +65,11 @@ export function PortalDoAlunoDashboard() {
     <main className="p-6 flex flex-col gap-5">
       <div className="flex flex-col gap-1">
         <h2 className="text-2xl font-bold">
-          Olá, <span className="text-secondary">{aluno?.nome}</span>!
+          Olá,{" "}
+          <span className="text-secondary capitalize">
+            {aluno?.nome.split(" ")[0]}
+          </span>
+          !
         </h2>
         <h3 className="font-medium">O que deseja fazer hoje?</h3>
       </div>
@@ -62,6 +92,19 @@ export function PortalDoAlunoDashboard() {
           </section>
         ))}
       </article>
+
+      <h3 className="font-medium flex gap-1.5 items-center">
+        Status atual:{" "}
+        {alunoDocumento?.liberado ? (
+          <span className="bg-green-500 rounded shadow-sm px-1.5 py-0.5">
+            Vigente
+          </span>
+        ) : (
+          <span className="bg-red-600 rounded shadow-sm px-1.5 py-0.5">
+            Bloqueado
+          </span>
+        )}
+      </h3>
     </main>
   );
 }

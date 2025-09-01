@@ -12,3 +12,13 @@ export interface AlunoInterface {
   aluno_enderecoId: number | null;
   aluno_responsavelId: number | null;
 }
+
+export interface AlunoDocumentoInterface {
+  alunoDocumentoId: number;
+  rg: number;
+  cpf: number;
+  orgao_emissor: string;
+  comprovante_matricula: string;
+  atestado_frequencia: string;
+  liberado: boolean;
+}
