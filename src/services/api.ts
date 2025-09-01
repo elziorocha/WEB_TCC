@@ -1,17 +1,30 @@
-import axios from "axios";
+import instanciaAPI from "./instanciaApi";
 import Cookies from "js-cookie";
 
-const instanciaAPI = axios.create({
-  baseURL: "http://localhost:3000/api/",
-  withCredentials: true,
-});
-
-instanciaAPI.interceptors.request.use((config) => {
+export const getAluno = async () => {
   const token = Cookies.get("token");
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
-  }
-  return config;
-});
+  if (!token) throw new Error("Usuário não autenticado");
 
-export default instanciaAPI;
+  const response = await instanciaAPI.get("/aluno", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    withCredentials: true,
+  });
+
+  return response.data;
+};
+
+export const getAlunoDocumentos = async () => {
+  const token = Cookies.get("token");
+  if (!token) throw new Error("Usuário não autenticado");
+
+  const response = await instanciaAPI.get("/aluno/documento", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    withCredentials: true,
+  });
+
+  return response.data;
+};

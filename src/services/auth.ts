@@ -1,4 +1,4 @@
-import instanciaAPI from "./api";
+import instanciaAPI from "./instanciaApi";
 import Cookies from "js-cookie";
 import type {
   AlunoLoginInterface,
@@ -31,6 +31,11 @@ export const login = async (credentials: AlunoLoginInterface) => {
   });
 
   return response.data.alunoAuth;
+};
+
+export const alunoEstaLogado = (): boolean => {
+  const token = Cookies.get("token");
+  return !!token;
 };
 
 export const logout = () => {

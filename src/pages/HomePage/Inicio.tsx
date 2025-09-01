@@ -4,7 +4,7 @@ import ServicosCardsInicio from "@/components/HomeComponents/InicioComponents/Se
 export function Inicio() {
   return (
     <main className="flex flex-col gap-3">
-      <section className="bg-secondary px-2 pt-1 pb-4">
+      <section className="bg-secondary px-3 pt-1 pb-4">
         <div className="text-center text-whiteText flex flex-col gap-2">
           <h2 className="text-2xl font-bold lg:text-4xl">
             Viaje com <span className="text-primary">Segurança</span> e{" "}
