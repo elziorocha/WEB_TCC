@@ -11,6 +11,8 @@ import HorariosItinerarios from "./pages/HomePage/HorariosItinerarios";
 import { Tarifas } from "./pages/HomePage/Tarifas";
 import NossaHistoria from "./pages/HomePage/NossaHistoria";
 import PortalDoAlunoLogin from "./pages/HomePage/PortalDoAlunoLogin";
+import { RotaProtegida } from "./utils/rotaProtegida";
+import { PortalDoAlunoMatricula } from "./pages/PortalDoAluno/PortalDoAlunoMatricula";
 
 export const router = createBrowserRouter([
   {
@@ -18,27 +20,35 @@ export const router = createBrowserRouter([
     element: <HomeLayout />,
     errorElement: <Error />,
     children: [
-      { path: "/", element: <Inicio /> },
-      { path: "/fale-conosco", element: <FaleConosco /> },
-      { path: "/tarifas", element: <Tarifas /> },
-      { path: "/nossa-historia", element: <NossaHistoria /> },
-      { path: "/horarios-itinerarios", element: <HorariosItinerarios /> },
-      { path: "/horarios-itinerarios/mattos-leao", element: <MattosLeao /> },
-      { path: "/portal-do-aluno/login", element: <PortalDoAlunoLogin /> },
+      { path: "", element: <Inicio /> },
+      { path: "fale-conosco", element: <FaleConosco /> },
+      { path: "tarifas", element: <Tarifas /> },
+      { path: "nossa-historia", element: <NossaHistoria /> },
+      { path: "horarios-itinerarios", element: <HorariosItinerarios /> },
+      { path: "horarios-itinerarios/mattos-leao", element: <MattosLeao /> },
+      { path: "portal-do-aluno/login", element: <PortalDoAlunoLogin /> },
       {
-        path: "/portal-do-aluno/registrar",
+        path: "portal-do-aluno/registrar",
         element: <PortalDoAlunoRegistro />,
       },
     ],
   },
   {
-    path: "/portal-do-aluno/dashboard",
-    element: <PortalDoAlunoLayout />,
+    path: "portal-do-aluno/",
+    element: (
+      <RotaProtegida>
+        <PortalDoAlunoLayout />
+      </RotaProtegida>
+    ),
     errorElement: <Error />,
     children: [
       {
-        path: "/portal-do-aluno/dashboard",
+        path: "dashboard",
         element: <PortalDoAlunoDashboard />,
+      },
+      {
+        path: "matricula",
+        element: <PortalDoAlunoMatricula />,
       },
     ],
   },

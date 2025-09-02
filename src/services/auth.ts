@@ -33,7 +33,7 @@ export const login = async (credentials: AlunoLoginInterface) => {
   return response.data.alunoAuth;
 };
 
-export const alunoEstaLogado = (): boolean => {
+export const alunoLogado = (): boolean => {
   const token = Cookies.get("token");
   return !!token;
 };
