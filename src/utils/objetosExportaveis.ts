@@ -69,7 +69,7 @@ export const cardsDashboardPortalAluno = [
   {
     key: "3",
     icon: UniversityIcon,
-    label: "Matrícula",
+    label: "Matrículas",
   },
   {
     key: "4",

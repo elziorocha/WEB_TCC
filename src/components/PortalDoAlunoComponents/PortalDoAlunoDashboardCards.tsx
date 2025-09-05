@@ -59,7 +59,7 @@ export const PortalDoAlunoDashboardCards = ({
                           Ver Matrículas
                         </h3>
                         <p className="text-blue-700 text-xs sm:text-sm">
-                          Consulte suas matrículas ativas
+                          Consulte suas matrículas
                         </p>
                       </div>
                     </div>
@@ -79,7 +79,7 @@ export const PortalDoAlunoDashboardCards = ({
                           Nova Matrícula
                         </h3>
                         <p className="text-yellowText text-xs sm:text-sm">
-                          Realize uma nova matrícula
+                          Cadastre uma nova matrícula
                         </p>
                       </div>
                     </section>
