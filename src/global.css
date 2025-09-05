@@ -110,9 +110,11 @@
   --color-secondary: #004f9e;
   --color-tertiary: #033b73;
   --color-quarter: #0761ba;
+  --color-fifth: #1b8bfa;
 
   --color-blackText: #09090b;
   --color-whiteText: #e4e4e7;
+  --color-yellowText: #7a6506;
 }
 
 @layer components {
@@ -123,12 +125,15 @@
     background-color: var(--bg-muted);
     box-shadow: 0px 7px 40px -16px black;
   }
+
   .dataTable_item {
     @apply w-[75px] text-center whitespace-nowrap;
   }
+
   .botao_menu {
     @apply py-1.5 px-2 text-base font-semibold flex gap-2 items-center;
   }
+
   .input_login {
     @apply px-4 py-2 font-medium rounded-lg bg-whiteText shadow-md;
   }

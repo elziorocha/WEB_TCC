@@ -38,6 +38,12 @@ export const alunoLogado = (): boolean => {
   return !!token;
 };
 
-export const logout = () => {
-  Cookies.remove("token");
+export const logout = async () => {
+  try {
+    await instanciaAPI.post("aluno/logout")
+  } catch (err) {
+    console.error("Erro no logout", err);
+  } finally {
+    Cookies.remove("token");
+  }
 };

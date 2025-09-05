@@ -13,6 +13,9 @@ import NossaHistoria from "./pages/HomePage/NossaHistoria";
 import PortalDoAlunoLogin from "./pages/HomePage/PortalDoAlunoLogin";
 import { RotaProtegida } from "./utils/rotaProtegida";
 import { PortalDoAlunoMatricula } from "./pages/PortalDoAluno/PortalDoAlunoMatricula";
+import { PortalDoAlunoPerfil } from "./pages/PortalDoAluno/PortalDoAlunoPerfil";
+import { PortalDoAlunoNovaMatricula } from "./pages/PortalDoAluno/PortalDoAlunoNovaMatricula";
+import { PortalDoAlunoConsultarMatriculas } from "./pages/PortalDoAluno/PortalDoAlunoConsultarMatriculas";
 
 export const router = createBrowserRouter([
   {
@@ -49,6 +52,18 @@ export const router = createBrowserRouter([
       {
         path: "matricula",
         element: <PortalDoAlunoMatricula />,
+      },
+      {
+        path: "aluno-perfil",
+        element: <PortalDoAlunoPerfil />,
+      },
+      {
+        path: "consultar-matricula",
+        element: <PortalDoAlunoConsultarMatriculas />,
+      },
+      {
+        path: "nova-matricula",
+        element: <PortalDoAlunoNovaMatricula />,
       },
     ],
   },
