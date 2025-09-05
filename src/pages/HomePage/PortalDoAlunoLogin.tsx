@@ -1,6 +1,4 @@
-import { getAluno } from '@/services/api';
-import { apiError } from '@/services/apiError';
-import { login } from '@/services/auth';
+import { chamadaLogin } from '@/services/AuthApi/chamadaLogin';
 import type { AlunoLoginInterface } from '@/utils/interfaces';
 import { Mail, Lock, User, ArrowRight } from 'lucide-react';
 import { useState } from 'react';
@@ -19,15 +17,7 @@ const PortalDoAlunoLogin = () => {
     setLoading(true);
 
     try {
-      await login(formData);
-      const alunoDados = await getAluno();
-      console.log('Aluno logado:', alunoDados);
-
-      navigate('/portal-do-aluno/dashboard');
-    } catch (err: unknown) {
-      console.error('Falha no Login', err);
-
-      apiError(err);
+      await chamadaLogin(formData, navigate);
     } finally {
       setLoading(false);
     }
@@ -60,7 +50,9 @@ const PortalDoAlunoLogin = () => {
               <div className="flex items-center gap-2 rounded-xl border border-zinc-400 bg-white px-4 py-2.5 shadow-sm">
                 <Mail className="size-5 text-gray-400" />
                 <input
+                  autoFocus
                   type="email"
+                  autoComplete="email"
                   placeholder="Seu e-mail"
                   required
                   value={formData.email}
@@ -75,6 +67,7 @@ const PortalDoAlunoLogin = () => {
                 <Lock className="size-5 text-gray-400" />
                 <input
                   type="password"
+                  autoComplete="current-password"
                   placeholder="Sua Senha"
                   required
                   value={formData.senha}
@@ -95,10 +88,14 @@ const PortalDoAlunoLogin = () => {
             <button
               type="submit"
               disabled={loading}
-              className="bg-secondary hover:bg-tertiary text-whiteText flex transform items-center justify-center gap-1 rounded-2xl py-4 font-semibold shadow-lg transition-all duration-300 hover:scale-[1.01]"
+              className={`bg-secondary text-whiteText flex items-center justify-center gap-1 rounded-2xl py-4 font-semibold shadow-lg transition-all duration-300 ${
+                loading
+                  ? 'cursor-not-allowed opacity-80'
+                  : 'hover:bg-tertiary hover:scale-[1.01]'
+              }`}
             >
-              Entrar
-              <ArrowRight className="size-5" />
+              {loading ? 'Entrando...' : 'Entrar'}
+              {!loading && <ArrowRight className="size-5" />}
             </button>
 
             <div className="flex items-center gap-2">

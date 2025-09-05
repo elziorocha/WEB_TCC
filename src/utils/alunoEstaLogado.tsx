@@ -1,4 +1,4 @@
-import { alunoLogado } from '@/services/auth';
+import { alunoLogado } from '@/services/AuthApi/auth';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
