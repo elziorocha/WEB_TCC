@@ -1,23 +1,35 @@
 import { getAluno } from '@/services/api';
+import { apiError } from '@/services/apiError';
 import { login } from '@/services/auth';
+import type { AlunoLoginInterface } from '@/utils/interfaces';
 import { Mail, Lock, User, ArrowRight } from 'lucide-react';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 const PortalDoAlunoLogin = () => {
-  const [formData, setFormData] = useState({ email: '', senha: '' });
+  const [formData, setFormData] = useState<AlunoLoginInterface>({
+    email: '',
+    senha: '',
+  });
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const Login = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoading(true);
+
     try {
       await login(formData);
       const alunoDados = await getAluno();
-
       console.log('Aluno logado:', alunoDados);
+
       navigate('/portal-do-aluno/dashboard');
     } catch (err: unknown) {
       console.error('Falha no Login', err);
+
+      apiError(err);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -82,6 +94,7 @@ const PortalDoAlunoLogin = () => {
           <section className="mt-6 flex flex-col gap-1">
             <button
               type="submit"
+              disabled={loading}
               className="bg-secondary hover:bg-tertiary text-whiteText flex transform items-center justify-center gap-1 rounded-2xl py-4 font-semibold shadow-lg transition-all duration-300 hover:scale-[1.01]"
             >
               Entrar

@@ -1,5 +1,10 @@
 export type TipoCartao = 'VEM' | 'EDUCARD';
 
+export interface AlunoLoginInterface {
+  email: string;
+  senha: string;
+}
+
 export interface AlunoInterface {
   alunoId: number;
   nome: string;
