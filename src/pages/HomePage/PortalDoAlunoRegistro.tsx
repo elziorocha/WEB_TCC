@@ -5,14 +5,14 @@ import {
   Mail,
   MailCheck,
   SmartphoneIcon,
-} from "lucide-react";
-import { Link } from "react-router-dom";
+} from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const PortalDoAlunoRegistro = () => {
   return (
-    <main className="w-full min-h-screen p-6 -mb-8">
-      <div className="w-full max-w-md flex flex-col gap-3">
-        <section className="text-center flex flex-col gap-0.5">
+    <main className="-mb-8 min-h-screen w-full p-6">
+      <div className="flex w-full max-w-md flex-col gap-3">
+        <section className="flex flex-col gap-0.5 text-center">
           <h2 className="text-3xl font-bold text-gray-800">Portal do Aluno</h2>
           <h3 className="text-gray-600">Crie sua conta</h3>
         </section>
@@ -20,71 +20,70 @@ const PortalDoAlunoRegistro = () => {
         <form
           action="/"
           method="post"
-          className="bg-white/80 shadow-xl rounded-3xl p-4 border border-zinc-300 flex flex-col gap-5"
+          className="flex flex-col gap-5 rounded-3xl border border-zinc-300 bg-white/80 p-4 shadow-xl"
         >
-          <h2 className="text-2xl font-bold text-tertiary text-center">
+          <h2 className="text-tertiary text-center text-2xl font-bold">
             Registro
           </h2>
 
           <section className="flex flex-col gap-2">
-            <div className="flex items-center gap-2 px-4 py-2.5 bg-white border border-zinc-400 rounded-xl shadow-sm">
+            <div className="flex items-center gap-2 rounded-xl border border-zinc-400 bg-white px-4 py-2.5 shadow-sm">
               <Mail className="size-5 text-gray-400" />
               <input
                 type="email"
                 placeholder="Seu e-mail"
                 required
-                className="outline-none placeholder:text-gray-400 text-sm"
+                className="text-sm outline-none placeholder:text-gray-400"
               />
             </div>
 
-            <div className="flex items-center gap-2 px-4 py-2.5 bg-white border border-zinc-400 rounded-xl shadow-sm">
+            <div className="flex items-center gap-2 rounded-xl border border-zinc-400 bg-white px-4 py-2.5 shadow-sm">
               <MailCheck className="size-5 text-gray-400" />
               <input
                 type="email"
                 placeholder="Confirme seu e-mail"
                 required
-                className="outline-none placeholder:text-gray-400 text-sm"
+                className="text-sm outline-none placeholder:text-gray-400"
               />
             </div>
           </section>
 
           <section className="flex flex-col gap-2">
-            <div className="flex items-center gap-2 px-4 py-2.5 bg-white border border-zinc-400 rounded-xl shadow-sm">
+            <div className="flex items-center gap-2 rounded-xl border border-zinc-400 bg-white px-4 py-2.5 shadow-sm">
               <CircleUserIcon className="size-5 text-gray-400" />
               <input
                 type="text"
                 placeholder="Seu nome completo"
                 required
-                className="outline-none placeholder:text-gray-400 text-sm"
+                className="text-sm outline-none placeholder:text-gray-400"
               />
             </div>
 
-            <div className="flex items-center gap-2 px-4 py-2.5 bg-white border border-zinc-400 rounded-xl shadow-sm">
+            <div className="flex items-center gap-2 rounded-xl border border-zinc-400 bg-white px-4 py-2.5 shadow-sm">
               <CalendarDaysIcon className="size-5 text-gray-400" />
               <input
                 type="date"
                 placeholder="Sua data de nascimento"
                 required
-                className="outline-none placeholder:text-gray-400 text-sm"
+                className="text-sm outline-none placeholder:text-gray-400"
               />
             </div>
           </section>
 
-          <div className="flex items-center gap-2 px-4 py-2.5 bg-white border border-zinc-400 rounded-xl shadow-sm">
+          <div className="flex items-center gap-2 rounded-xl border border-zinc-400 bg-white px-4 py-2.5 shadow-sm">
             <SmartphoneIcon className="size-5 text-gray-400" />
             <input
               type="text"
               placeholder="Seu número de telefone"
               required
-              className="outline-none placeholder:text-gray-400 text-sm"
+              className="text-sm outline-none placeholder:text-gray-400"
             />
           </div>
 
           <section className="flex flex-col gap-1">
             <button
               type="submit"
-              className="bg-secondary hover:bg-tertiary transform hover:scale-[1.01] transition-all duration-300 shadow-lg
-              flex items-center justify-center gap-1 text-whiteText font-semibold py-4 rounded-2xl"
+              className="bg-secondary hover:bg-tertiary text-whiteText flex transform items-center justify-center gap-1 rounded-2xl py-4 font-semibold shadow-lg transition-all duration-300 hover:scale-[1.01]"
             >
               Entrar
               <ArrowRight className="size-5" />
@@ -98,8 +97,7 @@ const PortalDoAlunoRegistro = () => {
 
             <Link
               to="/portal-do-aluno/login"
-              className="bg-white border-2 border-blue-300 text-secondary hover:border-quarter transition-all duration-200
-              shadow-xs font-semibold py-4 rounded-2xl hover:shadow-quarter text-center"
+              className="text-secondary hover:border-quarter hover:shadow-quarter rounded-2xl border-2 border-blue-300 bg-white py-4 text-center font-semibold shadow-xs transition-all duration-200"
             >
               Já possuo uma conta!
             </Link>

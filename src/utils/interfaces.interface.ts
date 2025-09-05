@@ -1,4 +1,4 @@
-export type TipoCartao = "VEM" | "EDUCARD";
+export type TipoCartao = 'VEM' | 'EDUCARD';
 
 export interface AlunoInterface {
   alunoId: number;

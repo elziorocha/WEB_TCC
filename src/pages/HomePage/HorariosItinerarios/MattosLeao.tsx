@@ -1,4 +1,4 @@
-import DataTable from "@/components/componentesUI/DataTableComponent";
+import DataTable from '@/components/componentesUI/DataTableComponent';
 
 export const MattosLeao = () => {
   return (

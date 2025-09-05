@@ -1,3 +1,8 @@
 export function PortalDoAlunoConsultarMatriculas() {
-  return <main>PortalDoAlunoConsultarMatriculas</main>;
+  return (
+    <main>
+      <div>teste</div>
+      <div>teste</div>
+    </main>
+  );
 }

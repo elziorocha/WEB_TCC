@@ -1,11 +1,11 @@
-import { getAluno } from "@/services/api";
-import { login } from "@/services/auth";
-import { Mail, Lock, User, ArrowRight } from "lucide-react";
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { getAluno } from '@/services/api';
+import { login } from '@/services/auth';
+import { Mail, Lock, User, ArrowRight } from 'lucide-react';
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 const PortalDoAlunoLogin = () => {
-  const [formData, setFormData] = useState({ email: "", senha: "" });
+  const [formData, setFormData] = useState({ email: '', senha: '' });
   const navigate = useNavigate();
 
   const Login = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -14,19 +14,19 @@ const PortalDoAlunoLogin = () => {
       await login(formData);
       const alunoDados = await getAluno();
 
-      console.log("Aluno logado:", alunoDados);
-      navigate("/portal-do-aluno/dashboard");
+      console.log('Aluno logado:', alunoDados);
+      navigate('/portal-do-aluno/dashboard');
     } catch (err: unknown) {
-      console.error("Falha no Login", err);
+      console.error('Falha no Login', err);
     }
   };
 
   return (
-    <main className="flex items-center justify-center p-6 -mb-8">
-      <div className="w-full max-w-md flex flex-col gap-3">
+    <main className="-mb-8 flex items-center justify-center p-6">
+      <div className="flex w-full max-w-md flex-col gap-3">
         <section className="flex flex-col items-center gap-2">
-          <User className="text-whiteText size-14 p-2 bg-gradient-to-bl from-tertiary to-quarter rounded-2xl shadow-md" />
-          <div className="text-center flex flex-col gap-0.5">
+          <User className="text-whiteText from-tertiary to-quarter size-14 rounded-2xl bg-gradient-to-bl p-2 shadow-md" />
+          <div className="flex flex-col gap-0.5 text-center">
             <h2 className="text-3xl font-bold text-gray-800">
               Portal do Aluno
             </h2>
@@ -37,15 +37,15 @@ const PortalDoAlunoLogin = () => {
         <form
           method="post"
           onSubmit={Login}
-          className="bg-white/80 shadow-xl rounded-3xl p-4 border border-zinc-300"
+          className="rounded-3xl border border-zinc-300 bg-white/80 p-4 shadow-xl"
         >
-          <h2 className="text-2xl font-bold text-tertiary text-center mb-2">
+          <h2 className="text-tertiary mb-2 text-center text-2xl font-bold">
             Login
           </h2>
 
           <section className="flex flex-col gap-2">
             <div className="flex flex-col gap-3">
-              <div className="flex items-center gap-2 px-4 py-2.5 bg-white border border-zinc-400 rounded-xl shadow-sm">
+              <div className="flex items-center gap-2 rounded-xl border border-zinc-400 bg-white px-4 py-2.5 shadow-sm">
                 <Mail className="size-5 text-gray-400" />
                 <input
                   type="email"
@@ -55,11 +55,11 @@ const PortalDoAlunoLogin = () => {
                   onChange={(e) =>
                     setFormData({ ...formData, email: e.target.value })
                   }
-                  className="outline-none placeholder:text-gray-400 text-sm"
+                  className="text-sm outline-none placeholder:text-gray-400"
                 />
               </div>
 
-              <div className="flex items-center gap-2 px-4 py-2.5 bg-white border border-zinc-400 rounded-xl shadow-sm">
+              <div className="flex items-center gap-2 rounded-xl border border-zinc-400 bg-white px-4 py-2.5 shadow-sm">
                 <Lock className="size-5 text-gray-400" />
                 <input
                   type="password"
@@ -69,21 +69,20 @@ const PortalDoAlunoLogin = () => {
                   onChange={(e) =>
                     setFormData({ ...formData, senha: e.target.value })
                   }
-                  className="outline-none placeholder:text-gray-400 text-sm"
+                  className="text-sm outline-none placeholder:text-gray-400"
                 />
               </div>
             </div>
 
-            <span className="text-quarter hover:text-tertiary font-medium text-sm self-end mr-1 cursor-pointer">
+            <span className="text-quarter hover:text-tertiary mr-1 cursor-pointer self-end text-sm font-medium">
               Esqueci minha senha
             </span>
           </section>
 
-          <section className="flex flex-col gap-1 mt-6">
+          <section className="mt-6 flex flex-col gap-1">
             <button
               type="submit"
-              className="bg-secondary hover:bg-tertiary transform hover:scale-[1.01] transition-all duration-300 shadow-lg
-              flex items-center justify-center gap-1 text-whiteText font-semibold py-4 rounded-2xl"
+              className="bg-secondary hover:bg-tertiary text-whiteText flex transform items-center justify-center gap-1 rounded-2xl py-4 font-semibold shadow-lg transition-all duration-300 hover:scale-[1.01]"
             >
               Entrar
               <ArrowRight className="size-5" />
@@ -97,8 +96,7 @@ const PortalDoAlunoLogin = () => {
 
             <Link
               to="/portal-do-aluno/registrar"
-              className="bg-white border-2 border-blue-300 text-secondary hover:border-quarter transition-all duration-200
-              shadow-xs font-semibold py-4 rounded-2xl hover:shadow-quarter text-center"
+              className="text-secondary hover:border-quarter hover:shadow-quarter rounded-2xl border-2 border-blue-300 bg-white py-4 text-center font-semibold shadow-xs transition-all duration-200"
             >
               Ainda não sou cadastrado!
             </Link>

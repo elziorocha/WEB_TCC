@@ -1,5 +1,5 @@
-import { Outlet } from "react-router-dom";
-import PortalDoAlunoHeader from "../components/PortalDoAlunoComponents/PortalDoAlunoHeader";
+import { Outlet } from 'react-router-dom';
+import PortalDoAlunoHeader from '../components/PortalDoAlunoComponents/PortalDoAlunoHeader';
 
 export function PortalDoAlunoLayout() {
   return (

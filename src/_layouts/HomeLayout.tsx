@@ -1,10 +1,10 @@
-import { Outlet } from "react-router-dom";
-import HomeFooter from "../components/HomeComponents/HomeFooter";
-import HomeHeader from "../components/HomeComponents/HomeHeader";
+import { Outlet } from 'react-router-dom';
+import HomeFooter from '../components/HomeComponents/HomeFooter';
+import HomeHeader from '../components/HomeComponents/HomeHeader';
 
 export function HomeLayout() {
   return (
-    <main className="flex flex-col min-h-screen">
+    <main className="flex min-h-screen flex-col">
       <HomeHeader />
       <section className="flex-1">
         <Outlet />

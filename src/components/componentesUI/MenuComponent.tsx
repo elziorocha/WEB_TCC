@@ -1,14 +1,14 @@
-import { useState } from "react";
+import { useState } from 'react';
 import {
   Sheet,
   SheetContent,
   SheetDescription,
   SheetTitle,
   SheetTrigger,
-} from "@/components/ui/sheet";
-import { Menu } from "lucide-react";
-import { Link } from "react-router-dom";
-import { navHome, navUsuarios } from "@/utils/objetosExportaveis";
+} from '@/components/ui/sheet';
+import { Menu } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { navHome, navUsuarios } from '@/utils/objetosExportaveis';
 
 export default function MenuComponent() {
   const [menuAtivo, setMenuAtivo] = useState(false);
@@ -20,24 +20,20 @@ export default function MenuComponent() {
       <SheetTrigger>
         <Menu
           onClick={() => setMenuAtivo(!menuAtivo)}
-          className="size-10 p-1 rounded-lg bg-tertiary block sm:block md:hidden z-50"
+          className="bg-tertiary z-50 block size-10 rounded-lg p-1 sm:block md:hidden"
         />
       </SheetTrigger>
       <SheetContent
         side="top"
-        className="bg-tertiary text-white border-none mx-auto max-w-md rounded-2xl shadow-2xl 
-                   data-[state=open]:slide-in-from-top-4 data-[state=closed]:slide-out-to-top-4
-                   data-[state=open]:fade-in-0 data-[state=closed]:fade-out-0
-                   data-[state=open]:zoom-in-95 data-[state=closed]:zoom-out-95
-                   inset-x-4 top-20 bottom-auto h-auto"
+        className="bg-tertiary data-[state=open]:slide-in-from-top-4 data-[state=closed]:slide-out-to-top-4 data-[state=open]:fade-in-0 data-[state=closed]:fade-out-0 data-[state=open]:zoom-in-95 data-[state=closed]:zoom-out-95 inset-x-4 top-20 bottom-auto mx-auto h-auto max-w-md rounded-2xl border-none text-white shadow-2xl"
       >
-        <SheetTitle className="text-white py-4 pl-6 text-lg border-b border-zinc-200">
+        <SheetTitle className="border-b border-zinc-200 py-4 pl-6 text-lg text-white">
           Menu de navegação
         </SheetTitle>
         <SheetDescription hidden>menu de navegação do website</SheetDescription>
 
-        <section className="px-2 pb-4 flex flex-col gap-2">
-          <ul className="px-2 flex flex-col gap-1.5 -mt-1">
+        <section className="flex flex-col gap-2 px-2 pb-4">
+          <ul className="-mt-1 flex flex-col gap-1.5 px-2">
             {navHome.map((item) => (
               <Link key={item.key} to={item.key} onClick={fecharMenu}>
                 <li className="botao_menu">
@@ -49,10 +45,10 @@ export default function MenuComponent() {
           </ul>
         </section>
 
-        <hr className="border-zinc-300 -mt-5" />
+        <hr className="-mt-5 border-zinc-300" />
 
-        <section className="px-2 pb-4 flex flex-col gap-2">
-          <ul className="px-2 flex flex-col gap-1.5 -mt-1">
+        <section className="flex flex-col gap-2 px-2 pb-4">
+          <ul className="-mt-1 flex flex-col gap-1.5 px-2">
             {navUsuarios.map((item) => (
               <Link key={item.key} to={item.key} onClick={fecharMenu}>
                 <li className="botao_menu">

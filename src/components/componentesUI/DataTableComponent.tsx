@@ -5,15 +5,15 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
+} from '@/components/ui/table';
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { mattosLeaoData } from "@/utils/objetosHorariosItinerarios/objetoMattosLeao";
+} from '@/components/ui/card';
+import { mattosLeaoData } from '@/utils/objetosHorariosItinerarios/objetoMattosLeao';
 // import { Badge } from "@/components/ui/badge";
 
 export default function DataTable() {
@@ -28,26 +28,26 @@ export default function DataTable() {
         </CardHeader>
         <CardContent>
           <div className="relative">
-            <section className="overflow-x-auto max-h-96">
-              <Table className="table-fixed min-w-full">
+            <section className="max-h-96 overflow-x-auto">
+              <Table className="min-w-full table-fixed">
                 <TableHeader className="sticky-header bg-muted">
                   <TableRow className="text-xs">
-                    <TableHead className="sticky left-0 top-0 z-10 bg-muted border-r w-[75px] whitespace-normal break-words text-center">
+                    <TableHead className="bg-muted sticky top-0 left-0 z-10 w-[75px] border-r text-center break-words whitespace-normal">
                       Saída Fonte
                     </TableHead>
-                    <TableHead className="w-[75px] whitespace-normal break-words text-center">
+                    <TableHead className="w-[75px] text-center break-words whitespace-normal">
                       PSF Morro Alto
                     </TableHead>
-                    <TableHead className="w-[75px] whitespace-normal break-words text-center">
+                    <TableHead className="w-[75px] text-center break-words whitespace-normal">
                       Chegada Fonte
                     </TableHead>
-                    <TableHead className="w-[75px] whitespace-normal break-words text-center">
+                    <TableHead className="w-[75px] text-center break-words whitespace-normal">
                       Chegada Fonte
                     </TableHead>
-                    <TableHead className="w-[75px] whitespace-normal break-words text-center">
+                    <TableHead className="w-[75px] text-center break-words whitespace-normal">
                       Chegada Fonte
                     </TableHead>
-                    <TableHead className="w-[75px] whitespace-normal break-words text-center">
+                    <TableHead className="w-[75px] text-center break-words whitespace-normal">
                       Chegada Fonte
                     </TableHead>
                   </TableRow>
@@ -55,7 +55,7 @@ export default function DataTable() {
                 <TableBody className="font-mono">
                   {mattosLeaoData.map((row, index) => (
                     <TableRow key={index}>
-                      <TableCell className="sticky left-0 z-10 bg-muted border-r font-medium text-center w-[75px] whitespace-nowrap">
+                      <TableCell className="bg-muted sticky left-0 z-10 w-[75px] border-r text-center font-medium whitespace-nowrap">
                         {row.saidaFonte}
                       </TableCell>
                       <TableCell className="w-[75px] text-center whitespace-nowrap">
