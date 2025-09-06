@@ -1,4 +1,9 @@
-export type TipoCartao = 'VEM' | 'EDUCARD';
+import type {
+  Convenio,
+  GrauEscolaridade,
+  TipoCartao,
+  Turno,
+} from './intarfaces-enum';
 
 export interface AlunoLoginInterface {
   email: string;
@@ -26,4 +31,19 @@ export interface AlunoDocumentoInterface {
   comprovante_matricula: string;
   atestado_frequencia: string;
   liberado: boolean;
+}
+
+export interface AlunoMatriculaInterface {
+  ano_letivo: number;
+  instituicao: string;
+  data_inicio: Date;
+  data_fim: Date;
+  grau_scolaridade: GrauEscolaridade;
+  serie_ou_periodo: number;
+  curso: string;
+  turno: Turno;
+  convenio: Convenio;
+  cgm: string;
+  distancia_instituicao: number;
+  status_matricula: boolean;
 }

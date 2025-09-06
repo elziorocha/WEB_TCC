@@ -28,3 +28,17 @@ export const getAlunoDocumentos = async () => {
 
   return response.data;
 };
+
+export const getAlunoMatriculas = async () => {
+  const token = Cookies.get('token');
+  if (!token) throw new Error('Usuário não autenticado');
+
+  const response = await instanciaAPI.get('/aluno/matricula', {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    withCredentials: true,
+  });
+
+  return response.data;
+};

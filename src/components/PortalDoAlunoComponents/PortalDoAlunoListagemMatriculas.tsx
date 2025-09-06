@@ -11,7 +11,12 @@ import {
   getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table';
-import { ArrowUpDown, ChevronDown, MoreHorizontal } from 'lucide-react';
+import {
+  ArrowUpDown,
+  Building2Icon,
+  ChevronDown,
+  MoreHorizontal,
+} from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
@@ -34,8 +39,10 @@ import {
 } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import type { AlunoMatriculaInterface } from '@/utils/interfaces.interface';
+import { getAlunoMatriculas } from '@/services/api';
 
-export type Student = {
+export type Aluno = {
   id: string;
   status: 'ativo' | 'inativo' | 'trancado' | 'formado';
   matricula: string;
@@ -49,7 +56,7 @@ export type Student = {
   convenio: string;
 };
 
-const data: Student[] = [
+const data: Aluno[] = [
   {
     id: '1',
     status: 'ativo',
@@ -117,7 +124,7 @@ const data: Student[] = [
   },
 ];
 
-const getStatusBadge = (status: Student['status']) => {
+const getStatusBadge = (status: Aluno['status']) => {
   const variants = {
     ativo: 'default',
     inativo: 'secondary',
@@ -135,7 +142,7 @@ const getStatusBadge = (status: Student['status']) => {
   return <Badge variant={variants[status]}>{labels[status]}</Badge>;
 };
 
-const getPeriodoBadge = (periodo: Student['periodo']) => {
+const getPeriodoBadge = (periodo: Aluno['periodo']) => {
   const variants = {
     matutino: 'default',
     vespertino: 'secondary',
@@ -153,7 +160,7 @@ const getPeriodoBadge = (periodo: Student['periodo']) => {
   return <Badge variant={variants[periodo]}>{labels[periodo]}</Badge>;
 };
 
-export const columns: ColumnDef<Student>[] = [
+export const columns: ColumnDef<Aluno>[] = [
   {
     id: 'select',
     header: ({ table }) => (
@@ -261,7 +268,7 @@ export const columns: ColumnDef<Student>[] = [
     id: 'actions',
     enableHiding: false,
     cell: ({ row }) => {
-      const student = row.original;
+      const aluno = row.original;
 
       return (
         <DropdownMenu>
@@ -274,7 +281,7 @@ export const columns: ColumnDef<Student>[] = [
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Ações</DropdownMenuLabel>
             <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(student.matricula)}
+              onClick={() => navigator.clipboard.writeText(aluno.matricula)}
             >
               Copiar matrícula
             </DropdownMenuItem>
@@ -288,120 +295,87 @@ export const columns: ColumnDef<Student>[] = [
   },
 ];
 
-const StudentCard = ({
-  student,
-  isSelected,
-  onSelect,
+const AlunoCard = ({
+  aluno,
 }: {
-  student: Student;
+  aluno: Aluno;
   isSelected: boolean;
   onSelect: (value: boolean) => void;
 }) => {
   return (
-    <Card className="mb-4">
-      <CardHeader className="pb-3">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Checkbox
-              checked={isSelected}
-              onCheckedChange={onSelect}
-              aria-label="Selecionar estudante"
-            />
-            <CardTitle className="text-lg font-semibold">
-              Matrícula: {student.matricula}
-            </CardTitle>
-          </div>
-          {getStatusBadge(student.status)}
-        </div>
+    <Card className="mb-4 gap-2 border-none py-4 shadow-md">
+      <CardHeader className="px-4">
+        <CardTitle className="flex items-center justify-between">
+          <section className="text-lg font-medium">
+            Matrícula: {aluno.matricula}
+          </section>
+
+          {getStatusBadge(aluno.status)}
+        </CardTitle>
       </CardHeader>
-      <CardContent className="space-y-3">
-        <div className="grid grid-cols-1 gap-2 text-sm">
-          <div>
-            <span className="text-muted-foreground font-medium">
-              Instituição:
-            </span>
-            <p className="mt-1">{student.instituicao}</p>
+
+      <CardContent className="px-4">
+        <div className="flex flex-col gap-1 text-sm">
+          <div className="ml-2 flex items-center gap-2">
+            <span className="font-medium">Ano Letivo:</span>
+            <p className="text-tertiary font-semibold">{aluno.anoLetivo}</p>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <span className="text-muted-foreground font-medium">
-                Ano Letivo:
-              </span>
-              <p className="mt-1">{student.anoLetivo}</p>
+          <section className="from-primary/15 to-primary/45 border-primary/40 mt-1 rounded-xl border bg-gradient-to-br px-3 py-2 shadow-md">
+            <div className="text-yellowText flex items-center gap-2">
+              <Building2Icon className="bg-primary/70 size-6 rounded-md p-1" />
+              <span className="font-semibold uppercase">Instituição:</span>
             </div>
-            <div>
-              <span className="text-muted-foreground font-medium">Série:</span>
-              <p className="mt-1">{student.serie}</p>
-            </div>
-          </div>
 
-          <div>
-            <span className="text-muted-foreground font-medium">Curso:</span>
-            <p className="mt-1">{student.curso}</p>
-          </div>
+            <p className="mt-2">{aluno.instituicao}</p>
+          </section>
 
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <span className="text-muted-foreground font-medium">Início:</span>
-              <p className="mt-1">{student.inicio}</p>
-            </div>
-            <div>
-              <span className="text-muted-foreground font-medium">Fim:</span>
-              <p className="mt-1">{student.fim}</p>
-            </div>
-          </div>
+          <section className="mt-2 flex items-center gap-2">
+            <span className="font-medium">Série:</span>
+            <p className="text-tertiary font-semibold">{aluno.serie}</p>
+          </section>
 
-          <div className="flex items-center justify-between">
-            <div>
-              <span className="text-muted-foreground font-medium">
-                Período:
-              </span>
-              <div className="mt-1">{getPeriodoBadge(student.periodo)}</div>
-            </div>
-            <div className="text-right">
-              <span className="text-muted-foreground font-medium">
-                Convênio:
-              </span>
-              <p className="mt-1">{student.convenio}</p>
-            </div>
-          </div>
-        </div>
+          <section className="flex items-center gap-1">
+            <span className="font-medium">Curso:</span>
+            <p>{aluno.curso}</p>
+          </section>
 
-        <div className="flex justify-end pt-2">
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="h-8 w-8 p-0">
-                <span className="sr-only">Abrir menu</span>
-                <MoreHorizontal className="h-4 w-4" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuLabel>Ações</DropdownMenuLabel>
-              <DropdownMenuItem
-                onClick={() => navigator.clipboard.writeText(student.matricula)}
-              >
-                Copiar matrícula
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>Ver detalhes</DropdownMenuItem>
-              <DropdownMenuItem>Editar</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <section className="mt-2 flex justify-between">
+            <section className="flex flex-col gap-2">
+              <div className="flex items-center gap-1">
+                <span className="font-medium">Início:</span>
+                <p>{aluno.inicio}</p>
+              </div>
+              <div className="flex items-center gap-1">
+                <span className="font-medium">Fim:</span>
+                <p>{aluno.fim}</p>
+              </div>
+            </section>
+
+            <section className="flex flex-col gap-2">
+              <div className="flex items-center gap-1">
+                <span className="font-medium">Período:</span>
+                <div>{getPeriodoBadge(aluno.periodo)}</div>
+              </div>
+              <div className="flex items-center gap-1">
+                <span className="font-medium">Convênio:</span>
+                <p>{aluno.convenio}</p>
+              </div>
+            </section>
+          </section>
         </div>
       </CardContent>
     </Card>
   );
 };
 
-export function StudentsDataTable() {
+export function PortalDoAlunoListagemMatriculas() {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
   );
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({
-      // Ocultar algumas colunas em telas menores por padrão
       inicio: false,
       fim: false,
       anoLetivo: false,
@@ -426,6 +400,27 @@ export function StudentsDataTable() {
       rowSelection,
     },
   });
+
+  const [alunoMatricula, setAlunoMatricula] =
+    React.useState<AlunoMatriculaInterface | null>(null);
+  const [error, setError] = React.useState<string | null>(null);
+  const [loading, setLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    const fetchAlunoMatricula = async () => {
+      try {
+        const dadosAlunoMatricula = await getAlunoMatriculas();
+        setAlunoMatricula(dadosAlunoMatricula);
+      } catch (err: unknown) {
+        console.error(err);
+        setError('Erro ao carregar dados do aluno');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchAlunoMatricula();
+  }, []);
 
   return (
     <main>
@@ -532,9 +527,9 @@ export function StudentsDataTable() {
             table
               .getRowModel()
               .rows.map((row) => (
-                <StudentCard
+                <AlunoCard
                   key={row.id}
-                  student={row.original}
+                  aluno={row.original}
                   isSelected={row.getIsSelected()}
                   onSelect={(value) => row.toggleSelected(value)}
                 />
@@ -542,9 +537,7 @@ export function StudentsDataTable() {
           ) : (
             <Card>
               <CardContent className="flex h-24 items-center justify-center">
-                <p className="text-muted-foreground">
-                  Nenhum resultado encontrado.
-                </p>
+                <p className="">Nenhum resultado encontrado.</p>
               </CardContent>
             </Card>
           )}
