@@ -9,8 +9,9 @@ export function PortalDoAlunoConsultarMatriculas() {
         to="/portal-do-aluno/dashboard"
         className="bg-primary text-blackText self-start rounded-lg px-3 py-1.5 text-sm shadow-md"
       >
-        <div className="flex items-center gap-1">
-          <ArrowLeftIcon className="size-5" /> <span>Voltar</span>
+        <div className="text-yellowText flex items-center gap-1 font-semibold">
+          <ArrowLeftIcon className="size-5" />
+          <span>Voltar</span>
         </div>
       </Link>
 
