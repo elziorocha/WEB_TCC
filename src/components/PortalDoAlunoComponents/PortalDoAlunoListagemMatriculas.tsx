@@ -1,6 +1,5 @@
 import * as React from 'react';
 import {
-  type ColumnDef,
   type ColumnFiltersState,
   type SortingState,
   type VisibilityState,
@@ -11,16 +10,12 @@ import {
   getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table';
-import { ArrowUpDown, ChevronDown, MoreHorizontal } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Checkbox } from '@/components/ui/checkbox';
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import {
@@ -36,146 +31,7 @@ import type { AlunoMatriculaInterface } from '@/utils/interfaces.interface';
 import { getAlunoMatriculas } from '@/services/api';
 import { colunasMatricula } from '@/utils/objetosExportaveis';
 import PortalDoAlunoMatriculasCard from './PortalDoAlunoMatriculasCard';
-import {
-  getStatusMatriculaBadge,
-  getTurnoBadge,
-} from '@/utils/objetosExportaveisReact';
-
-export const columns: ColumnDef<AlunoMatriculaInterface>[] = [
-  {
-    id: 'select',
-    header: ({ table }) => (
-      <Checkbox
-        checked={
-          table.getIsAllPageRowsSelected() ||
-          (table.getIsSomePageRowsSelected() && 'indeterminate')
-        }
-        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-        aria-label="Selecionar todos"
-      />
-    ),
-    cell: ({ row }) => (
-      <Checkbox
-        checked={row.getIsSelected()}
-        onCheckedChange={(value) => row.toggleSelected(!!value)}
-        aria-label="Selecionar linha"
-      />
-    ),
-    enableSorting: false,
-    enableHiding: false,
-  },
-  {
-    accessorKey: 'status_matricula',
-    header: 'Status',
-    cell: ({ row }) =>
-      getStatusMatriculaBadge(row.getValue('status_matricula')),
-  },
-  {
-    accessorKey: 'id',
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
-        >
-          Matrícula
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      );
-    },
-    cell: ({ row }) => <div className="font-medium">{row.getValue('id')}</div>,
-  },
-  {
-    accessorKey: 'instituicao',
-    header: 'Instituição',
-    cell: ({ row }) => (
-      <div
-        className="max-w-[200px] truncate"
-        title={row.getValue('instituicao')}
-      >
-        {row.getValue('instituicao')}
-      </div>
-    ),
-  },
-  {
-    accessorKey: 'ano_letivo',
-    header: 'Ano Letivo',
-    cell: ({ row }) => (
-      <div className="text-center">{row.getValue('ano_letivo')}</div>
-    ),
-  },
-  {
-    accessorKey: 'data_inicio',
-    header: 'Início',
-    cell: ({ row }) => (
-      <div className="text-sm">
-        {new Date(row.getValue('data_inicio')).toLocaleDateString()}
-      </div>
-    ),
-  },
-  {
-    accessorKey: 'data_fim',
-    header: 'Fim',
-    cell: ({ row }) => (
-      <div className="text-sm">
-        {new Date(row.getValue('data_fim')).toLocaleDateString()}
-      </div>
-    ),
-  },
-  {
-    accessorKey: 'curso',
-    header: 'Curso',
-    cell: ({ row }) => (
-      <div className="max-w-[150px] truncate" title={row.getValue('curso')}>
-        {row.getValue('curso')}
-      </div>
-    ),
-  },
-  {
-    accessorKey: 'serie_ou_periodo',
-    header: 'Série',
-    cell: ({ row }) => (
-      <div className="text-center">{row.getValue('serie_ou_periodo')}</div>
-    ),
-  },
-  {
-    accessorKey: 'turno',
-    header: 'Período',
-    cell: ({ row }) => getTurnoBadge(row.getValue('turno')),
-  },
-  {
-    accessorKey: 'convenio',
-    header: 'Convênio',
-    cell: ({ row }) => (
-      <div className="max-w-[120px] truncate" title={row.getValue('convenio')}>
-        {row.getValue('convenio')}
-      </div>
-    ),
-  },
-  {
-    id: 'actions',
-    enableHiding: false,
-    cell: () => {
-      return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-8 w-8 p-0">
-              <span className="sr-only">Abrir menu</span>
-              <MoreHorizontal className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Ações</DropdownMenuLabel>
-            <DropdownMenuItem>Copiar matrícula</DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>Ver detalhes</DropdownMenuItem>
-            <DropdownMenuItem>Editar</DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      );
-    },
-  },
-];
+import { colunasAlunoMatriculaDataTable } from '@/utils/objetosExportaveisReact';
 
 export function PortalDoAlunoListagemMatriculas() {
   const [sorting, setSorting] = React.useState<SortingState>([]);
@@ -214,7 +70,7 @@ export function PortalDoAlunoListagemMatriculas() {
 
   const table = useReactTable({
     data: alunoMatriculas,
-    columns,
+    columns: colunasAlunoMatriculaDataTable,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
     getCoreRowModel: getCoreRowModel(),
@@ -315,7 +171,7 @@ export function PortalDoAlunoListagemMatriculas() {
               ) : (
                 <TableRow>
                   <TableCell
-                    colSpan={columns.length}
+                    colSpan={colunasAlunoMatriculaDataTable.length}
                     className="h-24 text-center"
                   >
                     Nenhum resultado encontrado.

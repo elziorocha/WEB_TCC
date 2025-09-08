@@ -1,8 +1,17 @@
 import type { AlunoMatriculaInterface } from '@/utils/interfaces.interface';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
-import { Building2Icon } from 'lucide-react';
-import { Badge } from '../ui/badge';
-import { getTurnoBadge } from '@/utils/objetosExportaveisReact';
+import {
+  Building2Icon,
+  CalendarDays,
+  GraduationCap,
+  BookOpen,
+  Clock,
+  Handshake,
+} from 'lucide-react';
+import {
+  getStatusMatriculaBadge,
+  getTurnoBadge,
+} from '@/utils/objetosExportaveisReact';
 
 const PortalDoAlunoMatriculasCard = ({
   alunoMatricula,
@@ -10,72 +19,92 @@ const PortalDoAlunoMatriculasCard = ({
   alunoMatricula: AlunoMatriculaInterface;
 }) => {
   return (
-    <Card className="mb-4 gap-2 border-none py-4 shadow-md">
+    <Card className="mb-8 gap-2 overflow-hidden rounded-2xl border-none pt-4 pb-0 shadow-md">
       <CardHeader className="px-4">
         <CardTitle className="flex items-center justify-between">
-          <section className="text-lg font-medium">
-            Matrícula: {alunoMatricula.id}
-          </section>
-
-          <Badge>{alunoMatricula.status_matricula}</Badge>
+          <span className="text-lg font-semibold">
+            Matrícula {alunoMatricula.ano_letivo.toString() + alunoMatricula.id}
+          </span>
+          {getStatusMatriculaBadge(alunoMatricula.status_matricula)}
         </CardTitle>
       </CardHeader>
 
-      <CardContent className="px-4">
-        <div className="flex flex-col gap-1 text-sm">
-          <div className="ml-2 flex items-center gap-2">
+      <hr className="border-dashed border-zinc-300" />
+
+      <CardContent className="px-4 pt-3 pb-5">
+        <div className="flex flex-col gap-3 text-sm">
+          <div className="text-muted-foreground flex items-center gap-2">
+            <CalendarDays className="size-4" />
             <span className="font-medium">Ano Letivo:</span>
-            <p className="text-tertiary font-semibold">
+            <p className="font-semibold text-black">
               {alunoMatricula.ano_letivo}
             </p>
           </div>
 
-          <section className="from-primary/15 to-primary/45 border-primary/40 mt-1 rounded-xl border bg-gradient-to-br px-3 py-2 shadow-md">
-            <div className="text-yellowText flex items-center gap-2">
-              <Building2Icon className="bg-primary/70 size-6 rounded-md p-1" />
-              <span className="font-semibold uppercase">Instituição:</span>
+          <section className="from-primary/10 to-primary/20 border-primary/30 rounded-xl border bg-gradient-to-br px-3 py-2 shadow-sm">
+            <div className="text-primary flex items-center gap-2 font-semibold">
+              <Building2Icon className="size-5" />
+              <span className="uppercase">Instituição</span>
             </div>
-
-            <p className="mt-2">{alunoMatricula.instituicao}</p>
-          </section>
-
-          <section className="mt-2 flex items-center gap-2">
-            <span className="font-medium">Série:</span>
-            <p className="text-tertiary font-semibold">
-              {alunoMatricula.serie_ou_periodo}
+            <p className="mt-1 text-sm text-black">
+              {alunoMatricula.instituicao}
             </p>
           </section>
 
-          <section className="flex items-center gap-1">
-            <span className="font-medium">Curso:</span>
-            <p>{alunoMatricula.curso}</p>
-          </section>
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+            <div className="flex items-center gap-2">
+              <GraduationCap className="text-muted-foreground size-4" />
+              <span className="text-muted-foreground font-medium">
+                Série/Período:
+              </span>
+              <p className="text-tertiary font-semibold">
+                {alunoMatricula.serie_ou_periodo}º
+              </p>
+            </div>
+            <div className="flex items-center gap-2">
+              <BookOpen className="text-muted-foreground size-4" />
+              <span className="text-muted-foreground font-medium">Curso:</span>
+              <p className="font-semibold">{alunoMatricula.curso}</p>
+            </div>
+          </div>
 
-          <section className="mt-2 flex justify-between">
-            <section className="flex flex-col gap-2">
-              <div className="flex items-center gap-1">
-                <span className="font-medium">Início:</span>
-                <p>
+          <div className="mt-2 grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div className="space-y-2">
+              <div className="flex items-center gap-2">
+                <CalendarDays className="text-muted-foreground size-4" />
+                <span className="text-muted-foreground font-medium">
+                  Início:
+                </span>
+                <p className="font-semibold">
                   {new Date(alunoMatricula.data_inicio).toLocaleDateString()}
                 </p>
               </div>
-              <div className="flex items-center gap-1">
-                <span className="font-medium">Fim:</span>
-                <p>{new Date(alunoMatricula.data_fim).toLocaleDateString()}</p>
+              <div className="flex items-center gap-2">
+                <CalendarDays className="text-muted-foreground size-4" />
+                <span className="text-muted-foreground font-medium">Fim:</span>
+                <p className="font-semibold">
+                  {new Date(alunoMatricula.data_fim).toLocaleDateString()}
+                </p>
               </div>
-            </section>
+            </div>
 
-            <section className="flex flex-col gap-2">
-              <div className="flex items-center gap-1">
-                <span className="font-medium">Período:</span>
-                <div>{getTurnoBadge(alunoMatricula.turno)}</div>
+            <div className="space-y-2">
+              <div className="flex items-center gap-2">
+                <Clock className="text-muted-foreground size-4" />
+                <span className="text-muted-foreground font-medium">
+                  Turno:
+                </span>
+                {getTurnoBadge(alunoMatricula.turno.toLowerCase() as any)}
               </div>
-              <div className="flex items-center gap-1">
-                <span className="font-medium">Convênio:</span>
-                <p>{alunoMatricula.convenio}</p>
+              <div className="flex items-center gap-2">
+                <Handshake className="text-muted-foreground size-4" />
+                <span className="text-muted-foreground font-medium">
+                  Convênio:
+                </span>
+                <p className="font-semibold">{alunoMatricula.convenio}</p>
               </div>
-            </section>
-          </section>
+            </div>
+          </div>
         </div>
       </CardContent>
     </Card>
