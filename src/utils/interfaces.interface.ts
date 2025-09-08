@@ -1,9 +1,4 @@
-import type {
-  Convenio,
-  GrauEscolaridade,
-  TipoCartao,
-  Turno,
-} from './intarfaces-enum';
+import type { Convenio, GrauEscolaridade, TipoCartao } from './intarfaces-enum';
 
 export interface AlunoLoginInterface {
   email: string;
@@ -34,6 +29,7 @@ export interface AlunoDocumentoInterface {
 }
 
 export interface AlunoMatriculaInterface {
+  id: number;
   ano_letivo: number;
   instituicao: string;
   data_inicio: Date;
@@ -41,7 +37,7 @@ export interface AlunoMatriculaInterface {
   grau_scolaridade: GrauEscolaridade;
   serie_ou_periodo: number;
   curso: string;
-  turno: Turno;
+  turno: 'matutino' | 'vespertino' | 'noturno' | 'integral';
   convenio: Convenio;
   cgm: string;
   distancia_instituicao: number;

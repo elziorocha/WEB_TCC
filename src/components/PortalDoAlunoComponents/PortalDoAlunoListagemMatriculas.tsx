@@ -11,13 +11,7 @@ import {
   getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table';
-import {
-  ArrowUpDown,
-  Building2Icon,
-  ChevronDown,
-  MoreHorizontal,
-} from 'lucide-react';
-
+import { ArrowUpDown, ChevronDown, MoreHorizontal } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import {
@@ -37,130 +31,17 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { Badge } from '@/components/ui/badge';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import type { AlunoMatriculaInterface } from '@/utils/interfaces.interface';
 import { getAlunoMatriculas } from '@/services/api';
+import { colunasMatricula } from '@/utils/objetosExportaveis';
+import PortalDoAlunoMatriculasCard from './PortalDoAlunoMatriculasCard';
+import {
+  getStatusMatriculaBadge,
+  getTurnoBadge,
+} from '@/utils/objetosExportaveisReact';
 
-export type Aluno = {
-  id: string;
-  status: 'ativo' | 'inativo' | 'trancado' | 'formado';
-  matricula: string;
-  instituicao: string;
-  anoLetivo: string;
-  inicio: string;
-  fim: string;
-  curso: string;
-  serie: string;
-  periodo: 'matutino' | 'vespertino' | 'noturno' | 'integral';
-  convenio: string;
-};
-
-const data: Aluno[] = [
-  {
-    id: '1',
-    status: 'ativo',
-    matricula: '2024001',
-    instituicao: 'Universidade Federal do Rio de Janeiro',
-    anoLetivo: '2024',
-    inicio: '01/03/2024',
-    fim: '30/11/2024',
-    curso: 'Engenharia de Software',
-    serie: '3º Ano',
-    periodo: 'matutino',
-    convenio: 'PROUNI',
-  },
-  {
-    id: '2',
-    status: 'ativo',
-    matricula: '2024002',
-    instituicao: 'Pontifícia Universidade Católica',
-    anoLetivo: '2024',
-    inicio: '15/02/2024',
-    fim: '15/12/2024',
-    curso: 'Medicina',
-    serie: '2º Ano',
-    periodo: 'integral',
-    convenio: 'FIES',
-  },
-  {
-    id: '3',
-    status: 'trancado',
-    matricula: '2023015',
-    instituicao: 'Universidade de São Paulo',
-    anoLetivo: '2023',
-    inicio: '01/03/2023',
-    fim: '30/11/2023',
-    curso: 'Direito',
-    serie: '4º Ano',
-    periodo: 'noturno',
-    convenio: 'Bolsa Integral',
-  },
-  {
-    id: '4',
-    status: 'formado',
-    matricula: '2020045',
-    instituicao: 'Instituto Tecnológico de Aeronáutica',
-    anoLetivo: '2023',
-    inicio: '01/03/2020',
-    fim: '30/11/2023',
-    curso: 'Engenharia Aeronáutica',
-    serie: 'Formado',
-    periodo: 'integral',
-    convenio: 'Bolsa Parcial',
-  },
-  {
-    id: '5',
-    status: 'ativo',
-    matricula: '2024010',
-    instituicao: 'Universidade Estadual de Campinas',
-    anoLetivo: '2024',
-    inicio: '10/02/2024',
-    fim: '20/12/2024',
-    curso: 'Ciência da Computação',
-    serie: '1º Ano',
-    periodo: 'vespertino',
-    convenio: 'PROUNI',
-  },
-];
-
-const getStatusBadge = (status: Aluno['status']) => {
-  const variants = {
-    ativo: 'default',
-    inativo: 'secondary',
-    trancado: 'destructive',
-    formado: 'outline',
-  } as const;
-
-  const labels = {
-    ativo: 'Ativo',
-    inativo: 'Inativo',
-    trancado: 'Trancado',
-    formado: 'Formado',
-  };
-
-  return <Badge variant={variants[status]}>{labels[status]}</Badge>;
-};
-
-const getPeriodoBadge = (periodo: Aluno['periodo']) => {
-  const variants = {
-    matutino: 'default',
-    vespertino: 'secondary',
-    noturno: 'outline',
-    integral: 'destructive',
-  } as const;
-
-  const labels = {
-    matutino: 'Matutino',
-    vespertino: 'Vespertino',
-    noturno: 'Noturno',
-    integral: 'Integral',
-  };
-
-  return <Badge variant={variants[periodo]}>{labels[periodo]}</Badge>;
-};
-
-export const columns: ColumnDef<Aluno>[] = [
+export const columns: ColumnDef<AlunoMatriculaInterface>[] = [
   {
     id: 'select',
     header: ({ table }) => (
@@ -184,12 +65,13 @@ export const columns: ColumnDef<Aluno>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: 'status',
+    accessorKey: 'status_matricula',
     header: 'Status',
-    cell: ({ row }) => getStatusBadge(row.getValue('status')),
+    cell: ({ row }) =>
+      getStatusMatriculaBadge(row.getValue('status_matricula')),
   },
   {
-    accessorKey: 'matricula',
+    accessorKey: 'id',
     header: ({ column }) => {
       return (
         <Button
@@ -201,9 +83,7 @@ export const columns: ColumnDef<Aluno>[] = [
         </Button>
       );
     },
-    cell: ({ row }) => (
-      <div className="font-medium">{row.getValue('matricula')}</div>
-    ),
+    cell: ({ row }) => <div className="font-medium">{row.getValue('id')}</div>,
   },
   {
     accessorKey: 'instituicao',
@@ -218,21 +98,29 @@ export const columns: ColumnDef<Aluno>[] = [
     ),
   },
   {
-    accessorKey: 'anoLetivo',
+    accessorKey: 'ano_letivo',
     header: 'Ano Letivo',
     cell: ({ row }) => (
-      <div className="text-center">{row.getValue('anoLetivo')}</div>
+      <div className="text-center">{row.getValue('ano_letivo')}</div>
     ),
   },
   {
-    accessorKey: 'inicio',
+    accessorKey: 'data_inicio',
     header: 'Início',
-    cell: ({ row }) => <div className="text-sm">{row.getValue('inicio')}</div>,
+    cell: ({ row }) => (
+      <div className="text-sm">
+        {new Date(row.getValue('data_inicio')).toLocaleDateString()}
+      </div>
+    ),
   },
   {
-    accessorKey: 'fim',
+    accessorKey: 'data_fim',
     header: 'Fim',
-    cell: ({ row }) => <div className="text-sm">{row.getValue('fim')}</div>,
+    cell: ({ row }) => (
+      <div className="text-sm">
+        {new Date(row.getValue('data_fim')).toLocaleDateString()}
+      </div>
+    ),
   },
   {
     accessorKey: 'curso',
@@ -244,16 +132,16 @@ export const columns: ColumnDef<Aluno>[] = [
     ),
   },
   {
-    accessorKey: 'serie',
+    accessorKey: 'serie_ou_periodo',
     header: 'Série',
     cell: ({ row }) => (
-      <div className="text-center">{row.getValue('serie')}</div>
+      <div className="text-center">{row.getValue('serie_ou_periodo')}</div>
     ),
   },
   {
-    accessorKey: 'periodo',
+    accessorKey: 'turno',
     header: 'Período',
-    cell: ({ row }) => getPeriodoBadge(row.getValue('periodo')),
+    cell: ({ row }) => getTurnoBadge(row.getValue('turno')),
   },
   {
     accessorKey: 'convenio',
@@ -267,9 +155,7 @@ export const columns: ColumnDef<Aluno>[] = [
   {
     id: 'actions',
     enableHiding: false,
-    cell: ({ row }) => {
-      const aluno = row.original;
-
+    cell: () => {
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -280,11 +166,7 @@ export const columns: ColumnDef<Aluno>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Ações</DropdownMenuLabel>
-            <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(aluno.matricula)}
-            >
-              Copiar matrícula
-            </DropdownMenuItem>
+            <DropdownMenuItem>Copiar matrícula</DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem>Ver detalhes</DropdownMenuItem>
             <DropdownMenuItem>Editar</DropdownMenuItem>
@@ -295,80 +177,6 @@ export const columns: ColumnDef<Aluno>[] = [
   },
 ];
 
-const AlunoCard = ({
-  aluno,
-}: {
-  aluno: Aluno;
-  isSelected: boolean;
-  onSelect: (value: boolean) => void;
-}) => {
-  return (
-    <Card className="mb-4 gap-2 border-none py-4 shadow-md">
-      <CardHeader className="px-4">
-        <CardTitle className="flex items-center justify-between">
-          <section className="text-lg font-medium">
-            Matrícula: {aluno.matricula}
-          </section>
-
-          {getStatusBadge(aluno.status)}
-        </CardTitle>
-      </CardHeader>
-
-      <CardContent className="px-4">
-        <div className="flex flex-col gap-1 text-sm">
-          <div className="ml-2 flex items-center gap-2">
-            <span className="font-medium">Ano Letivo:</span>
-            <p className="text-tertiary font-semibold">{aluno.anoLetivo}</p>
-          </div>
-
-          <section className="from-primary/15 to-primary/45 border-primary/40 mt-1 rounded-xl border bg-gradient-to-br px-3 py-2 shadow-md">
-            <div className="text-yellowText flex items-center gap-2">
-              <Building2Icon className="bg-primary/70 size-6 rounded-md p-1" />
-              <span className="font-semibold uppercase">Instituição:</span>
-            </div>
-
-            <p className="mt-2">{aluno.instituicao}</p>
-          </section>
-
-          <section className="mt-2 flex items-center gap-2">
-            <span className="font-medium">Série:</span>
-            <p className="text-tertiary font-semibold">{aluno.serie}</p>
-          </section>
-
-          <section className="flex items-center gap-1">
-            <span className="font-medium">Curso:</span>
-            <p>{aluno.curso}</p>
-          </section>
-
-          <section className="mt-2 flex justify-between">
-            <section className="flex flex-col gap-2">
-              <div className="flex items-center gap-1">
-                <span className="font-medium">Início:</span>
-                <p>{aluno.inicio}</p>
-              </div>
-              <div className="flex items-center gap-1">
-                <span className="font-medium">Fim:</span>
-                <p>{aluno.fim}</p>
-              </div>
-            </section>
-
-            <section className="flex flex-col gap-2">
-              <div className="flex items-center gap-1">
-                <span className="font-medium">Período:</span>
-                <div>{getPeriodoBadge(aluno.periodo)}</div>
-              </div>
-              <div className="flex items-center gap-1">
-                <span className="font-medium">Convênio:</span>
-                <p>{aluno.convenio}</p>
-              </div>
-            </section>
-          </section>
-        </div>
-      </CardContent>
-    </Card>
-  );
-};
-
 export function PortalDoAlunoListagemMatriculas() {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
@@ -376,14 +184,36 @@ export function PortalDoAlunoListagemMatriculas() {
   );
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({
-      inicio: false,
-      fim: false,
-      anoLetivo: false,
+      data_inicio: false,
+      data_fim: false,
+      ano_letivo: false,
     });
   const [rowSelection, setRowSelection] = React.useState({});
 
+  const [alunoMatriculas, setAlunoMatriculas] = React.useState<
+    AlunoMatriculaInterface[]
+  >([]);
+  const [error, setError] = React.useState<string | null>(null);
+  const [loading, setLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    const fetchAlunoMatriculas = async () => {
+      try {
+        const dadosAlunoMatriculas = await getAlunoMatriculas();
+        setAlunoMatriculas(dadosAlunoMatriculas);
+      } catch (err: unknown) {
+        console.error(err);
+        setError('Erro ao carregar dados do aluno');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchAlunoMatriculas();
+  }, []);
+
   const table = useReactTable({
-    data,
+    data: alunoMatriculas,
     columns,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
@@ -401,26 +231,13 @@ export function PortalDoAlunoListagemMatriculas() {
     },
   });
 
-  const [alunoMatricula, setAlunoMatricula] =
-    React.useState<AlunoMatriculaInterface | null>(null);
-  const [error, setError] = React.useState<string | null>(null);
-  const [loading, setLoading] = React.useState(true);
+  if (loading) {
+    return <div>Carregando...</div>;
+  }
 
-  React.useEffect(() => {
-    const fetchAlunoMatricula = async () => {
-      try {
-        const dadosAlunoMatricula = await getAlunoMatriculas();
-        setAlunoMatricula(dadosAlunoMatricula);
-      } catch (err: unknown) {
-        console.error(err);
-        setError('Erro ao carregar dados do aluno');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchAlunoMatricula();
-  }, []);
+  if (error) {
+    return <div>Erro: {error}</div>;
+  }
 
   return (
     <main>
@@ -440,19 +257,6 @@ export function PortalDoAlunoListagemMatriculas() {
                 .getAllColumns()
                 .filter((column) => column.getCanHide())
                 .map((column) => {
-                  const columnNames: Record<string, string> = {
-                    status: 'Status',
-                    matricula: 'Matrícula',
-                    instituicao: 'Instituição',
-                    anoLetivo: 'Ano Letivo',
-                    inicio: 'Início',
-                    fim: 'Fim',
-                    curso: 'Curso',
-                    serie: 'Série',
-                    periodo: 'Período',
-                    convenio: 'Convênio',
-                  };
-
                   return (
                     <DropdownMenuCheckboxItem
                       key={column.id}
@@ -462,7 +266,7 @@ export function PortalDoAlunoListagemMatriculas() {
                         column.toggleVisibility(!!value)
                       }
                     >
-                      {columnNames[column.id] || column.id}
+                      {colunasMatricula[column.id] || column.id}
                     </DropdownMenuCheckboxItem>
                   );
                 })}
@@ -470,7 +274,7 @@ export function PortalDoAlunoListagemMatriculas() {
           </DropdownMenu>
         </div>
 
-        {/* Desktop Table View */}
+        {/* Desktop View */}
         <div className="hidden overflow-x-auto rounded-md border md:block">
           <Table>
             <TableHeader>
@@ -529,7 +333,7 @@ export function PortalDoAlunoListagemMatriculas() {
               .rows.map((row) => (
                 <AlunoCard
                   key={row.id}
-                  aluno={row.original}
+                  alunoMatricula={row.original}
                   isSelected={row.getIsSelected()}
                   onSelect={(value) => row.toggleSelected(value)}
                 />
@@ -546,3 +350,13 @@ export function PortalDoAlunoListagemMatriculas() {
     </main>
   );
 }
+
+const AlunoCard = ({
+  alunoMatricula,
+}: {
+  alunoMatricula: AlunoMatriculaInterface;
+  isSelected: boolean;
+  onSelect: (value: boolean) => void;
+}) => {
+  return <PortalDoAlunoMatriculasCard alunoMatricula={alunoMatricula} />;
+};
