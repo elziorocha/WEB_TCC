@@ -111,16 +111,3 @@ export const inicioBanners = [
     alt: 'Imagem sobre o cartão VEM',
   },
 ];
-
-export const colunasMatricula: Record<string, string> = {
-  status: 'Status',
-  matricula: 'Matrícula',
-  instituicao: 'Instituição',
-  anoLetivo: 'Ano Letivo',
-  inicio: 'Início',
-  fim: 'Fim',
-  curso: 'Curso',
-  serie: 'Série',
-  periodo: 'Período',
-  convenio: 'Convênio',
-};

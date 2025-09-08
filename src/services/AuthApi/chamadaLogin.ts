@@ -1,7 +1,7 @@
 import { login } from '@/services/AuthApi/auth';
-import type { AlunoLoginInterface } from '@/utils/interfaces';
 import type { NavigateFunction } from 'react-router-dom';
 import { apiError } from '../apiError';
+import type { AlunoLoginInterface } from '@/utils/interfaces.interface';
 
 export async function chamadaLogin(
   formData: AlunoLoginInterface,

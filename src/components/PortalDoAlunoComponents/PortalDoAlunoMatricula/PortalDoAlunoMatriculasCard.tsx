@@ -1,5 +1,5 @@
 import type { AlunoMatriculaInterface } from '@/utils/interfaces.interface';
-import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '../../ui/card';
 import {
   Building2Icon,
   CalendarDays,

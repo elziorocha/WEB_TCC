@@ -1,5 +1,5 @@
 import { chamadaLogin } from '@/services/AuthApi/chamadaLogin';
-import type { AlunoLoginInterface } from '@/utils/interfaces';
+import type { AlunoLoginInterface } from '@/utils/interfaces.interface';
 import { Mail, Lock, User, ArrowRight } from 'lucide-react';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';

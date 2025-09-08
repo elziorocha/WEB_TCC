@@ -1,11 +1,8 @@
+import type { AlunoLoginInterface } from '@/utils/interfaces.interface';
 import instanciaAPI from '../instanciaApi';
 import Cookies from 'js-cookie';
-import type {
-  AlunoLoginInterface,
-  AlunoRegistroInterface,
-} from '@/utils/interfaces';
 
-export const register = async (userData: AlunoRegistroInterface) => {
+export const register = async (userData: any) => {
   const response = await instanciaAPI.post('aluno/registro', userData, {
     withCredentials: true,
   });

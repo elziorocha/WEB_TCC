@@ -10,7 +10,6 @@ export const PortalDoAlunoHeader = () => {
     e.preventDefault();
     try {
       await logout();
-      console.log('Logout efetuado com sucesso');
 
       navigate('/portal-do-aluno/login');
     } catch (err: unknown) {

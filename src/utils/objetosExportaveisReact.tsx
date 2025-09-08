@@ -1,17 +1,6 @@
 import { Badge } from '@/components/ui/badge';
 import type { AlunoMatriculaInterface } from './interfaces.interface';
 import type { ColumnDef } from '@tanstack/react-table';
-import { Checkbox } from '@/components/ui/checkbox';
-import { Button } from '@/components/ui/button';
-import { ArrowUpDown, MoreHorizontal } from 'lucide-react';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
 
 export const getTurnoBadge = (turno: AlunoMatriculaInterface['turno']) => {
   switch (turno.toLowerCase()) {
@@ -34,13 +23,19 @@ export const getStatusMatriculaBadge = (
 ) => {
   if (status_matricula) {
     return (
-      <Badge variant="default" className="bg-green-600/70 px-3 py-1 shadow-sm">
+      <Badge
+        variant="default"
+        className="bg-green-600/70 px-3 py-1 font-semibold shadow-sm"
+      >
         Ativo
       </Badge>
     );
   } else {
     return (
-      <Badge className="bg-red-600/70 px-3 py-1 shadow-sm" variant="secondary">
+      <Badge
+        className="bg-red-600/70 px-3 py-1 font-semibold shadow-sm"
+        variant="secondary"
+      >
         Inativo
       </Badge>
     );
@@ -50,28 +45,6 @@ export const getStatusMatriculaBadge = (
 export const colunasAlunoMatriculaDataTable: ColumnDef<AlunoMatriculaInterface>[] =
   [
     {
-      id: 'select',
-      header: ({ table }) => (
-        <Checkbox
-          checked={
-            table.getIsAllPageRowsSelected() ||
-            (table.getIsSomePageRowsSelected() && 'indeterminate')
-          }
-          onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-          aria-label="Selecionar todos"
-        />
-      ),
-      cell: ({ row }) => (
-        <Checkbox
-          checked={row.getIsSelected()}
-          onCheckedChange={(value) => row.toggleSelected(!!value)}
-          aria-label="Selecionar linha"
-        />
-      ),
-      enableSorting: false,
-      enableHiding: false,
-    },
-    {
       accessorKey: 'status_matricula',
       header: 'Status',
       cell: ({ row }) =>
@@ -79,30 +52,10 @@ export const colunasAlunoMatriculaDataTable: ColumnDef<AlunoMatriculaInterface>[
     },
     {
       accessorKey: 'id',
-      header: ({ column }) => {
-        return (
-          <Button
-            variant="ghost"
-            onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
-          >
-            Matrícula
-            <ArrowUpDown className="ml-2 h-4 w-4" />
-          </Button>
-        );
-      },
+      header: 'Matrícula',
       cell: ({ row }) => (
-        <div className="font-medium">{row.getValue('id')}</div>
-      ),
-    },
-    {
-      accessorKey: 'instituicao',
-      header: 'Instituição',
-      cell: ({ row }) => (
-        <div
-          className="max-w-[200px] truncate"
-          title={row.getValue('instituicao')}
-        >
-          {row.getValue('instituicao')}
+        <div className="font-medium">
+          {String(row.getValue('ano_letivo')) + String(row.getValue('id'))}
         </div>
       ),
     },
@@ -110,14 +63,46 @@ export const colunasAlunoMatriculaDataTable: ColumnDef<AlunoMatriculaInterface>[
       accessorKey: 'ano_letivo',
       header: 'Ano Letivo',
       cell: ({ row }) => (
-        <div className="text-center">{row.getValue('ano_letivo')}</div>
+        <div className="text-center font-medium">
+          {row.getValue('ano_letivo')}
+        </div>
+      ),
+    },
+    {
+      accessorKey: 'instituicao',
+      header: 'Instituição',
+      cell: ({ row }) => (
+        <div
+          className="max-w-[200px] truncate font-medium"
+          title={row.getValue('instituicao')}
+        >
+          {row.getValue('instituicao')}
+        </div>
+      ),
+    },
+    {
+      accessorKey: 'curso',
+      header: 'Curso',
+      cell: ({ row }) => (
+        <div className="font-medium" title={row.getValue('curso')}>
+          {row.getValue('curso')}
+        </div>
+      ),
+    },
+    {
+      accessorKey: 'serie_ou_periodo',
+      header: 'Série/Período',
+      cell: ({ row }) => (
+        <div className="text-center font-medium">
+          {row.getValue('serie_ou_periodo')}
+        </div>
       ),
     },
     {
       accessorKey: 'data_inicio',
       header: 'Início',
       cell: ({ row }) => (
-        <div className="text-sm">
+        <div className="text-sm font-medium">
           {new Date(row.getValue('data_inicio')).toLocaleDateString()}
         </div>
       ),
@@ -126,30 +111,14 @@ export const colunasAlunoMatriculaDataTable: ColumnDef<AlunoMatriculaInterface>[
       accessorKey: 'data_fim',
       header: 'Fim',
       cell: ({ row }) => (
-        <div className="text-sm">
+        <div className="text-sm font-medium">
           {new Date(row.getValue('data_fim')).toLocaleDateString()}
         </div>
       ),
     },
     {
-      accessorKey: 'curso',
-      header: 'Curso',
-      cell: ({ row }) => (
-        <div className="max-w-[150px] truncate" title={row.getValue('curso')}>
-          {row.getValue('curso')}
-        </div>
-      ),
-    },
-    {
-      accessorKey: 'serie_ou_periodo',
-      header: 'Série',
-      cell: ({ row }) => (
-        <div className="text-center">{row.getValue('serie_ou_periodo')}</div>
-      ),
-    },
-    {
       accessorKey: 'turno',
-      header: 'Período',
+      header: 'Turno',
       cell: ({ row }) => getTurnoBadge(row.getValue('turno')),
     },
     {
@@ -157,34 +126,11 @@ export const colunasAlunoMatriculaDataTable: ColumnDef<AlunoMatriculaInterface>[
       header: 'Convênio',
       cell: ({ row }) => (
         <div
-          className="max-w-[120px] truncate"
+          className="max-w-[120px] truncate font-medium"
           title={row.getValue('convenio')}
         >
           {row.getValue('convenio')}
         </div>
       ),
-    },
-    {
-      id: 'actions',
-      enableHiding: false,
-      cell: () => {
-        return (
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="h-8 w-8 p-0">
-                <span className="sr-only">Abrir menu</span>
-                <MoreHorizontal className="h-4 w-4" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuLabel>Ações</DropdownMenuLabel>
-              <DropdownMenuItem>Copiar matrícula</DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>Ver detalhes</DropdownMenuItem>
-              <DropdownMenuItem>Editar</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        );
-      },
     },
   ];
