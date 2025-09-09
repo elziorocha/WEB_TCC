@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { getAlunoMatriculas, postAlunoMatriculas } from './api';
 import type { AlunoMatriculaInterface } from '@/utils/interfaces.interface';
+import toast from 'react-hot-toast';
+import { apiError } from './apiError';
 
 export function alunoMatriculasData() {
   const [alunoMatriculas, setAlunoMatriculas] = useState<any[]>([]);
@@ -26,26 +28,40 @@ export function alunoMatriculasData() {
   return { alunoMatriculas, loading, error };
 }
 
-export function criarAlunoMatricula(matricula: AlunoMatriculaInterface) {
-  const [alunoNovaMatricula, setAlunoNovaMatricula] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+export function criarAlunoMatricula() {
+  const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    const enviarMatricula = async () => {
-      try {
-        const dadosAlunoNovaMatriculas = await postAlunoMatriculas(matricula);
-        setAlunoNovaMatricula(dadosAlunoNovaMatriculas);
-      } catch (err: unknown) {
-        console.error(err);
-        setError('Erro ao criar dados de matrícula do aluno');
-      } finally {
-        setLoading(false);
-      }
-    };
+  const criarMatricula = async (formData: Partial<AlunoMatriculaInterface>) => {
+    setLoading(true);
 
-    enviarMatricula();
-  }, [matricula]);
+    try {
+      const dataToSend: AlunoMatriculaInterface = {
+        ...formData,
+        ano_letivo: Number(formData.ano_letivo),
+        serie_ou_periodo: Number(formData.serie_ou_periodo),
+        distancia_instituicao: Number(formData.distancia_instituicao),
+        data_inicio: new Date(formData.data_inicio!)
+          .toISOString()
+          .split('T')[0],
+        data_fim: new Date(formData.data_fim!).toISOString().split('T')[0],
+        turno: formData.turno!,
+        grau_scolaridade: formData.grau_scolaridade!,
+        convenio: formData.convenio!,
+        cgm: formData.cgm!,
+        curso: formData.curso!,
+        instituicao: formData.instituicao!,
+        status_matricula: formData.status_matricula ?? true,
+        id: formData.id ?? 0,
+      };
 
-  return { alunoNovaMatricula, loading, error };
+      await postAlunoMatriculas(dataToSend);
+      toast.success('Matrícula criada com sucesso!');
+    } catch (err: any) {
+      apiError(err, 'Erro ao criar matrícula.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return { criarMatricula, loading };
 }
