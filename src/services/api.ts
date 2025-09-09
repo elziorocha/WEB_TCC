@@ -42,3 +42,17 @@ export const getAlunoMatriculas = async () => {
 
   return response.data;
 };
+
+export const postAlunoMatriculas = async () => {
+  const token = Cookies.get('token');
+  if (!token) throw new Error('Usuário não autenticado');
+
+  const response = await instanciaAPI.post('/aluno/matricula', {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    withCredentials: true,
+  });
+
+  return response.data;
+};
