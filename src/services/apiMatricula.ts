@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getAlunoMatriculas, postAlunoMatriculas } from './api';
+import type { AlunoMatriculaInterface } from '@/utils/interfaces.interface';
 
 export function alunoMatriculasData() {
   const [alunoMatriculas, setAlunoMatriculas] = useState<any[]>([]);
@@ -25,15 +26,15 @@ export function alunoMatriculasData() {
   return { alunoMatriculas, loading, error };
 }
 
-export function criarAlunoMatricula() {
+export function criarAlunoMatricula(matricula: AlunoMatriculaInterface) {
   const [alunoNovaMatricula, setAlunoNovaMatricula] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchAlunoMatriculas = async () => {
+    const enviarMatricula = async () => {
       try {
-        const dadosAlunoNovaMatriculas = await postAlunoMatriculas();
+        const dadosAlunoNovaMatriculas = await postAlunoMatriculas(matricula);
         setAlunoNovaMatricula(dadosAlunoNovaMatriculas);
       } catch (err: unknown) {
         console.error(err);
@@ -43,8 +44,8 @@ export function criarAlunoMatricula() {
       }
     };
 
-    fetchAlunoMatriculas();
-  }, []);
+    enviarMatricula();
+  }, [matricula]);
 
   return { alunoNovaMatricula, loading, error };
 }

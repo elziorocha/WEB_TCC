@@ -32,8 +32,8 @@ export interface AlunoMatriculaInterface {
   id: number;
   ano_letivo: number;
   instituicao: string;
-  data_inicio: Date;
-  data_fim: Date;
+  data_inicio: string;
+  data_fim: string;
   grau_scolaridade: GrauEscolaridade;
   serie_ou_periodo: number;
   curso: string;
