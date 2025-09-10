@@ -36,7 +36,7 @@ export const PortalDoAlunoDashboardCards = ({
 
               <DialogContent
                 showCloseButton={false}
-                className="w-[90vw] max-w-md rounded-2xl p-4 sm:p-6"
+                className="w-[90vw] max-w-md rounded-2xl border-none p-4 sm:p-6"
               >
                 <DialogClose asChild>
                   <button className="absolute top-4 right-4 flex cursor-pointer items-center justify-center rounded-full bg-gray-200 p-1 transition-all hover:bg-gray-300 focus:outline-none">
