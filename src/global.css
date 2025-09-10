@@ -137,6 +137,10 @@
   .input_login {
     @apply bg-whiteText rounded-lg px-4 py-2 font-medium shadow-md;
   }
+
+  .input_matricula {
+    @apply w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm placeholder-zinc-400 transition-colors focus:border-blue-500 focus:ring-2 focus:ring-blue-200;
+  }
 }
 
 input:-webkit-autofill,

@@ -1,7 +1,7 @@
 import { colunasAlunoMatriculaDataTable } from '@/utils/objetosExportaveisReact';
-import PortalDoAlunoMatriculasCard from './PortalDoAlunoMatriculasCard';
+import PortalDoAlunoMatriculasCard from '../../components/PortalDoAlunoComponents/PortalDoAlunoMatricula/PortalDoAlunoMatriculasCard';
 import { alunoMatriculasData } from '@/services/apiMatricula';
-import { DataTable } from './PortalDoAlunoMatriculasDataTable';
+import { DataTable } from '../../components/PortalDoAlunoComponents/PortalDoAlunoMatricula/PortalDoAlunoMatriculasDataTable';
 
 export function PortalDoAlunoListagemMatriculas() {
   const { alunoMatriculas, loading, error } = alunoMatriculasData();

@@ -62,13 +62,13 @@ export function PortalDoAlunoNovaMatricula() {
         </div>
       </Link>
 
-      <div className="overflow-hidden rounded-2xl border-none bg-white shadow-lg">
-        <header className="border-blue-200 bg-gradient-to-br from-blue-50 to-blue-100 px-4 py-4 sm:px-6 sm:py-6">
-          <h1 className="flex items-center gap-2 text-xl font-bold text-blue-700 sm:text-2xl">
+      <div className="overflow-hidden rounded-2xl bg-white shadow-lg">
+        <header className="from-quarter/15 to-quarter/35 border-b border-dashed border-zinc-400 bg-gradient-to-br p-3 sm:px-6 sm:py-6">
+          <h1 className="text-secondary flex items-center gap-2 text-xl font-bold sm:text-2xl">
             <GraduationCap className="size-6 sm:size-8" />
             Nova Matrícula
           </h1>
-          <p className="mt-1 text-sm text-gray-600 sm:text-base">
+          <p className="mt-1 text-xs font-medium text-gray-700 sm:text-base">
             Preencha os dados para criar uma nova matrícula
           </p>
         </header>
@@ -76,13 +76,6 @@ export function PortalDoAlunoNovaMatricula() {
         <div className="px-4 py-4 sm:px-6 sm:py-6">
           <form onSubmit={dadosAlunoMatricula} className="space-y-4">
             <section className="space-y-3">
-              <div className="flex items-center gap-2 font-semibold text-blue-700">
-                <CalendarDays className="size-4" />
-                <span className="text-xs uppercase sm:text-sm">
-                  Informações Básicas
-                </span>
-              </div>
-
               <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
                 <div className="space-y-1">
                   <label className="flex items-center gap-1 text-xs font-medium text-gray-600">
@@ -94,8 +87,8 @@ export function PortalDoAlunoNovaMatricula() {
                     name="ano_letivo"
                     value={formData.ano_letivo || ''}
                     onChange={handleChange}
-                    className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm transition-colors focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
-                    placeholder="2024"
+                    className="input_matricula"
+                    placeholder="Ex: 2024"
                     required
                   />
                 </div>
@@ -110,7 +103,7 @@ export function PortalDoAlunoNovaMatricula() {
                     name="serie_ou_periodo"
                     value={formData.serie_ou_periodo || ''}
                     onChange={handleChange}
-                    className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm transition-colors focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+                    className="input_matricula"
                     placeholder="1"
                     required
                   />
@@ -126,7 +119,7 @@ export function PortalDoAlunoNovaMatricula() {
                     name="instituicao"
                     value={formData.instituicao || ''}
                     onChange={handleChange}
-                    className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm transition-colors focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+                    className="input_matricula"
                     placeholder="Nome da Instituição"
                     required
                   />
@@ -137,13 +130,6 @@ export function PortalDoAlunoNovaMatricula() {
             <hr className="border-dashed border-zinc-300" />
 
             <section className="space-y-3">
-              <div className="flex items-center gap-2 font-semibold text-blue-700">
-                <BookOpen className="size-4" />
-                <span className="text-xs uppercase sm:text-sm">
-                  Período e Curso
-                </span>
-              </div>
-
               <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
                 <div className="space-y-1">
                   <label className="text-xs font-medium text-gray-600">
@@ -160,7 +146,7 @@ export function PortalDoAlunoNovaMatricula() {
                         : ''
                     }
                     onChange={handleChange}
-                    className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm transition-colors focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+                    className="input_matricula"
                     required
                   />
                 </div>
@@ -180,7 +166,7 @@ export function PortalDoAlunoNovaMatricula() {
                         : ''
                     }
                     onChange={handleChange}
-                    className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm transition-colors focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+                    className="input_matricula"
                     required
                   />
                 </div>
@@ -193,7 +179,7 @@ export function PortalDoAlunoNovaMatricula() {
                     name="grau_scolaridade"
                     value={formData.grau_scolaridade || ''}
                     onChange={handleChange}
-                    className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm transition-colors focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+                    className="input_matricula"
                     required
                   >
                     <option value="">Selecione o grau</option>
@@ -227,7 +213,7 @@ export function PortalDoAlunoNovaMatricula() {
                     name="curso"
                     value={formData.curso || ''}
                     onChange={handleChange}
-                    className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm transition-colors focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+                    className="input_matricula"
                     placeholder="Nome do Curso"
                     required
                   />
@@ -238,13 +224,6 @@ export function PortalDoAlunoNovaMatricula() {
             <hr className="border-dashed border-zinc-300" />
 
             <section className="space-y-3">
-              <div className="flex items-center gap-2 font-semibold text-blue-700">
-                <Clock className="size-4" />
-                <span className="text-xs uppercase sm:text-sm">
-                  Detalhes Complementares
-                </span>
-              </div>
-
               <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
                 <div className="space-y-1">
                   <label className="flex items-center gap-1 text-xs font-medium text-gray-600">
@@ -255,7 +234,7 @@ export function PortalDoAlunoNovaMatricula() {
                     name="turno"
                     value={formData.turno || ''}
                     onChange={handleChange}
-                    className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm transition-colors focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+                    className="input_matricula"
                     required
                   >
                     <option value="">Selecione o turno</option>
@@ -276,7 +255,7 @@ export function PortalDoAlunoNovaMatricula() {
                     name="distancia_instituicao"
                     value={formData.distancia_instituicao || ''}
                     onChange={handleChange}
-                    className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm transition-colors focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+                    className="input_matricula"
                     placeholder="0"
                     required
                   />
@@ -291,7 +270,7 @@ export function PortalDoAlunoNovaMatricula() {
                     name="convenio"
                     value={formData.convenio || ''}
                     onChange={handleChange}
-                    className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm transition-colors focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+                    className="input_matricula"
                     required
                   >
                     <option value="">Selecione o convênio</option>
@@ -312,7 +291,7 @@ export function PortalDoAlunoNovaMatricula() {
                     name="cgm"
                     value={formData.cgm || ''}
                     onChange={handleChange}
-                    className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm transition-colors focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+                    className="input_matricula"
                     placeholder="Número do CGM"
                     required
                   />

@@ -12,7 +12,6 @@ import { Tarifas } from './pages/HomePage/Tarifas';
 import NossaHistoria from './pages/HomePage/NossaHistoria';
 import PortalDoAlunoLogin from './pages/HomePage/PortalDoAlunoLogin';
 import { RotaProtegida } from './utils/rotaProtegida';
-import { PortalDoAlunoMatricula } from './pages/PortalDoAluno/PortalDoAlunoMatricula';
 import { PortalDoAlunoPerfil } from './pages/PortalDoAluno/PortalDoAlunoPerfil';
 import { PortalDoAlunoNovaMatricula } from './pages/PortalDoAluno/PortalDoAlunoNovaMatricula';
 import { PortalDoAlunoConsultarMatriculas } from './pages/PortalDoAluno/PortalDoAlunoConsultarMatriculas';
@@ -48,10 +47,6 @@ export const router = createBrowserRouter([
       {
         path: 'dashboard',
         element: <PortalDoAlunoDashboard />,
-      },
-      {
-        path: 'matricula',
-        element: <PortalDoAlunoMatricula />,
       },
       {
         path: 'aluno-perfil',

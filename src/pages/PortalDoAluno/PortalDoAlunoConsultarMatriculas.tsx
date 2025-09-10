@@ -1,4 +1,4 @@
-import { PortalDoAlunoListagemMatriculas } from '@/components/PortalDoAlunoComponents/PortalDoAlunoMatricula/PortalDoAlunoListagemMatriculas';
+import { PortalDoAlunoListagemMatriculas } from '@/pages/PortalDoAluno/PortalDoAlunoListagemMatriculas';
 import { ArrowLeftIcon } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
