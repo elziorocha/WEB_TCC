@@ -22,8 +22,6 @@ export function PortalDoAlunoNovaMatricula() {
     turno: undefined,
   });
 
-  const { criarMatricula, loading } = criarAlunoMatricula();
-
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
@@ -44,6 +42,8 @@ export function PortalDoAlunoNovaMatricula() {
             : value,
     }));
   };
+
+  const { criarMatricula, loading } = criarAlunoMatricula();
 
   const dadosAlunoMatricula = (e: React.FormEvent) => {
     e.preventDefault();
