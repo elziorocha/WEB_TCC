@@ -234,8 +234,8 @@ export function PortalDoAlunoNovaMatricula() {
             <hr className="border-dashed border-zinc-300" />
 
             <section className="space-y-3">
-              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
-                <div className="space-y-1">
+              <div className="flex w-12/12 flex-col gap-3 sm:flex-row">
+                <div className="w-full space-y-1">
                   <label className="ml-1 flex items-center gap-1 text-xs font-medium text-gray-600">
                     <Clock className="size-3" />
                     Turno
@@ -255,7 +255,7 @@ export function PortalDoAlunoNovaMatricula() {
                   </select>
                 </div>
 
-                <div className="space-y-1">
+                <div className="w-full space-y-1">
                   <label className="ml-1 flex items-center gap-1 text-xs font-medium text-gray-600">
                     <Handshake className="size-3" />
                     Convênio
@@ -268,6 +268,7 @@ export function PortalDoAlunoNovaMatricula() {
                     className="input_matricula"
                   >
                     <option value="">Selecione o convênio</option>
+                    <option value="Sem Convênio">Sem Convênio</option>
                     <option value="ProUni">ProUni</option>
                     <option value="FIES">FIES</option>
                     <option value="EducaMais">EducaMais</option>
@@ -276,8 +277,8 @@ export function PortalDoAlunoNovaMatricula() {
                 </div>
 
                 {mostrarDadosCEEBJA && (
-                  <main className="flex flex-col gap-2">
-                    <div className="space-y-1">
+                  <section className="flex w-12/12 flex-col items-center gap-3 sm:flex-row">
+                    <div className="w-full space-y-1">
                       <label className="flex items-center gap-1 text-xs font-medium text-gray-600">
                         <MapPin className="size-3" />
                         Distância (km)
@@ -287,12 +288,13 @@ export function PortalDoAlunoNovaMatricula() {
                         name="distancia_instituicao"
                         value={formData.distancia_instituicao || ''}
                         onChange={handleChange}
-                        className="input_matricula"
                         placeholder="0"
                         required
+                        className="input_matricula"
                       />
                     </div>
-                    <div className="space-y-1">
+
+                    <div className="w-full space-y-1">
                       <label className="flex items-center gap-1 text-xs font-medium text-gray-600">
                         <FileText className="size-3" />
                         CGM
@@ -307,7 +309,7 @@ export function PortalDoAlunoNovaMatricula() {
                         required
                       />
                     </div>
-                  </main>
+                  </section>
                 )}
               </div>
             </section>
@@ -316,7 +318,7 @@ export function PortalDoAlunoNovaMatricula() {
               <button
                 type="submit"
                 disabled={loading}
-                className="flex w-full items-center justify-center gap-2 rounded-lg bg-blue-600 py-3 text-sm font-semibold text-white transition-colors hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-blue-400"
+                className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-blue-600 py-3 text-sm font-semibold text-white transition-colors hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-blue-400"
               >
                 {loading ? (
                   <>
