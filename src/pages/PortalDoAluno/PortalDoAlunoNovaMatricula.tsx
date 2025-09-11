@@ -14,14 +14,13 @@ import {
   Loader2,
   ArrowLeftIcon,
 } from 'lucide-react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export function PortalDoAlunoNovaMatricula() {
   const [formData, setFormData] = useState<Partial<AlunoMatriculaInterface>>({
     ano_letivo: new Date().getFullYear(),
     turno: undefined,
   });
-  const navigate = useNavigate();
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -49,8 +48,6 @@ export function PortalDoAlunoNovaMatricula() {
   const dadosAlunoMatricula = (e: React.FormEvent) => {
     e.preventDefault();
     criarMatricula(formData);
-
-    navigate('/portal-do-aluno/consultar-matricula');
   };
 
   const mostrarCurso =
