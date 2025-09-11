@@ -94,7 +94,7 @@ export const colunasAlunoMatriculaDataTable: ColumnDef<AlunoMatriculaInterface>[
       header: 'Série/Período',
       cell: ({ row }) => (
         <div className="text-center font-medium">
-          {row.getValue('serie_ou_periodo')}
+          {row.getValue('serie_ou_periodo')}º
         </div>
       ),
     },

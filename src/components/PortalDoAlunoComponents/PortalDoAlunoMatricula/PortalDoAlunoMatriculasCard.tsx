@@ -7,6 +7,8 @@ import {
   BookOpen,
   Clock,
   Handshake,
+  MapPinIcon,
+  FileText,
 } from 'lucide-react';
 import {
   getStatusMatriculaBadge,
@@ -18,6 +20,12 @@ const PortalDoAlunoMatriculasCard = ({
 }: {
   alunoMatricula: AlunoMatriculaInterface;
 }) => {
+  const mostrarDadosCEEBJA =
+    alunoMatricula.grau_scolaridade?.includes('CEEBJA');
+  const mostrarCurso =
+    alunoMatricula.grau_scolaridade === 'Ensino Superior' ||
+    alunoMatricula.grau_scolaridade?.includes('Técnico');
+
   return (
     <Card className="mb-8 gap-2 overflow-hidden rounded-2xl border-none pt-4 pb-0 shadow-md">
       <CardHeader className="px-4">
@@ -46,7 +54,7 @@ const PortalDoAlunoMatriculasCard = ({
               <Building2Icon className="size-5" />
               <span className="uppercase">Instituição</span>
             </div>
-            <p className="mt-1 text-sm text-black">
+            <p className="mt-1 text-sm font-medium text-black capitalize">
               {alunoMatricula.instituicao}
             </p>
           </section>
@@ -61,11 +69,17 @@ const PortalDoAlunoMatriculasCard = ({
                 {alunoMatricula.serie_ou_periodo}º
               </p>
             </div>
-            <div className="flex items-center gap-2">
-              <BookOpen className="text-muted-foreground size-4" />
-              <span className="text-muted-foreground font-medium">Curso:</span>
-              <p className="font-semibold">{alunoMatricula.curso}</p>
-            </div>
+            {mostrarCurso ? (
+              <div className="-mt-1.5 flex items-center gap-2">
+                <BookOpen className="text-muted-foreground size-4" />
+                <span className="text-muted-foreground font-medium">
+                  Curso:
+                </span>
+                <p className="font-semibold">{alunoMatricula.curso}</p>
+              </div>
+            ) : (
+              <></>
+            )}
           </div>
 
           <div className="mt-2 grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -104,6 +118,30 @@ const PortalDoAlunoMatriculasCard = ({
                 <p className="font-semibold">{alunoMatricula.convenio}</p>
               </div>
             </div>
+
+            {mostrarDadosCEEBJA ? (
+              <div className="space-y-2">
+                <hr className="border-dashed border-zinc-300" />
+                <div className="flex items-center gap-2">
+                  <MapPinIcon className="text-muted-foreground size-4" />
+                  <span className="text-muted-foreground font-medium">
+                    Distância:
+                  </span>
+                  <p className="font-semibold">
+                    {alunoMatricula.distancia_instituicao} Km
+                  </p>
+                </div>
+                <div className="flex items-center gap-2">
+                  <FileText className="text-muted-foreground size-4" />
+                  <span className="text-muted-foreground font-medium">
+                    CGM:
+                  </span>
+                  <p className="font-semibold">{alunoMatricula.cgm}</p>
+                </div>
+              </div>
+            ) : (
+              <></>
+            )}
           </div>
         </div>
       </CardContent>
