@@ -1,6 +1,12 @@
 import { Badge } from '@/components/ui/badge';
 import type { AlunoMatriculaInterface } from './interfaces.interface';
 import type { ColumnDef } from '@tanstack/react-table';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
 
 export const getTurnoBadge = (turno: AlunoMatriculaInterface['turno']) => {
   switch (turno.toLowerCase()) {
@@ -71,21 +77,39 @@ export const colunasAlunoMatriculaDataTable: ColumnDef<AlunoMatriculaInterface>[
     {
       accessorKey: 'instituicao',
       header: 'Instituição',
-      cell: ({ row }) => (
-        <div
-          className="max-w-[200px] truncate font-medium"
-          title={row.getValue('instituicao')}
-        >
-          {row.getValue('instituicao')}
-        </div>
-      ),
+      cell: ({ row }) => {
+        const instituicao = row.getValue<string>('instituicao') || '';
+        const textoFormatadoNaColuna =
+          instituicao.length > 30
+            ? `${instituicao.slice(0, 25)}...`
+            : instituicao;
+
+        return (
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <div className="cursor-help font-medium capitalize">
+                  {textoFormatadoNaColuna}
+                </div>
+              </TooltipTrigger>
+              {instituicao.length > 25 && (
+                <TooltipContent className="shadow-md">
+                  <p className="text-yellowText text-base font-medium capitalize">
+                    {instituicao}
+                  </p>
+                </TooltipContent>
+              )}
+            </Tooltip>
+          </TooltipProvider>
+        );
+      },
     },
     {
       accessorKey: 'curso',
       header: 'Curso',
       cell: ({ row }) => (
         <div className="font-medium" title={row.getValue('curso')}>
-          {row.getValue('curso')}
+          {row.getValue('curso') ?? '-'}
         </div>
       ),
     },

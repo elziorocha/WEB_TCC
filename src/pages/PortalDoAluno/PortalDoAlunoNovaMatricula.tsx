@@ -13,6 +13,8 @@ import {
   FileText,
   Loader2,
   ArrowLeftIcon,
+  Calendar,
+  Notebook,
 } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -60,10 +62,10 @@ export function PortalDoAlunoNovaMatricula() {
   const mostrarDadosCEEBJA = formData.grau_scolaridade?.includes('CEEBJA');
 
   return (
-    <main className="flex max-w-4xl flex-col gap-4 self-center p-3">
+    <main className="flex w-full flex-col gap-4 self-center p-3">
       <Link
         to="/portal-do-aluno/dashboard"
-        className="bg-primary text-blackText self-start rounded-lg px-3 py-1.5 text-sm shadow-md"
+        className="bg-primary text-blackText hover:bg-primary/70 self-start rounded-lg px-3 py-1.5 text-sm shadow-md transition-all sm:px-4 sm:py-2 sm:text-base"
       >
         <div className="text-yellowText flex items-center gap-1 font-semibold">
           <ArrowLeftIcon className="size-5" />
@@ -71,8 +73,8 @@ export function PortalDoAlunoNovaMatricula() {
         </div>
       </Link>
 
-      <div className="overflow-hidden rounded-2xl bg-white shadow-lg">
-        <header className="from-quarter/15 to-quarter/35 border-b border-dashed border-zinc-400 bg-gradient-to-br p-3 sm:px-6 sm:py-6">
+      <div className="max-w-5xl self-center overflow-hidden rounded-2xl bg-white shadow-lg sm:w-14/12">
+        <header className="from-quarter/20 to-quarter/45 border-b border-dashed border-zinc-400 bg-gradient-to-br p-3 sm:px-6 sm:py-6">
           <h1 className="text-secondary flex items-center gap-2 text-xl font-bold sm:text-2xl">
             <GraduationCap className="size-6 sm:size-8" />
             Nova Matrícula
@@ -83,13 +85,16 @@ export function PortalDoAlunoNovaMatricula() {
         </header>
 
         <div className="p-4 sm:p-6">
-          <form onSubmit={dadosAlunoMatricula} className="space-y-3">
-            <section className="space-y-3">
-              <div className="flex flex-col gap-3 sm:flex-row">
-                <section className="flex gap-3">
+          <form
+            onSubmit={dadosAlunoMatricula}
+            className="space-y-3 sm:space-y-6"
+          >
+            <section className="space-y-3 sm:space-y-6">
+              <div className="flex flex-col gap-3 sm:flex-row sm:gap-6">
+                <section className="flex gap-3 sm:gap-6">
                   <div className="space-y-1">
-                    <label className="ml-1 flex items-center gap-1 text-xs font-medium text-gray-600">
-                      <CalendarDays className="size-3" />
+                    <label className="ml-1 flex items-center gap-1 text-xs font-medium text-gray-600 sm:text-sm">
+                      <CalendarDays className="size-3 sm:size-4" />
                       Ano Letivo
                     </label>
                     <input
@@ -104,8 +109,8 @@ export function PortalDoAlunoNovaMatricula() {
                   </div>
 
                   <div className="space-y-1">
-                    <label className="ml-1 flex items-center gap-1 text-xs font-medium text-gray-600">
-                      <GraduationCap className="size-3" />
+                    <label className="ml-1 flex items-center gap-1 text-xs font-medium text-gray-600 sm:text-sm">
+                      <GraduationCap className="size-3 sm:size-4" />
                       Série/Período
                     </label>
                     <input
@@ -121,8 +126,8 @@ export function PortalDoAlunoNovaMatricula() {
                 </section>
 
                 <div className="w-full space-y-1">
-                  <label className="ml-1 flex items-center gap-1 text-xs font-medium text-gray-600">
-                    <Building2Icon className="size-3" />
+                  <label className="ml-1 flex items-center gap-1 text-xs font-medium text-gray-600 sm:text-sm">
+                    <Building2Icon className="size-3 sm:size-4" />
                     Instituição
                   </label>
                   <input
@@ -140,10 +145,11 @@ export function PortalDoAlunoNovaMatricula() {
 
             <hr className="border-dashed border-zinc-300" />
 
-            <section className="space-y-3">
-              <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+            <section className="space-y-3 sm:space-y-6">
+              <div className="grid grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-4">
                 <div className="space-y-1">
-                  <label className="ml-1 text-xs font-medium text-gray-600">
+                  <label className="ml-1 flex items-center gap-1 text-xs font-medium text-gray-600 sm:text-sm">
+                    <Calendar className="size-3 sm:size-4" />
                     Data de Início
                   </label>
                   <input
@@ -163,7 +169,8 @@ export function PortalDoAlunoNovaMatricula() {
                 </div>
 
                 <div className="space-y-1">
-                  <label className="ml-1 text-xs font-medium text-gray-600">
+                  <label className="ml-1 flex items-center gap-1 text-xs font-medium text-gray-600 sm:text-sm">
+                    <Calendar className="size-3 sm:size-4" />
                     Data de Fim
                   </label>
                   <input
@@ -183,7 +190,8 @@ export function PortalDoAlunoNovaMatricula() {
                 </div>
 
                 <div className="col-span-2 space-y-1">
-                  <label className="ml-1 text-xs font-medium text-gray-600">
+                  <label className="ml-1 flex items-center gap-1 text-xs font-medium text-gray-600 sm:text-sm">
+                    <Notebook className="size-3 sm:size-4" />
                     Grau de Escolaridade
                   </label>
                   <select
@@ -191,7 +199,7 @@ export function PortalDoAlunoNovaMatricula() {
                     value={formData.grau_scolaridade || ''}
                     onChange={handleChange}
                     required
-                    className="input_matricula py-1.5 text-xs"
+                    className="input_matricula py-1.5"
                   >
                     <option value="">Selecione o grau</option>
                     <option value="Ensino Fundamental">
@@ -217,8 +225,8 @@ export function PortalDoAlunoNovaMatricula() {
 
               {mostrarCurso && (
                 <div className="space-y-1">
-                  <label className="flex items-center gap-1 text-xs font-medium text-gray-600">
-                    <BookOpen className="size-3" />
+                  <label className="flex items-center gap-1 text-xs font-medium text-gray-600 sm:text-sm">
+                    <BookOpen className="size-3 sm:size-4" />
                     Curso
                   </label>
                   <input
@@ -237,10 +245,10 @@ export function PortalDoAlunoNovaMatricula() {
             <hr className="border-dashed border-zinc-300" />
 
             <section className="space-y-3">
-              <div className="flex w-12/12 flex-col gap-3 sm:flex-row">
+              <div className="flex w-12/12 flex-col gap-3 sm:flex-row sm:gap-6">
                 <div className="w-full space-y-1">
-                  <label className="ml-1 flex items-center gap-1 text-xs font-medium text-gray-600">
-                    <Clock className="size-3" />
+                  <label className="ml-1 flex items-center gap-1 text-xs font-medium text-gray-600 sm:text-sm">
+                    <Clock className="size-3 sm:size-4" />
                     Turno
                   </label>
                   <select
@@ -259,8 +267,8 @@ export function PortalDoAlunoNovaMatricula() {
                 </div>
 
                 <div className="w-full space-y-1">
-                  <label className="ml-1 flex items-center gap-1 text-xs font-medium text-gray-600">
-                    <Handshake className="size-3" />
+                  <label className="ml-1 flex items-center gap-1 text-xs font-medium text-gray-600 sm:text-sm">
+                    <Handshake className="size-3 sm:size-4" />
                     Convênio
                   </label>
                   <select
@@ -280,10 +288,10 @@ export function PortalDoAlunoNovaMatricula() {
                 </div>
 
                 {mostrarDadosCEEBJA && (
-                  <section className="flex w-12/12 flex-col items-center gap-3 sm:flex-row">
+                  <section className="flex w-12/12 flex-col items-center gap-3 sm:flex-row sm:gap-6">
                     <div className="w-full space-y-1">
-                      <label className="flex items-center gap-1 text-xs font-medium text-gray-600">
-                        <MapPin className="size-3" />
+                      <label className="flex items-center gap-1 text-xs font-medium text-gray-600 sm:text-sm">
+                        <MapPin className="size-3 sm:size-4" />
                         Distância (km)
                       </label>
                       <input
@@ -298,8 +306,8 @@ export function PortalDoAlunoNovaMatricula() {
                     </div>
 
                     <div className="w-full space-y-1">
-                      <label className="flex items-center gap-1 text-xs font-medium text-gray-600">
-                        <FileText className="size-3" />
+                      <label className="flex items-center gap-1 text-xs font-medium text-gray-600 sm:text-sm">
+                        <FileText className="size-3 sm:size-4" />
                         CGM
                       </label>
                       <input
@@ -321,7 +329,7 @@ export function PortalDoAlunoNovaMatricula() {
               <button
                 type="submit"
                 disabled={loading}
-                className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-blue-600 py-3 text-sm font-semibold text-white transition-colors hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-blue-400"
+                className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-blue-600 py-3 text-sm font-semibold text-white transition-colors hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-blue-400 sm:text-base"
               >
                 {loading ? (
                   <>
@@ -330,7 +338,7 @@ export function PortalDoAlunoNovaMatricula() {
                   </>
                 ) : (
                   <>
-                    <GraduationCap className="size-4" />
+                    <GraduationCap className="size-4 sm:size-6" />
                     Criar Matrícula
                   </>
                 )}

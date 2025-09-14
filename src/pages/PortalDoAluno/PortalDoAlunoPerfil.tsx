@@ -1,4 +1,5 @@
 import TelaCarregando from '@/components/componentesUI/TelaCarregando';
+import { Card } from '@/components/ui/card';
 import { alunoData } from '@/services/apiAluno';
 
 export function PortalDoAlunoPerfil() {
@@ -7,8 +8,10 @@ export function PortalDoAlunoPerfil() {
   if (loadingAluno) return <TelaCarregando />;
 
   return (
-    <main>
-      <div className="text-black">{aluno?.nome}</div>
+    <main className="p-3">
+      <Card className="border-none">
+        <div className="text-black">{aluno?.nome}</div>
+      </Card>
     </main>
   );
 }
