@@ -1,52 +1,12 @@
-import { useEffect, useState } from 'react';
-import { getAluno, getAlunoDocumentos } from '@/services/api';
-import type {
-  AlunoDocumentoInterface,
-  AlunoInterface,
-} from '@/utils/interfaces.interface';
 import { PortalDoAlunoDashboardCards } from '@/components/PortalDoAlunoComponents/PortalDoAlunoDashboardCards';
+import { alunoData } from '@/services/apiAluno';
+import { alunoDocumentoStatus } from '@/services/apiDocumentos';
 
 export function PortalDoAlunoDashboard() {
-  const [aluno, setAluno] = useState<AlunoInterface | null>(null);
-  const [alunoDocumento, setAlunoDocumento] =
-    useState<AlunoDocumentoInterface | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const { aluno, loading: loadingAluno } = alunoData();
+  const { liberado, loading: loadingDocumentos } = alunoDocumentoStatus();
 
-  useEffect(() => {
-    const fetchAluno = async () => {
-      try {
-        const dadosAluno = await getAluno();
-        setAluno(dadosAluno);
-      } catch (err: unknown) {
-        console.error(err);
-        setError('Erro ao carregar dados do aluno');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchAluno();
-  }, []);
-
-  useEffect(() => {
-    const fetchAlunoDocumentos = async () => {
-      try {
-        const dadosAlunoDocumentos = await getAlunoDocumentos();
-        setAlunoDocumento(dadosAlunoDocumentos);
-      } catch (err: unknown) {
-        console.error(err);
-        setError('Erro ao carregar documentos do aluno');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchAlunoDocumentos();
-  }, []);
-
-  if (loading) return <main>Carregando...</main>;
-  if (error) return <main>{error}</main>;
+  if (loadingAluno || loadingDocumentos) return <main>Carregando...</main>;
 
   return (
     <main className="flex flex-col gap-5 p-6">
@@ -54,18 +14,18 @@ export function PortalDoAlunoDashboard() {
         <h2 className="text-2xl font-bold">
           Olá,{' '}
           <span className="text-secondary capitalize">
-            {aluno?.nome.split(' ')[0]}
+            {aluno?.nome?.split(' ')[0]}
           </span>
           !
         </h2>
         <h3 className="font-medium">O que deseja fazer hoje?</h3>
       </div>
 
-      <PortalDoAlunoDashboardCards aluno={aluno} />
+      <PortalDoAlunoDashboardCards aluno={aluno ?? null} />
 
       <h3 className="mt-2 flex items-center gap-1.5 font-medium">
         Status atual:{' '}
-        {alunoDocumento?.liberado ? (
+        {liberado ? (
           <span className="rounded bg-green-500 px-1.5 py-0.5 font-normal shadow-sm">
             Vigente
           </span>
