@@ -1,3 +1,4 @@
+import TelaCarregando from '@/components/componentesUI/TelaCarregando';
 import { PortalDoAlunoDashboardCards } from '@/components/PortalDoAlunoComponents/PortalDoAlunoDashboardCards';
 import { alunoData } from '@/services/apiAluno';
 import { alunoDocumentoStatus } from '@/services/apiDocumentos';
@@ -6,7 +7,7 @@ export function PortalDoAlunoDashboard() {
   const { aluno, loading: loadingAluno } = alunoData();
   const { liberado, loading: loadingDocumentos } = alunoDocumentoStatus();
 
-  if (loadingAluno || loadingDocumentos) return <main>Carregando...</main>;
+  if (loadingAluno || loadingDocumentos) return <TelaCarregando />;
 
   return (
     <main className="flex flex-col gap-5 p-6">

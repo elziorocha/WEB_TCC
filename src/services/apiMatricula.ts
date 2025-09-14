@@ -7,7 +7,6 @@ import { apiError } from './apiError';
 export function alunoMatriculasData() {
   const [alunoMatriculas, setAlunoMatriculas] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchAlunoMatriculas = async () => {
@@ -16,7 +15,7 @@ export function alunoMatriculasData() {
         setAlunoMatriculas(dadosAlunoMatriculas);
       } catch (err: unknown) {
         console.error(err);
-        setError('Erro ao carregar dados de matrícula do aluno');
+        apiError('Erro ao carregar dados de matrícula do aluno');
       } finally {
         setLoading(false);
       }
@@ -25,7 +24,7 @@ export function alunoMatriculasData() {
     fetchAlunoMatriculas();
   }, []);
 
-  return { alunoMatriculas, loading, error };
+  return { alunoMatriculas, loading };
 }
 
 export function criarAlunoMatricula() {

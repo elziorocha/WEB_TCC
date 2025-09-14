@@ -2,12 +2,12 @@ import { colunasAlunoMatriculaDataTable } from '@/utils/objetosExportaveisReact'
 import PortalDoAlunoMatriculasCard from '../../components/PortalDoAlunoComponents/PortalDoAlunoMatricula/PortalDoAlunoMatriculasCard';
 import { alunoMatriculasData } from '@/services/apiMatricula';
 import { DataTable } from '../../components/PortalDoAlunoComponents/PortalDoAlunoMatricula/PortalDoAlunoMatriculasDataTable';
+import TelaCarregando from '@/components/componentesUI/TelaCarregando';
 
 export function PortalDoAlunoListagemMatriculas() {
-  const { alunoMatriculas, loading, error } = alunoMatriculasData();
+  const { alunoMatriculas, loading } = alunoMatriculasData();
 
-  if (loading) return <div>Carregando...</div>;
-  if (error) return <div>Erro: {error}</div>;
+  if (loading) return <TelaCarregando />;
 
   return (
     <main>
