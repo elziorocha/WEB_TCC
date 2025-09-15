@@ -1,7 +1,15 @@
 import TelaCarregando from '@/components/componentesUI/TelaCarregando';
-import { Card, CardContent, CardHeader } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { alunoData } from '@/services/apiAluno';
-import { ArrowLeftIcon } from 'lucide-react';
+import { BadgeCartao } from '@/utils/objetosExportaveisReact';
+import {
+  User,
+  Mail,
+  Phone,
+  Calendar,
+  UserCircle,
+  ArrowLeftIcon,
+} from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export function PortalDoAlunoPerfil() {
@@ -10,10 +18,10 @@ export function PortalDoAlunoPerfil() {
   if (loadingAluno) return <TelaCarregando />;
 
   return (
-    <main className="flex w-full flex-col gap-4 self-center p-3">
+    <main className="flex flex-col gap-4 p-3">
       <Link
         to="/portal-do-aluno/dashboard"
-        className="bg-primary text-blackText hover:bg-primary/70 self-start rounded-lg px-3 py-1.5 text-sm shadow-md transition-all sm:px-4 sm:py-2 sm:text-base"
+        className="bg-primary text-blackText self-start rounded-lg px-3 py-1.5 text-sm shadow-md"
       >
         <div className="text-yellowText flex items-center gap-1 font-semibold">
           <ArrowLeftIcon className="size-5" />
@@ -21,18 +29,73 @@ export function PortalDoAlunoPerfil() {
         </div>
       </Link>
 
-      <Card className="border-none">
-        <CardHeader>
-          <h2 className="text-tertiary font-medium">
-            Perfil de:{' '}
-            <span className="text-primary capitalize">{aluno?.nome}</span>
-          </h2>
+      <Card className="gap-2 overflow-hidden rounded-2xl border-none pt-4 pb-0 shadow-md">
+        <CardHeader className="px-4">
+          <CardTitle className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <User className="text-primary size-6" />
+              <span className="text-lg font-semibold">Perfil do Aluno</span>
+            </div>
+            {aluno?.tipo_cartao && <BadgeCartao tipo={aluno.tipo_cartao} />}
+          </CardTitle>
         </CardHeader>
-        <CardContent>
-          <section>
-            <span>E-mail: {aluno?.email}</span>
-            <span>Telefone: {aluno?.telefone}</span>
-          </section>
+
+        <hr className="border-dashed border-zinc-300" />
+
+        <CardContent className="px-4 pt-3 pb-5">
+          <div className="flex flex-col gap-4 text-sm">
+            <section className="from-primary/10 to-primary/20 border-primary/30 rounded-xl border bg-gradient-to-br px-3 py-2 shadow-sm">
+              <div className="text-primary flex items-center gap-2 font-semibold">
+                <UserCircle className="size-5" />
+                <span className="uppercase">Nome Completo</span>
+              </div>
+              <p className="mt-1 text-lg font-semibold text-black capitalize">
+                {aluno?.nome}
+              </p>
+            </section>
+
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              <div className="space-y-3">
+                <div className="flex items-center gap-2">
+                  <Mail className="text-muted-foreground size-4" />
+                  <span className="text-muted-foreground font-medium">
+                    E-mail:
+                  </span>
+                </div>
+                <p className="font-semibold break-all text-black">
+                  {aluno?.email}
+                </p>
+              </div>
+
+              <div className="space-y-3">
+                <div className="flex items-center gap-2">
+                  <Phone className="text-muted-foreground size-4" />
+                  <span className="text-muted-foreground font-medium">
+                    Telefone:
+                  </span>
+                </div>
+                <p className="font-semibold text-black">{aluno?.telefone}</p>
+              </div>
+            </div>
+
+            {aluno?.data_nascimento && (
+              <div className="mt-2 grid grid-cols-1 gap-4 sm:grid-cols-2">
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2">
+                    <Calendar className="text-muted-foreground size-4" />
+                    <span className="text-muted-foreground font-medium">
+                      Data de Nascimento:
+                    </span>
+                  </div>
+                  <p className="font-semibold">
+                    {new Date(aluno.data_nascimento).toLocaleDateString(
+                      'pt-BR'
+                    )}
+                  </p>
+                </div>
+              </div>
+            )}
+          </div>
         </CardContent>
       </Card>
     </main>

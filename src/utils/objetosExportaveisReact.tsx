@@ -7,6 +7,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
+import type { TipoCartao } from './intarfaces-enum';
 
 export const getTurnoBadge = (turno: AlunoMatriculaInterface['turno']) => {
   switch (turno.toLowerCase()) {
@@ -158,3 +159,20 @@ export const colunasAlunoMatriculaDataTable: ColumnDef<AlunoMatriculaInterface>[
       ),
     },
   ];
+
+export function BadgeCartao({ tipo }: { tipo: TipoCartao }) {
+  const badgeStyle: Record<TipoCartao, string> = {
+    EDUCARD: 'bg-quarter text-white border-quarter',
+    VEM: 'bg-orange-600 text-white border-orange-600',
+  };
+
+  const style = badgeStyle[tipo] ?? 'bg-gray-100 text-gray-800 border-gray-200';
+
+  return (
+    <span
+      className={`inline-flex items-center rounded-full border px-4 py-1 text-sm font-medium ${style}`}
+    >
+      {tipo}
+    </span>
+  );
+}
