@@ -23,9 +23,6 @@ export interface AlunoDocumentoInterface {
   rg: number;
   cpf: number;
   orgao_emissor: string;
-  comprovante_matricula: string;
-  atestado_frequencia: string;
-  liberado: boolean;
 }
 
 export interface AlunoMatriculaInterface {

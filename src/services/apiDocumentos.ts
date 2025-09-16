@@ -26,26 +26,3 @@ export function alunoDocumentoData() {
 
   return { alunoDocumento, loading };
 }
-
-export function alunoDocumentoStatus() {
-  const [liberado, setLiberado] = useState<boolean | null>(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchStatus = async () => {
-      try {
-        const dados = await getAlunoDocumentos();
-        setLiberado(dados?.liberado);
-      } catch (err: unknown) {
-        console.error(err);
-        apiError('Erro ao carregar status do aluno');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchStatus();
-  }, []);
-
-  return { liberado, loading };
-}

@@ -1,13 +1,11 @@
 import TelaCarregando from '@/components/componentesUI/TelaCarregando';
 import { PortalDoAlunoDashboardCards } from '@/components/PortalDoAlunoComponents/PortalDoAlunoDashboardCards';
 import { alunoData } from '@/services/apiAluno';
-import { alunoDocumentoStatus } from '@/services/apiDocumentos';
 
 export function PortalDoAlunoDashboard() {
   const { aluno, loading: loadingAluno } = alunoData();
-  const { liberado, loading: loadingDocumentos } = alunoDocumentoStatus();
 
-  if (loadingAluno || loadingDocumentos) return <TelaCarregando />;
+  if (loadingAluno) return <TelaCarregando />;
 
   return (
     <main className="flex flex-col gap-5 p-6">
@@ -24,7 +22,7 @@ export function PortalDoAlunoDashboard() {
 
       <PortalDoAlunoDashboardCards aluno={aluno ?? null} />
 
-      <h3 className="mt-2 flex items-center gap-1.5 font-medium">
+      {/* <h3 className="mt-2 flex items-center gap-1.5 font-medium">
         Status atual:{' '}
         {liberado ? (
           <span className="rounded bg-green-500 px-1.5 py-0.5 font-normal shadow-sm">
@@ -35,7 +33,7 @@ export function PortalDoAlunoDashboard() {
             Bloqueado
           </span>
         )}
-      </h3>
+      </h3> */}
     </main>
   );
 }
