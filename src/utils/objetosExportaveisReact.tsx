@@ -186,21 +186,18 @@ export const alunoPerfilCards = (aluno: any) => [
     titulo: 'Documentos Pessoais',
     descricao: 'Cadastre seus documentos',
     icon: <FileText className="size-6 text-red-500" />,
-    to: '/portal-do-aluno/documentos',
   },
   {
     condicao: aluno?.aluno_responsavel === null,
     titulo: 'Responsáveis',
     descricao: 'Adicione seus responsáveis',
     icon: <Users className="size-6 text-red-500" />,
-    to: '/portal-do-aluno/responsaveis',
   },
   {
     condicao: aluno?.aluno_endereco === null,
     titulo: 'Endereço',
     descricao: 'Informe seu endereço',
     icon: <MapPin className="size-6 text-red-500" />,
-    to: '/portal-do-aluno/endereco',
   },
 ];
 

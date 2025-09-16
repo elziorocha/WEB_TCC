@@ -3,7 +3,7 @@ import {
   dispararToastAvisoPerfil,
 } from '@/utils/objetosExportaveisReact';
 import { Card, CardContent } from '../ui/card';
-import { Link } from 'react-router-dom';
+
 import { AlertCircle, IdCard, Users, MapPin } from 'lucide-react';
 
 export const PortalDoAlunoPerfilCards = ({ aluno }: any) => {
@@ -14,7 +14,7 @@ export const PortalDoAlunoPerfilCards = ({ aluno }: any) => {
   return (
     <main className="flex flex-col gap-3">
       {aluno?.aluno_documento && (
-        <Link to="/portal-do-aluno/documentos">
+        <main>
           <Card className="flex flex-col rounded-2xl border-none px-4 py-3 shadow-sm transition-all hover:bg-zinc-100">
             <CardContent className="flex items-center justify-between p-0">
               <section className="flex gap-2">
@@ -38,11 +38,11 @@ export const PortalDoAlunoPerfilCards = ({ aluno }: any) => {
               </section>
             </CardContent>
           </Card>
-        </Link>
+        </main>
       )}
 
       {aluno?.aluno_responsavel && (
-        <Link to="/portal-do-aluno/responsaveis">
+        <main>
           <Card className="flex flex-col rounded-2xl border-none px-4 py-3 shadow-sm transition-all hover:bg-zinc-100">
             <CardContent className="flex items-center justify-between p-0">
               <section className="flex gap-2">
@@ -69,11 +69,11 @@ export const PortalDoAlunoPerfilCards = ({ aluno }: any) => {
               </section>
             </CardContent>
           </Card>
-        </Link>
+        </main>
       )}
 
       {aluno?.aluno_endereco && (
-        <Link to="/portal-do-aluno/endereco">
+        <main>
           <Card className="flex flex-col rounded-2xl border-none px-4 py-3 shadow-sm transition-all hover:bg-zinc-100">
             <CardContent className="flex items-center justify-between p-0">
               <section className="flex gap-2">
@@ -102,13 +102,13 @@ export const PortalDoAlunoPerfilCards = ({ aluno }: any) => {
               </section>
             </CardContent>
           </Card>
-        </Link>
+        </main>
       )}
 
       {cards
         .filter((card) => card.condicao)
-        .map((card, idx) => (
-          <Link key={idx} to={card.to}>
+        .map((card) => (
+          <main>
             <Card className="flex cursor-pointer flex-col rounded-2xl border-none px-4 py-3 shadow-sm transition-all hover:bg-zinc-100">
               <CardContent className="flex items-center justify-between p-0">
                 <section className="flex gap-2">
@@ -127,7 +127,7 @@ export const PortalDoAlunoPerfilCards = ({ aluno }: any) => {
                 <AlertCircle className="text-red-500" />
               </CardContent>
             </Card>
-          </Link>
+          </main>
         ))}
     </main>
   );
