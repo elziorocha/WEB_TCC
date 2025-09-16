@@ -8,6 +8,9 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip';
 import type { TipoCartao } from './intarfaces-enum';
+import { FileText, MapPin, Users, X } from 'lucide-react';
+import toast from 'react-hot-toast';
+import { useEffect, useRef } from 'react';
 
 export const getTurnoBadge = (turno: AlunoMatriculaInterface['turno']) => {
   switch (turno.toLowerCase()) {
@@ -176,3 +179,63 @@ export function BadgeCartao({ tipo }: { tipo: TipoCartao }) {
     </span>
   );
 }
+
+export const alunoPerfilCards = (aluno: any) => [
+  {
+    condicao: aluno?.aluno_documento === null,
+    titulo: 'Documentos Pessoais',
+    descricao: 'Cadastre seus documentos',
+    icon: <FileText className="size-6 text-red-500" />,
+    to: '/portal-do-aluno/documentos',
+  },
+  {
+    condicao: aluno?.aluno_responsavel === null,
+    titulo: 'Responsáveis',
+    descricao: 'Adicione seus responsáveis',
+    icon: <Users className="size-6 text-red-500" />,
+    to: '/portal-do-aluno/responsaveis',
+  },
+  {
+    condicao: aluno?.aluno_endereco === null,
+    titulo: 'Endereço',
+    descricao: 'Informe seu endereço',
+    icon: <MapPin className="size-6 text-red-500" />,
+    to: '/portal-do-aluno/endereco',
+  },
+];
+
+export const dispararToastAvisoPerfil = (aluno: any) => {
+  const toastDisparado = useRef(false);
+
+  useEffect(() => {
+    if (!aluno || toastDisparado.current) return;
+
+    const faltando: string[] = [];
+    if (!aluno.aluno_documento) faltando.push('Documentos pessoais');
+    if (!aluno.aluno_responsavel) faltando.push('Responsáveis');
+    if (!aluno.aluno_endereco) faltando.push('Endereço');
+
+    if (faltando.length > 0) {
+      faltando.forEach((item) => {
+        toast(
+          (t) => (
+            <div className="flex w-60 items-center justify-between gap-2">
+              <span className="flex flex-col gap-0.5">
+                <p className="font-semibold text-red-500">Falta dados de:</p>
+                <p>{item}</p>
+              </span>
+              <button
+                className="ml-2 rounded px-2 py-0.5"
+                onClick={() => toast.dismiss(t.id)}
+              >
+                <X className="size-5 text-red-500" />
+              </button>
+            </div>
+          ),
+          { duration: 3000 }
+        );
+      });
+      toastDisparado.current = true;
+    }
+  }, [aluno]);
+};
