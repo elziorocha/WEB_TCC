@@ -1,6 +1,6 @@
 import TelaCarregando from '@/components/componentesUI/TelaCarregando';
 import { PortalDoAlunoDashboardCards } from '@/components/PortalDoAlunoComponents/PortalDoAlunoDashboardCards';
-import { alunoData } from '@/services/apiAluno';
+import { alunoData } from '@/services/ChamadasApi/apiAluno';
 
 export function PortalDoAlunoDashboard() {
   const { aluno, loading: loadingAluno } = alunoData();

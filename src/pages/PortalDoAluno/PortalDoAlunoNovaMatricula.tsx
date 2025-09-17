@@ -1,5 +1,4 @@
 import type React from 'react';
-import { criarAlunoMatricula } from '@/services/apiMatricula';
 import type { AlunoMatriculaInterface } from '@/utils/interfaces.interface';
 import { useState } from 'react';
 import {
@@ -17,6 +16,7 @@ import {
   Notebook,
 } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
+import { criarAlunoMatricula } from '@/services/ChamadasApi/apiMatricula';
 
 export function PortalDoAlunoNovaMatricula() {
   const [formData, setFormData] = useState<Partial<AlunoMatriculaInterface>>({

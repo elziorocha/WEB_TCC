@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { apiError } from './apiError';
-import { getAlunoDocumentos } from './api';
+import { apiError } from '../apiError';
 import type { AlunoDocumentoInterface } from '@/utils/interfaces.interface';
+import { getAlunoDocumentos } from '../api';
 
 export function alunoDocumentoData() {
   const [alunoDocumento, setAlunoDocumento] =

@@ -1,7 +1,7 @@
 import TelaCarregando from '@/components/componentesUI/TelaCarregando';
 import { PortalDoAlunoPerfilCards } from '@/components/PortalDoAlunoComponents/PortalDoAlunoPerfilCards';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { alunoData } from '@/services/apiAluno';
+import { alunoData } from '@/services/ChamadasApi/apiAluno';
 import { BadgeCartao } from '@/utils/objetosExportaveis/objetosExportaveisDataTable';
 import {
   User,

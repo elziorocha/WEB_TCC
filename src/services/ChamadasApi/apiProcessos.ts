@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { apiError } from './apiError';
-import { getAlunoProcessos } from './api';
+import { apiError } from '../apiError';
+import { getAlunoProcessos } from '../api';
 
 export function alunoProcessosData() {
   const [alunoProcessos, setAlunoProcessos] = useState<any[]>([]);

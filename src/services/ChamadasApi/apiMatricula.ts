@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { getAlunoMatriculas, postAlunoMatriculas } from './api';
 import type { AlunoMatriculaInterface } from '@/utils/interfaces.interface';
 import toast from 'react-hot-toast';
-import { apiError } from './apiError';
+import { apiError } from '../apiError';
+import { getAlunoMatriculas, postAlunoMatriculas } from '../api';
 
 export function alunoMatriculasData() {
   const [alunoMatriculas, setAlunoMatriculas] = useState<any[]>([]);

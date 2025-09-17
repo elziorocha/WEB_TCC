@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { apiError } from './apiError';
-import { getAluno } from './api';
+import { apiError } from '../apiError';
 import type { AlunoInterface } from '@/utils/interfaces.interface';
+import { getAluno } from '../api';
 
 export function alunoData() {
   const [aluno, setAluno] = useState<AlunoInterface | null>(null);
