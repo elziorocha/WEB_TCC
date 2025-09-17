@@ -8,7 +8,10 @@ import {
 } from '@/components/ui/sheet';
 import { Menu } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { navHome, navUsuarios } from '@/utils/objetosExportaveis';
+import {
+  navHome,
+  navUsuarios,
+} from '@/utils/objetosExportaveis/objetosExportaveis';
 
 export default function MenuComponent() {
   const [menuAtivo, setMenuAtivo] = useState(false);

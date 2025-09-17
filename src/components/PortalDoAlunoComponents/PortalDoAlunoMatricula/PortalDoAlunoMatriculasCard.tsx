@@ -13,7 +13,7 @@ import {
 import {
   getStatusMatriculaBadge,
   getTurnoBadge,
-} from '@/utils/objetosExportaveisReact';
+} from '@/utils/objetosExportaveis/objetosExportaveisReact';
 
 const PortalDoAlunoMatriculasCard = ({
   alunoMatricula,

@@ -1,4 +1,4 @@
-import { cardsInicio } from '@/utils/objetosExportaveis';
+import { cardsInicio } from '@/utils/objetosExportaveis/objetosExportaveis';
 
 const ServicosCardsInicio = () => {
   return (

@@ -1,5 +1,5 @@
 import type { AlunoInterface } from '@/utils/interfaces.interface';
-import { cardsDashboardPortalAluno } from '@/utils/objetosExportaveis';
+import { cardsDashboardPortalAluno } from '@/utils/objetosExportaveis/objetosExportaveis';
 import { Link } from 'react-router-dom';
 
 import { PortalDoAlunoMatriculaModal } from './Modals/PortalDoAlunoMatriculaModal';

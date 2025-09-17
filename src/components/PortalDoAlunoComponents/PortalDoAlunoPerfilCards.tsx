@@ -1,9 +1,8 @@
 import {
   alunoPerfilCards,
   dispararToastAvisoPerfil,
-} from '@/utils/objetosExportaveisReact';
+} from '@/utils/objetosExportaveis/objetosExportaveisReact';
 import { Card, CardContent } from '../ui/card';
-
 import { AlertCircle, IdCard, Users, MapPin } from 'lucide-react';
 
 export const PortalDoAlunoPerfilCards = ({ aluno }: any) => {
@@ -108,7 +107,7 @@ export const PortalDoAlunoPerfilCards = ({ aluno }: any) => {
       {cards
         .filter((card) => card.condicao)
         .map((card) => (
-          <main>
+          <main key={card.titulo}>
             <Card className="flex cursor-pointer flex-col rounded-2xl border-none px-4 py-3 shadow-sm transition-all hover:bg-zinc-100">
               <CardContent className="flex items-center justify-between p-0">
                 <section className="flex gap-2">

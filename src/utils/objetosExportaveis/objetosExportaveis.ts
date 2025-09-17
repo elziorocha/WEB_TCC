@@ -78,12 +78,12 @@ export const cardsDashboardPortalAluno = [
   },
 ];
 
-import banner1 from '../assets/CarouselImages/banner_1.jpg';
-import banner2 from '../assets/CarouselImages/banner_2.jpg';
-import banner3 from '../assets/CarouselImages/banner_3.jpg';
-import banner4 from '../assets/CarouselImages/banner_4.jpg';
-import banner5 from '../assets/CarouselImages/banner_5.png';
-import banner6 from '../assets/CarouselImages/banner_6.jpg';
+import banner1 from '../../assets/CarouselImages/banner_1.jpg';
+import banner2 from '../../assets/CarouselImages/banner_2.jpg';
+import banner3 from '../../assets/CarouselImages/banner_3.jpg';
+import banner4 from '../../assets/CarouselImages/banner_4.jpg';
+import banner5 from '../../assets/CarouselImages/banner_5.png';
+import banner6 from '../../assets/CarouselImages/banner_6.jpg';
 
 export const inicioBanners = [
   {

@@ -1,10 +1,10 @@
 import { ArrowLeftIcon } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { colunasAlunoMatriculaDataTable } from '@/utils/objetosExportaveisReact';
 import PortalDoAlunoMatriculasCard from '../../components/PortalDoAlunoComponents/PortalDoAlunoMatricula/PortalDoAlunoMatriculasCard';
 import { alunoMatriculasData } from '@/services/apiMatricula';
 import { DataTable } from '../../components/PortalDoAlunoComponents/PortalDoAlunoMatricula/PortalDoAlunoMatriculasDataTable';
 import TelaCarregando from '@/components/componentesUI/TelaCarregando';
+import { colunasAlunoMatriculaDataTable } from '@/utils/objetosExportaveis/objetosExportaveisDataTable';
 
 export function PortalDoAlunoConsultarMatriculas() {
   const { alunoMatriculas, loading } = alunoMatriculasData();
