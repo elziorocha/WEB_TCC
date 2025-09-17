@@ -1,27 +1,9 @@
 import { chamadaLogin } from '@/services/AuthApi/chamadaLogin';
-import type { AlunoLoginInterface } from '@/utils/interfaces.interface';
-import { Mail, Lock, User, ArrowRight } from 'lucide-react';
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { User, Mail, Lock, ArrowRight } from 'lucide-react';
 
 const PortalDoAlunoLogin = () => {
-  const [formData, setFormData] = useState<AlunoLoginInterface>({
-    email: '',
-    senha: '',
-  });
-  const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
-
-  const Login = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setLoading(true);
-
-    try {
-      await chamadaLogin(formData, navigate);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const { formData, handleChange, loading, loginAluno } = chamadaLogin();
 
   return (
     <main className="-mb-8 flex items-center justify-center p-6">
@@ -37,8 +19,7 @@ const PortalDoAlunoLogin = () => {
         </section>
 
         <form
-          method="post"
-          onSubmit={Login}
+          onSubmit={loginAluno}
           className="rounded-3xl border border-zinc-300 bg-white/80 p-4 shadow-xl"
         >
           <h2 className="text-tertiary mb-2 text-center text-2xl font-bold">
@@ -52,13 +33,12 @@ const PortalDoAlunoLogin = () => {
                 <input
                   autoFocus
                   type="email"
+                  name="email"
                   autoComplete="email"
                   placeholder="Seu e-mail"
                   required
                   value={formData.email}
-                  onChange={(e) =>
-                    setFormData({ ...formData, email: e.target.value })
-                  }
+                  onChange={handleChange}
                   className="text-sm outline-none placeholder:text-gray-400"
                 />
               </div>
@@ -67,13 +47,12 @@ const PortalDoAlunoLogin = () => {
                 <Lock className="size-5 text-gray-400" />
                 <input
                   type="password"
+                  name="senha"
                   autoComplete="current-password"
                   placeholder="Sua Senha"
                   required
                   value={formData.senha}
-                  onChange={(e) =>
-                    setFormData({ ...formData, senha: e.target.value })
-                  }
+                  onChange={handleChange}
                   className="text-sm outline-none placeholder:text-gray-400"
                 />
               </div>
