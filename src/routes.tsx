@@ -15,6 +15,7 @@ import { RotaProtegida } from './utils/rotaProtegida';
 import { PortalDoAlunoPerfil } from './pages/PortalDoAluno/PortalDoAlunoPerfil';
 import { PortalDoAlunoNovaMatricula } from './pages/PortalDoAluno/PortalDoAlunoNovaMatricula';
 import { PortalDoAlunoConsultarMatriculas } from './pages/PortalDoAluno/PortalDoAlunoConsultarMatriculas';
+import { PortalDoAlunoConsultarProcessos } from './pages/PortalDoAluno/PortalDoAlunoConsultarProcessos';
 
 export const router = createBrowserRouter([
   {
@@ -59,6 +60,10 @@ export const router = createBrowserRouter([
       {
         path: 'nova-matricula',
         element: <PortalDoAlunoNovaMatricula />,
+      },
+      {
+        path: 'consultar-processo',
+        element: <PortalDoAlunoConsultarProcessos />,
       },
     ],
   },
