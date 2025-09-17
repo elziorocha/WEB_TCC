@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import logo from '../..//assets/logo1.png';
+import logo from '/assets/logo1.png';
 import MenuComponent from '../componentesUI/MenuComponent';
 
 export const HomeHeader = () => {

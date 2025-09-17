@@ -1,5 +1,5 @@
 import { LogOutIcon } from 'lucide-react';
-import logo from '../../assets/logo1.png';
+import logo from '/assets/logo1.png';
 import { logout } from '@/services/AuthApi/auth';
 import { useNavigate } from 'react-router-dom';
 
