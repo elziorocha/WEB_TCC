@@ -1,3 +1,4 @@
+import type { ColumnDef } from '@tanstack/react-table';
 import type { Convenio, GrauEscolaridade, TipoCartao } from './intarfaces-enum';
 
 export interface AlunoLoginInterface {
@@ -39,4 +40,20 @@ export interface AlunoMatriculaInterface {
   cgm: string;
   distancia_instituicao: number;
   status_matricula: boolean;
+}
+
+export interface AlunoProcessoInterface {
+  formulario_educard: string;
+  declaracao_matricula: string;
+  comprovante_pagamento: string;
+  comprovante_residência: string;
+  rf_frente_ou_verso: string;
+  liberado: boolean;
+}
+
+export interface DataTableInterface<TData, TValue> {
+  columns: ColumnDef<TData, TValue>[];
+  data: TData[];
+  renderizarMobile?: (row: TData) => React.ReactNode;
+  mensagemDadosVazios?: string;
 }

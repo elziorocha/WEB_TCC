@@ -1,6 +1,5 @@
 import * as React from 'react';
 import {
-  type ColumnDef,
   flexRender,
   getCoreRowModel,
   useReactTable,
@@ -13,18 +12,14 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-
-interface DataTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[];
-  data: TData[];
-  renderizarMobile?: (row: TData) => React.ReactNode;
-}
+import type { DataTableInterface } from '@/utils/interfaces.interface';
 
 export function DataTable<TData, TValue>({
   columns,
   data,
+  mensagemDadosVazios,
   renderizarMobile,
-}: DataTableProps<TData, TValue>) {
+}: DataTableInterface<TData, TValue>) {
   const dataTable = useReactTable({
     data,
     columns,
@@ -84,7 +79,7 @@ export function DataTable<TData, TValue>({
                   colSpan={columns.length}
                   className="text-muted-foreground py-8 text-center text-lg font-semibold"
                 >
-                  Você não possui matrículas cadastradas.
+                  {mensagemDadosVazios ?? 'Nenhum registro encontrado.'}
                 </TableCell>
               </TableRow>
             )}
@@ -98,12 +93,18 @@ export function DataTable<TData, TValue>({
             .getRowModel()
             .rows.map((row) => (
               <React.Fragment key={row.id}>
-                {renderizarMobile?.(row.original)}
+                {renderizarMobile ? (
+                  renderizarMobile(row.original)
+                ) : (
+                  <div className="rounded-lg border p-4 shadow-md">
+                    {JSON.stringify(row.original)}
+                  </div>
+                )}
               </React.Fragment>
             ))
         ) : (
           <p className="text-muted-foreground py-8 text-center text-lg font-semibold">
-            Você não possui matrículas cadastradas.
+            {mensagemDadosVazios ?? 'Nenhum registro encontrado.'}
           </p>
         )}
       </div>

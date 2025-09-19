@@ -1,7 +1,7 @@
 import { ArrowLeftIcon } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import PortalDoAlunoMatriculasCard from '../../components/PortalDoAlunoComponents/PortalDoAlunoMatricula/PortalDoAlunoMatriculasCard';
-import { DataTable } from '../../components/PortalDoAlunoComponents/PortalDoAlunoMatricula/PortalDoAlunoMatriculasDataTable';
+import PortalDoAlunoMatriculasCard from '../../components/PortalDoAlunoComponents/PortalDoAlunoCards/PortalDoAlunoMatriculasCard';
+import { DataTable } from '../../components/PortalDoAlunoComponents/PortalDoAlunoDataTable';
 import TelaCarregando from '@/components/componentesUI/TelaCarregando';
 import { colunasAlunoMatriculaDataTable } from '@/utils/objetosExportaveis/objetosExportaveisDataTable';
 import { alunoMatriculasData } from '@/services/ChamadasApi/apiMatricula';
@@ -26,6 +26,7 @@ export function PortalDoAlunoConsultarMatriculas() {
       <DataTable
         columns={colunasAlunoMatriculaDataTable}
         data={alunoMatriculas}
+        mensagemDadosVazios="Você não possui Matrículas cadastradas."
         renderizarMobile={(alunoMatricula) => (
           <PortalDoAlunoMatriculasCard alunoMatricula={alunoMatricula} />
         )}
