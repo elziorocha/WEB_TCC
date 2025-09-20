@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { apiError } from '../apiError';
-import { getAlunoProcessos } from '../api';
+import { getAlunoProcessos, postAlunoProcessos } from '../api';
+import toast from 'react-hot-toast';
 
 export function alunoProcessosData() {
   const [alunoProcessos, setAlunoProcessos] = useState<any[]>([]);
@@ -23,4 +24,24 @@ export function alunoProcessosData() {
   }, []);
 
   return { alunoProcessos, loading };
+}
+
+export function criarAlunoProcesso() {
+  const [loading, setLoading] = useState(false);
+
+  const criarProcesso = async (formData: FormData) => {
+    setLoading(true);
+
+    try {
+      await postAlunoProcessos(formData);
+
+      toast.success('Processo criado com sucesso!');
+    } catch (err: any) {
+      apiError(err, 'Erro ao criar processo.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return { criarProcesso, loading };
 }
