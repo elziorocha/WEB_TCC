@@ -170,6 +170,7 @@ export const colunasAlunoProcessoDataTable: ColumnDef<AlunoProcessoInterface>[] 
         <PortalDoAlunoDocumentoProcesso
           label="Formulário Educard"
           status={row.getValue<boolean>('formulario_educard')}
+          arquivoUrl={row.original.formulario_educard_url}
         />
       ),
     },
