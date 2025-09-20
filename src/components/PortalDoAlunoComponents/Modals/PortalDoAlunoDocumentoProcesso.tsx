@@ -10,6 +10,9 @@ export const PortalDoAlunoDocumentoProcesso = ({
 }: PortalDoAlunoDocumentoProcessoInterface) => {
   const [open, setOpen] = useState(false);
 
+  const isImage = arquivoUrl?.match(/\.(jpg|jpeg|png)$/i);
+  const isPdf = arquivoUrl?.match(/\.pdf$/i);
+
   const handleClick = () => {
     if (!status || !arquivoUrl) return;
     setOpen(true);
@@ -27,12 +30,23 @@ export const PortalDoAlunoDocumentoProcesso = ({
       {getStatusProcessoBadge(status)}
 
       {open && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black/50">
-          <div className="h-[90%] w-[90%] rounded-xl bg-white p-4 shadow-lg">
-            <iframe src={arquivoUrl} className="h-full w-full rounded" />
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+          <div className="flex h-[90%] w-[90%] flex-col rounded-xl bg-white p-4 shadow-lg">
+            <div className="flex-1 overflow-hidden">
+              {isPdf && (
+                <iframe src={arquivoUrl} className="h-full w-full rounded" />
+              )}
+              {isImage && (
+                <img
+                  src={arquivoUrl}
+                  alt={label}
+                  className="h-full w-full rounded object-contain"
+                />
+              )}
+            </div>
             <button
               onClick={() => setOpen(false)}
-              className="bg-primary mt-2 rounded px-4 py-2 text-white"
+              className="bg-primary mt-4 self-center rounded px-4 py-2 text-white"
             >
               Fechar
             </button>
