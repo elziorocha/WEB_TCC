@@ -31,7 +31,7 @@ export const cardsInicio = [
 ];
 
 export const navHome = [
-  { key: '/', icon: Home, label: 'Home' },
+  { key: '/', icon: Home, label: 'Página Inicial' },
   { key: 'nossa-historia', icon: HistoryIcon, label: 'Nossa História' },
   { key: 'fale-conosco', icon: MessageCircleMoreIcon, label: 'Fale Conosco' },
   {
