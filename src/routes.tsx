@@ -16,6 +16,7 @@ import { PortalDoAlunoPerfil } from './pages/PortalDoAluno/PortalDoAlunoPerfil';
 import { PortalDoAlunoNovaMatricula } from './pages/PortalDoAluno/PortalDoAlunoNovaMatricula';
 import { PortalDoAlunoConsultarMatriculas } from './pages/PortalDoAluno/PortalDoAlunoConsultarMatriculas';
 import { PortalDoAlunoConsultarProcessos } from './pages/PortalDoAluno/PortalDoAlunoConsultarProcessos';
+import { PortalDoAlunoNovoProcesso } from './pages/PortalDoAluno/PortalDoAlunoNovoProcesso';
 
 export const router = createBrowserRouter([
   {
@@ -64,6 +65,10 @@ export const router = createBrowserRouter([
       {
         path: 'consultar-processo',
         element: <PortalDoAlunoConsultarProcessos />,
+      },
+      {
+        path: 'novo-processo',
+        element: <PortalDoAlunoNovoProcesso />,
       },
     ],
   },
