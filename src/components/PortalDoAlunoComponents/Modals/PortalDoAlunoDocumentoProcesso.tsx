@@ -46,7 +46,7 @@ export const PortalDoAlunoDocumentoProcesso = ({
             </div>
             <button
               onClick={() => setOpen(false)}
-              className="bg-primary mt-4 self-center rounded px-4 py-2 text-white"
+              className="bg-primary mt-4 cursor-pointer self-center rounded px-5 py-3 text-base font-medium text-white"
             >
               Fechar
             </button>

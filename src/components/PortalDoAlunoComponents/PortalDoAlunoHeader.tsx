@@ -22,7 +22,7 @@ export const PortalDoAlunoHeader = () => {
       <img src={logo} alt="logo da pérola do oeste" />
       <button
         onClick={Logout}
-        className="bg-tertiary flex items-center gap-1 rounded px-2 py-1 font-medium transition-all hover:bg-red-700"
+        className="bg-tertiary flex cursor-pointer items-center gap-1 rounded px-2 py-1 font-medium transition-all hover:bg-red-700"
       >
         <LogOutIcon />
         <span className="tracking-wide">Sair</span>
