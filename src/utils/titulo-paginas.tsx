@@ -10,7 +10,6 @@ export const TitulosDasPaginas = {
   '/horarios-itinerarios/mattos-leao': 'Pérola do Oeste - Mattos Leão',
   '/portal-do-aluno/login': 'Pérola do Oeste - Login do Aluno',
   '/portal-do-aluno/registrar': 'Pérola do Oeste - Registrar Aluno',
-
   '/portal-do-aluno/dashboard': 'Portal do Aluno - Dashboard',
   '/portal-do-aluno/aluno-perfil': 'Portal do Aluno - Perfil',
   '/portal-do-aluno/consultar-matricula':
