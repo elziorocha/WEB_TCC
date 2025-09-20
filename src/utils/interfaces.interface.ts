@@ -43,11 +43,21 @@ export interface AlunoMatriculaInterface {
 }
 
 export interface AlunoProcessoInterface {
-  formulario_educard: string;
-  declaracao_matricula: string;
-  comprovante_pagamento: string;
-  comprovante_residência: string;
-  rf_frente_ou_verso: string;
+  formulario_educard: boolean;
+  formulario_educard_url?: string;
+
+  declaracao_matricula: boolean;
+  declaracao_matricula_url?: string;
+
+  comprovante_pagamento: boolean;
+  comprovante_pagamento_url?: string;
+
+  comprovante_residencia_url?: string;
+  comprovante_residencia: boolean;
+
+  rf_frente_ou_verso: boolean;
+  rf_frente_ou_verso_url?: string;
+
   liberado: boolean;
 }
 
@@ -56,4 +66,10 @@ export interface DataTableInterface<TData, TValue> {
   data: TData[];
   renderizarMobile?: (row: TData) => React.ReactNode;
   mensagemDadosVazios?: string;
+}
+
+export interface PortalDoAlunoDocumentoProcessoInterface {
+  label: string;
+  status: boolean;
+  arquivoUrl?: string;
 }

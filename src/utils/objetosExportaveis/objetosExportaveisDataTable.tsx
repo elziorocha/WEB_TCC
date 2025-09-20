@@ -15,6 +15,7 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip';
 import { Badge } from '@/components/ui/badge';
+import { PortalDoAlunoDocumentoProcesso } from '@/components/PortalDoAlunoComponents/Modals/PortalDoAlunoDocumentoProcesso';
 
 export function BadgeCartao({ tipo }: { tipo: TipoCartao }) {
   const badgeStyle: Record<TipoCartao, string> = {
@@ -165,32 +166,56 @@ export const colunasAlunoProcessoDataTable: ColumnDef<AlunoProcessoInterface>[] 
     {
       accessorKey: 'formulario_educard',
       header: 'Formulário Educard',
-      cell: ({ row }) =>
-        getStatusProcessoBadge(row.getValue('formulario_educard')),
+      cell: ({ row }) => (
+        <PortalDoAlunoDocumentoProcesso
+          label="Formulário Educard"
+          status={row.getValue<boolean>('formulario_educard')}
+        />
+      ),
     },
     {
       accessorKey: 'declaracao_matricula',
       header: 'Declaração de Matrícula',
-      cell: ({ row }) =>
-        getStatusProcessoBadge(row.getValue('declaracao_matricula')),
+      cell: ({ row }) => (
+        <PortalDoAlunoDocumentoProcesso
+          label="Declaração de Matrícula"
+          status={row.getValue<boolean>('declaracao_matricula')}
+          arquivoUrl={row.original.declaracao_matricula_url}
+        />
+      ),
     },
     {
       accessorKey: 'comprovante_pagamento',
       header: 'Comprovante de Pagamento',
-      cell: ({ row }) =>
-        getStatusProcessoBadge(row.getValue('comprovante_pagamento')),
+      cell: ({ row }) => (
+        <PortalDoAlunoDocumentoProcesso
+          label="Comprovante de Pagamento"
+          status={row.getValue<boolean>('comprovante_pagamento')}
+          arquivoUrl={row.original.comprovante_pagamento_url}
+        />
+      ),
     },
     {
-      accessorKey: 'comprovante_residência',
+      accessorKey: 'comprovante_residencia',
       header: 'Comprovante de Residência',
-      cell: ({ row }) =>
-        getStatusProcessoBadge(row.getValue('comprovante_residência')),
+      cell: ({ row }) => (
+        <PortalDoAlunoDocumentoProcesso
+          label="Comprovante de Residência"
+          status={row.getValue<boolean>('comprovante_residencia')}
+          arquivoUrl={row.original.comprovante_residencia_url}
+        />
+      ),
     },
     {
       accessorKey: 'rf_frente_ou_verso',
       header: 'RG/CPF',
-      cell: ({ row }) =>
-        getStatusProcessoBadge(row.getValue('rf_frente_ou_verso')),
+      cell: ({ row }) => (
+        <PortalDoAlunoDocumentoProcesso
+          label="RG/CPF"
+          status={row.getValue<boolean>('rf_frente_ou_verso')}
+          arquivoUrl={row.original.rf_frente_ou_verso_url}
+        />
+      ),
     },
     {
       accessorKey: 'liberado',

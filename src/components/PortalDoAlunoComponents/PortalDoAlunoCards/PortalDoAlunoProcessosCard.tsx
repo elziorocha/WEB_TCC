@@ -1,7 +1,7 @@
 import type { AlunoProcessoInterface } from '@/utils/interfaces.interface';
 import { Card, CardContent, CardHeader, CardTitle } from '../../ui/card';
-import { FileText } from 'lucide-react';
 import { getStatusProcessoBadge } from '@/utils/objetosExportaveis/objetosExportaveisDataTable';
+import { PortalDoAlunoDocumentoProcesso } from '../Modals/PortalDoAlunoDocumentoProcesso';
 
 export const PortalDoAlunoProcessosCard = ({
   alunoProcesso,
@@ -20,46 +20,32 @@ export const PortalDoAlunoProcessosCard = ({
       <hr className="border-dashed border-zinc-300" />
 
       <CardContent className="px-4 pt-3 pb-5">
-        <div className="flex flex-col gap-3 text-sm">
-          <div className="flex items-center justify-between">
-            <div className="text-muted-foreground flex items-center gap-2">
-              <FileText className="size-4" />
-              <span className="font-medium">Formulário Educard:</span>
-            </div>
-            {getStatusProcessoBadge(alunoProcesso.formulario_educard)}
-          </div>
-
-          <div className="flex items-center justify-between">
-            <div className="text-muted-foreground flex items-center gap-2">
-              <FileText className="size-4" />
-              <span className="font-medium">Declaração de Matrícula:</span>
-            </div>
-            {getStatusProcessoBadge(alunoProcesso.declaracao_matricula)}
-          </div>
-
-          <div className="flex items-center justify-between">
-            <div className="text-muted-foreground flex items-center gap-2">
-              <FileText className="size-4" />
-              <span className="font-medium">Comprovante de Pagamento:</span>
-            </div>
-            {getStatusProcessoBadge(alunoProcesso.comprovante_pagamento)}
-          </div>
-
-          <div className="flex items-center justify-between">
-            <div className="text-muted-foreground flex items-center gap-2">
-              <FileText className="size-4" />
-              <span className="font-medium">Comprovante de Residência:</span>
-            </div>
-            {getStatusProcessoBadge(alunoProcesso.comprovante_residência)}
-          </div>
-
-          <div className="flex items-center justify-between">
-            <div className="text-muted-foreground flex items-center gap-2">
-              <FileText className="size-4" />
-              <span className="font-medium">RG/CPF:</span>
-            </div>
-            {getStatusProcessoBadge(alunoProcesso.rf_frente_ou_verso)}
-          </div>
+        <div className="flex flex-col gap-3 text-xs">
+          <PortalDoAlunoDocumentoProcesso
+            label="Formulário Educard"
+            status={alunoProcesso.formulario_educard}
+            arquivoUrl={alunoProcesso.formulario_educard_url}
+          />
+          <PortalDoAlunoDocumentoProcesso
+            label="Declaração de Matrícula"
+            status={alunoProcesso.declaracao_matricula}
+            arquivoUrl={alunoProcesso.declaracao_matricula_url}
+          />
+          <PortalDoAlunoDocumentoProcesso
+            label="Comprovante de Pagamento"
+            status={alunoProcesso.comprovante_pagamento}
+            arquivoUrl={alunoProcesso.comprovante_pagamento_url}
+          />
+          <PortalDoAlunoDocumentoProcesso
+            label="Comprovante de Residência"
+            status={alunoProcesso.comprovante_residencia}
+            arquivoUrl={alunoProcesso.comprovante_residencia_url}
+          />
+          <PortalDoAlunoDocumentoProcesso
+            label="RG/CPF"
+            status={alunoProcesso.rf_frente_ou_verso}
+            arquivoUrl={alunoProcesso.rf_frente_ou_verso_url}
+          />
         </div>
       </CardContent>
     </Card>
