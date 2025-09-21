@@ -1,3 +1,4 @@
+import type React from 'react';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import {
@@ -6,11 +7,15 @@ import {
   Loader2,
   ArrowLeftIcon,
   Upload,
+  Check,
 } from 'lucide-react';
 import { criarAlunoProcesso } from '@/services/ChamadasApi/apiProcessos';
 
 export const PortalDoAlunoNovoProcesso = () => {
   const [formData, setFormData] = useState<FormData | null>(null);
+  const [arquivosSelecionados, setArquivosSelecionados] = useState<
+    Record<string, boolean>
+  >({});
   const navigate = useNavigate();
 
   const { criarProcesso, loading } = criarAlunoProcesso();
@@ -23,6 +28,11 @@ export const PortalDoAlunoNovoProcesso = () => {
       const newFormData = formData || new FormData();
       newFormData.set(e.target.name, arquivos[0]);
       setFormData(newFormData);
+
+      setArquivosSelecionados((prev) => ({
+        ...prev,
+        [e.target.name]: true,
+      }));
     }
   };
 
@@ -32,6 +42,60 @@ export const PortalDoAlunoNovoProcesso = () => {
 
     await criarProcesso(formData);
     navigate('/portal-do-aluno/consultar-processo');
+  };
+
+  const FileInputField = ({
+    name,
+    arquivoAceito,
+    label,
+    icone: Icon = FileText,
+  }: {
+    name: string;
+    arquivoAceito: string;
+    label: string;
+    icone?: any;
+  }) => {
+    const temArquivo = arquivosSelecionados[name];
+
+    return (
+      <div className="space-y-1">
+        <label className="ml-1 flex items-center gap-1 text-xs font-medium text-gray-600 sm:text-sm">
+          <Icon className="size-4 sm:size-5" />
+          {label}
+        </label>
+        <div className="relative">
+          <input
+            type="file"
+            name={name}
+            accept={arquivoAceito}
+            onChange={inputArquivo}
+            required
+            className="absolute inset-0 z-10 h-full w-full cursor-pointer opacity-0"
+          />
+          <div
+            className={`flex h-24 w-full flex-col items-center justify-center gap-2 rounded-lg border-2 border-dashed transition-all duration-200 ${
+              temArquivo
+                ? 'border-green-500 bg-green-50 text-green-700'
+                : 'border-gray-300 bg-gray-50 hover:border-gray-400 hover:bg-gray-100'
+            } `}
+          >
+            {temArquivo ? (
+              <main className="flex flex-col items-center justify-center gap-2">
+                <Check className="size-6 text-green-600" />
+                <span className="text-xs font-medium">Arquivo submetido</span>
+              </main>
+            ) : (
+              <main className="flex flex-col items-center justify-center gap-2">
+                <Upload className="size-6 text-gray-400" />
+                <span className="text-xs text-gray-500">
+                  Clique para enviar
+                </span>
+              </main>
+            )}
+          </div>
+        </div>
+      </div>
+    );
   };
 
   return (
@@ -59,79 +123,36 @@ export const PortalDoAlunoNovoProcesso = () => {
 
         <div className="p-4 sm:p-6">
           <form onSubmit={enviarArquivos} className="space-y-6">
-            <section className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              <div className="space-y-1">
-                <label className="ml-1 flex items-center gap-1 text-xs font-medium text-gray-600 sm:text-sm">
-                  <FileText className="size-3 sm:size-4" />
-                  Formulário Educard (.pdf)
-                </label>
-                <input
-                  type="file"
-                  name="formulario_educard"
-                  accept=".pdf"
-                  onChange={inputArquivo}
-                  required
-                  className="input_matricula"
-                />
-              </div>
+            <section className="grid grid-cols-2 gap-4 sm:grid-cols-2">
+              <FileInputField
+                name="formulario_educard"
+                arquivoAceito=".pdf"
+                label="Formulário Educard"
+              />
 
-              <div className="space-y-1">
-                <label className="ml-1 flex items-center gap-1 text-xs font-medium text-gray-600 sm:text-sm">
-                  <FileText className="size-3 sm:size-4" />
-                  Declaração de Matrícula (.pdf)
-                </label>
-                <input
-                  type="file"
-                  name="declaracao_matricula"
-                  accept=".pdf"
-                  onChange={inputArquivo}
-                  required
-                  className="input_matricula"
-                />
-              </div>
+              <FileInputField
+                name="declaracao_matricula"
+                arquivoAceito=".pdf"
+                label="Declaração de Matrícula"
+              />
 
-              <div className="space-y-1">
-                <label className="ml-1 flex items-center gap-1 text-xs font-medium text-gray-600 sm:text-sm">
-                  <FileText className="size-3 sm:size-4" />
-                  Comprovante de Pagamento (.jpg/.png)
-                </label>
-                <input
-                  type="file"
-                  name="comprovante_pagamento"
-                  accept=".jpg,.jpeg,.png"
-                  onChange={inputArquivo}
-                  required
-                  className="input_matricula"
-                />
-              </div>
+              <FileInputField
+                name="comprovante_pagamento"
+                arquivoAceito=".jpg,.jpeg,.png"
+                label="Comprovante de Pagamento"
+              />
 
-              <div className="space-y-1">
-                <label className="ml-1 flex items-center gap-1 text-xs font-medium text-gray-600 sm:text-sm">
-                  <FileText className="size-3 sm:size-4" />
-                  Comprovante de Residência (.jpg/.png)
-                </label>
-                <input
-                  type="file"
-                  name="comprovante_residencia"
-                  accept=".jpg,.jpeg,.png"
-                  onChange={inputArquivo}
-                  required
-                  className="input_matricula"
-                />
-              </div>
+              <FileInputField
+                name="comprovante_residencia"
+                arquivoAceito=".jpg,.jpeg,.png"
+                label="Comprovante de Residência"
+              />
 
-              <div className="space-y-1 sm:col-span-2">
-                <label className="ml-1 flex items-center gap-1 text-xs font-medium text-gray-600 sm:text-sm">
-                  <FileText className="size-3 sm:size-4" />
-                  RG Frente e Verso (.jpg/.png)
-                </label>
-                <input
-                  type="file"
+              <div className="sm:col-span-2">
+                <FileInputField
                   name="rf_frente_ou_verso"
-                  accept=".jpg,.jpeg,.png"
-                  onChange={inputArquivo}
-                  required
-                  className="input_matricula"
+                  arquivoAceito=".jpg,.jpeg,.png"
+                  label="RG Frente e Verso"
                 />
               </div>
             </section>
