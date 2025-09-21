@@ -1,9 +1,16 @@
 import { chamadaLogin } from '@/services/AuthApi/chamadaLogin';
 import { Link } from 'react-router-dom';
-import { User, Mail, Lock, ArrowRight } from 'lucide-react';
+import { User, Mail, Lock, ArrowRight, Eye, EyeOff } from 'lucide-react';
+import { useState } from 'react';
 
 const PortalDoAlunoLogin = () => {
   const { formData, handleChange, loading, loginAluno } = chamadaLogin();
+
+  const [exibirSenha, setExibirSenha] = useState(false);
+
+  const alterarVisibilidadeSenha = () => {
+    setExibirSenha(!exibirSenha);
+  };
 
   return (
     <main className="-mb-8 flex items-center justify-center p-6">
@@ -39,22 +46,32 @@ const PortalDoAlunoLogin = () => {
                   required
                   value={formData.email}
                   onChange={handleChange}
-                  className="text-sm outline-none placeholder:text-gray-400"
+                  className="w-full text-sm outline-none placeholder:text-gray-400"
                 />
               </div>
 
-              <div className="flex items-center gap-2 rounded-xl border border-zinc-400 bg-white px-4 py-2.5 shadow-sm">
+              <div className="flex items-center gap-2 rounded-xl border border-zinc-400 bg-white py-2.5 pr-3 pl-4 shadow-sm">
                 <Lock className="size-5 text-gray-400" />
                 <input
-                  type="password"
+                  type={exibirSenha ? 'text' : 'password'}
                   name="senha"
                   autoComplete="current-password"
                   placeholder="Sua Senha"
                   required
                   value={formData.senha}
                   onChange={handleChange}
-                  className="text-sm outline-none placeholder:text-gray-400"
+                  className="w-full text-sm outline-none placeholder:text-gray-400"
                 />
+                <span
+                  className="flex cursor-pointer items-center justify-around"
+                  onClick={alterarVisibilidadeSenha}
+                >
+                  {exibirSenha ? (
+                    <EyeOff className="size-5 text-gray-500" />
+                  ) : (
+                    <Eye className="size-5 text-gray-500" />
+                  )}
+                </span>
               </div>
             </div>
 
