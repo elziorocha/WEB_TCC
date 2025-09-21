@@ -134,7 +134,7 @@ export const PortalDoAlunoNovoProcesso = () => {
         </div>{' '}
       </Link>
 
-      <div className="max-w-4xl self-center overflow-hidden rounded-2xl bg-white shadow-lg sm:w-14/12">
+      <div className="max-w-5xl overflow-hidden rounded-2xl bg-white shadow-lg sm:w-14/12 sm:self-center">
         <header className="from-quarter/20 to-quarter/45 border-b border-dashed border-zinc-400 bg-gradient-to-br p-3 sm:px-6 sm:py-6">
           <h1 className="text-secondary flex items-center gap-2 text-xl font-bold sm:text-2xl">
             <GraduationCap className="size-6 sm:size-8" /> Novo Processo

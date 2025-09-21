@@ -11,7 +11,7 @@ export const PortalDoAlunoPerfilCards = ({ aluno }: any) => {
   dispararToastAvisoPerfil(aluno);
 
   return (
-    <main className="flex flex-col gap-3">
+    <main className="flex max-w-5xl flex-col gap-3 sm:w-14/12 sm:self-center">
       {aluno?.aluno_documento && (
         <main>
           <Card className="flex flex-col rounded-2xl border-none px-4 py-3 shadow-sm transition-all hover:bg-zinc-100">

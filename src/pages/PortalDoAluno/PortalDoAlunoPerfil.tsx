@@ -30,7 +30,7 @@ export function PortalDoAlunoPerfil() {
         </div>
       </Link>
 
-      <Card className="relative gap-2 overflow-hidden rounded-2xl border-none pt-4 pb-0 shadow-md">
+      <Card className="relative max-w-5xl gap-2 overflow-hidden rounded-2xl border-none pt-4 pb-0 shadow-md sm:w-14/12 sm:self-center">
         <CardHeader className="px-4">
           <CardTitle className="flex items-center justify-between">
             <div className="flex items-center gap-2">
