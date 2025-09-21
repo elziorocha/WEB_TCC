@@ -74,7 +74,7 @@ export const cardsDashboardPortalAluno = [
   {
     key: '4',
     icon: BookAlertIcon,
-    label: 'Formulários',
+    label: 'Tutorial',
   },
 ];
 
