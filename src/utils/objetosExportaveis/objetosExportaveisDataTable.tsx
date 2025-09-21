@@ -208,13 +208,13 @@ export const colunasAlunoProcessoDataTable: ColumnDef<AlunoProcessoInterface>[] 
       ),
     },
     {
-      accessorKey: 'rf_frente_ou_verso',
+      accessorKey: 'rg_frente_ou_verso',
       header: 'RG/CPF',
       cell: ({ row }) => (
         <PortalDoAlunoDocumentoProcesso
           label="RG/CPF"
-          status={row.getValue<boolean>('rf_frente_ou_verso')}
-          arquivoUrl={row.original.rf_frente_ou_verso_url}
+          status={row.getValue<boolean>('rg_frente_ou_verso')}
+          arquivoUrl={row.original.rg_frente_ou_verso_url}
         />
       ),
     },

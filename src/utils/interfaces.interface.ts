@@ -55,8 +55,8 @@ export interface AlunoProcessoInterface {
   comprovante_residencia_url?: string;
   comprovante_residencia: boolean;
 
-  rf_frente_ou_verso: boolean;
-  rf_frente_ou_verso_url?: string;
+  rg_frente_ou_verso: boolean;
+  rg_frente_ou_verso_url?: string;
 
   liberado: boolean;
 }

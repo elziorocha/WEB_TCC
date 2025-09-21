@@ -43,8 +43,8 @@ export const PortalDoAlunoProcessosCard = ({
           />
           <PortalDoAlunoDocumentoProcesso
             label="RG/CPF"
-            status={alunoProcesso.rf_frente_ou_verso}
-            arquivoUrl={alunoProcesso.rf_frente_ou_verso_url}
+            status={alunoProcesso.rg_frente_ou_verso}
+            arquivoUrl={alunoProcesso.rg_frente_ou_verso_url}
           />
         </div>
       </CardContent>
