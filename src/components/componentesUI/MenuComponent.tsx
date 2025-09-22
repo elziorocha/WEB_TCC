@@ -98,7 +98,7 @@ export default function MenuComponent() {
   );
 
   return (
-    <main className="flex w-full items-center justify-center">
+    <main className="flex w-full items-center justify-end sm:justify-center">
       <MenuDesktop />
       <MenuMobile />
     </main>
