@@ -11,5 +11,3 @@ export function PortalDoAlunoLayout() {
     </main>
   );
 }
-
-export default PortalDoAlunoLayout;

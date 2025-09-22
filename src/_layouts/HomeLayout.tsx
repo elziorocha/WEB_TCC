@@ -15,5 +15,3 @@ export function HomeLayout() {
     </main>
   );
 }
-
-export default HomeLayout;

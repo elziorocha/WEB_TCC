@@ -8,7 +8,7 @@ import {
 } from '@/components/ui/carousel';
 import { inicioBanners } from '@/utils/objetosExportaveis/objetosExportaveis';
 
-const CarrosselInicio = () => {
+export const CarrosselInicio = () => {
   return (
     <main>
       <Carousel className="w-full">
@@ -35,5 +35,3 @@ const CarrosselInicio = () => {
     </main>
   );
 };
-
-export default CarrosselInicio;

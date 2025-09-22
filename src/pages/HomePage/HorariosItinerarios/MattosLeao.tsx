@@ -7,5 +7,3 @@ export const MattosLeao = () => {
     </main>
   );
 };
-
-export default MattosLeao;

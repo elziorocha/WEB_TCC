@@ -37,5 +37,3 @@ export function PortalDoAlunoDashboard() {
     </main>
   );
 }
-
-export default PortalDoAlunoDashboard;

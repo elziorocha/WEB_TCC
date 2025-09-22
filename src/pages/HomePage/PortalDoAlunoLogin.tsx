@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { User, Mail, Lock, ArrowRight, Eye, EyeOff } from 'lucide-react';
 import { useState } from 'react';
 
-const PortalDoAlunoLogin = () => {
+export const PortalDoAlunoLogin = () => {
   const { formData, handleChange, loading, loginAluno } = chamadaLogin();
 
   const [exibirSenha, setExibirSenha] = useState(false);
@@ -112,5 +112,3 @@ const PortalDoAlunoLogin = () => {
     </main>
   );
 };
-
-export default PortalDoAlunoLogin;

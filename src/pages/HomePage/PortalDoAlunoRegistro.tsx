@@ -8,7 +8,7 @@ import {
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-const PortalDoAlunoRegistro = () => {
+export const PortalDoAlunoRegistro = () => {
   return (
     <main className="-mb-8 min-h-screen w-full p-6">
       <div className="flex w-full max-w-md flex-col gap-3">
@@ -107,5 +107,3 @@ const PortalDoAlunoRegistro = () => {
     </main>
   );
 };
-
-export default PortalDoAlunoRegistro;

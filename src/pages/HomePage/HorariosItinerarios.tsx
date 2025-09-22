@@ -7,5 +7,3 @@ export const HorariosItinerarios = () => {
     </main>
   );
 };
-
-export default HorariosItinerarios;

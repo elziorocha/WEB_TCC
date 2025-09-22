@@ -1,4 +1,4 @@
-import CarrosselInicio from '@/components/HomeComponents/InicioComponents/CarrosselInicio';
+import { CarrosselInicio } from '@/components/HomeComponents/InicioComponents/CarrosselInicio';
 import ServicosCardsInicio from '@/components/HomeComponents/InicioComponents/ServicosCardsInicio';
 
 export function Inicio() {
@@ -23,5 +23,3 @@ export function Inicio() {
     </main>
   );
 }
-
-export default Inicio;
