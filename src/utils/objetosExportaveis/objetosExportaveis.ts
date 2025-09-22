@@ -37,7 +37,7 @@ export const navHome = [
   {
     key: 'horarios-itinerarios',
     icon: ClockIcon,
-    label: 'Horários e Itinerários',
+    label: 'Horários / Itinerários',
   },
   {
     key: 'tarifas',

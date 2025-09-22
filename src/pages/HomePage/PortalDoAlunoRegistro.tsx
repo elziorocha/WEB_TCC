@@ -83,7 +83,7 @@ export const PortalDoAlunoRegistro = () => {
           <section className="flex flex-col gap-1">
             <button
               type="submit"
-              className="bg-secondary hover:bg-tertiary text-whiteText flex transform items-center justify-center gap-1 rounded-2xl py-4 font-semibold shadow-lg transition-all duration-300 hover:scale-[1.01]"
+              className="bg-secondary hover:bg-tertiary text-whiteText flex transform cursor-pointer items-center justify-center gap-1 rounded-2xl py-4 font-semibold shadow-lg transition-all duration-300 hover:scale-[1.01]"
             >
               Entrar
               <ArrowRight className="size-5" />

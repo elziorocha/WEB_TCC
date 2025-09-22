@@ -18,13 +18,13 @@ export default function MenuComponent() {
   const fecharMenu = () => setMenuAtivo(false);
 
   const MenuDesktop = () => (
-    <main className="hidden items-center gap-6 md:flex">
-      <section className="flex items-center gap-4">
+    <main className="hidden items-center gap-3 text-sm md:flex lg:gap-6 lg:text-base">
+      <section className="flex items-center gap-3 lg:gap-4">
         {navHome.map((item) => (
           <Link
             key={item.key}
             to={item.key}
-            className="hover:bg-quarter flex items-center gap-2 rounded-lg px-3 py-2 transition-colors"
+            className="hover:bg-quarter flex flex-col items-center gap-1 rounded-lg px-2 py-1 text-center transition-colors md:px-3 md:py-2 lg:flex-row lg:gap-2 lg:text-start"
           >
             <item.icon size={20} />
             <span className="text-white">{item.label}</span>
@@ -32,14 +32,14 @@ export default function MenuComponent() {
         ))}
       </section>
 
-      <hr className="h-10 border border-zinc-300" />
+      <hr className="h-8 border border-zinc-300 md:h-10" />
 
-      <section className="flex items-center gap-4">
+      <section className="flex items-center gap-3 lg:gap-6">
         {navUsuarios.map((item) => (
           <Link
             key={item.key}
             to={item.key}
-            className="hover:bg-quarter flex items-center gap-2 rounded-lg px-3 py-2 transition-colors"
+            className="hover:bg-quarter flex flex-col items-center gap-1 rounded-lg px-2 py-1 text-center transition-colors md:px-3 md:py-2 lg:flex-row lg:gap-2 lg:text-start"
           >
             <item.icon size={20} />
             <span className="text-white">{item.label}</span>

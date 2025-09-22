@@ -84,7 +84,7 @@ export const PortalDoAlunoLogin = () => {
             <button
               type="submit"
               disabled={loading}
-              className={`bg-secondary text-whiteText flex items-center justify-center gap-1 rounded-2xl py-4 font-semibold shadow-lg transition-all duration-300 ${
+              className={`bg-secondary text-whiteText flex cursor-pointer items-center justify-center gap-1 rounded-2xl py-4 font-semibold shadow-lg transition-all duration-300 ${
                 loading
                   ? 'cursor-not-allowed opacity-80'
                   : 'hover:bg-tertiary hover:scale-[1.01]'
