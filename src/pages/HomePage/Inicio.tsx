@@ -1,5 +1,5 @@
-import { CarrosselInicio } from '@/components/HomeComponents/InicioComponents/CarrosselInicio';
-import ServicosCardsInicio from '@/components/HomeComponents/InicioComponents/ServicosCardsInicio';
+import { CarrosselInicio } from '@/components/HomeComponents/CarrosselInicio';
+import ServicosCardsInicio from '@/components/HomeComponents/ServicosCardsInicio';
 
 export function Inicio() {
   return (
