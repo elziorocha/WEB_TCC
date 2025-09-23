@@ -5,14 +5,15 @@ import {
   Mail,
   MailCheck,
   SmartphoneIcon,
+  UserRoundPlusIcon,
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export const PortalDoAlunoRegistro = () => {
   return (
-    <main className="-mb-8 min-h-screen w-full p-6">
+    <main className="-mb-8 flex items-center justify-center p-6">
       <div className="flex w-full max-w-md flex-col gap-3">
-        <section className="flex flex-col gap-0.5 text-center">
+        <section className="flex flex-col items-center gap-2">
           <h2 className="text-3xl font-bold text-gray-800">Portal do Aluno</h2>
           <h3 className="text-gray-600">Crie sua conta</h3>
         </section>
@@ -22,9 +23,10 @@ export const PortalDoAlunoRegistro = () => {
           method="post"
           className="flex flex-col gap-5 rounded-3xl border border-zinc-300 bg-white/80 p-4 shadow-xl"
         >
-          <h2 className="text-tertiary text-center text-2xl font-bold">
-            Registro
-          </h2>
+          <div className="text-tertiary flex items-center justify-center gap-3">
+            <h2 className="text-2xl font-bold">Registro</h2>
+            <UserRoundPlusIcon strokeWidth={3} />
+          </div>
 
           <section className="flex flex-col gap-2">
             <div className="flex items-center gap-2 rounded-xl border border-zinc-400 bg-white px-4 py-2.5 shadow-sm">
@@ -80,7 +82,7 @@ export const PortalDoAlunoRegistro = () => {
             />
           </div>
 
-          <section className="flex flex-col gap-1">
+          <section className="flex flex-col gap-2">
             <button
               type="submit"
               className="bg-secondary hover:bg-tertiary text-whiteText flex transform cursor-pointer items-center justify-center gap-1 rounded-2xl py-4 font-semibold shadow-lg transition-all duration-300 hover:scale-[1.01]"

@@ -19,8 +19,8 @@ export const Tarifas = () => {
           Como saber qual cartão devo utilizar?
         </h2>
 
-        <article className="flex items-center gap-3 p-1">
-          <div className="bg-primary/5 flex items-center justify-center self-center rounded-full p-2 shadow-md">
+        <article className="flex items-center gap-3 rounded-2xl bg-white p-4 shadow-md">
+          <div className="bg-primary/10 flex items-center justify-center self-center rounded-full p-2 shadow-md">
             <MegaphoneIcon className="text-primary size-8 flex-shrink-0" />
           </div>
           <div className="flex flex-col gap-2">

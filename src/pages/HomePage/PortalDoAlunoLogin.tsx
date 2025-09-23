@@ -1,6 +1,14 @@
 import { chamadaLogin } from '@/services/AuthApi/chamadaLogin';
 import { Link } from 'react-router-dom';
-import { User, Mail, Lock, ArrowRight, Eye, EyeOff } from 'lucide-react';
+import {
+  User,
+  Mail,
+  Lock,
+  ArrowRight,
+  Eye,
+  EyeOff,
+  UsersRoundIcon,
+} from 'lucide-react';
 import { useState } from 'react';
 
 export const PortalDoAlunoLogin = () => {
@@ -29,9 +37,10 @@ export const PortalDoAlunoLogin = () => {
           onSubmit={loginAluno}
           className="rounded-3xl border border-zinc-300 bg-white/80 p-4 shadow-xl"
         >
-          <h2 className="text-tertiary mb-2 text-center text-2xl font-bold">
-            Login
-          </h2>
+          <div className="text-tertiary mb-4 flex items-center justify-center gap-3">
+            <h2 className="text-2xl font-bold">Login</h2>
+            <UsersRoundIcon strokeWidth={3} />
+          </div>
 
           <section className="flex flex-col gap-2">
             <div className="flex flex-col gap-3">
@@ -75,12 +84,12 @@ export const PortalDoAlunoLogin = () => {
               </div>
             </div>
 
-            <span className="text-quarter hover:text-tertiary mr-1 cursor-pointer self-end text-sm font-medium">
+            <span className="text-quarter hover:text-tertiary mt-1 mr-1 cursor-pointer self-end text-sm font-medium">
               Esqueci minha senha
             </span>
           </section>
 
-          <section className="mt-6 flex flex-col gap-1">
+          <section className="mt-6 flex flex-col gap-2">
             <button
               type="submit"
               disabled={loading}
