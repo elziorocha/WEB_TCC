@@ -59,7 +59,7 @@ export default function MenuComponent() {
       </SheetTrigger>
       <SheetContent
         side="top"
-        className="bg-tertiary data-[state=open]:slide-in-from-top-4 data-[state=closed]:slide-out-to-top-4 data-[state=open]:fade-in-0 data-[state=closed]:fade-out-0 data-[state=open]:zoom-in-95 data-[state=closed]:zoom-out-95 inset-x-4 top-20 bottom-auto mx-auto h-auto max-w-md rounded-2xl border-none text-white shadow-2xl"
+        className="bg-tertiary data-[state=open]:slide-in-from-top-4 data-[state=closed]:slide-out-to-top-4 data-[state=open]:fade-in-0 data-[state=closed]:fade-out-0 data-[state=open]:zoom-in-95 data-[state=closed]:zoom-out-95 inset-x-4 top-5 bottom-auto mx-auto h-auto max-w-md rounded-2xl border-none text-white shadow-2xl"
       >
         <SheetTitle className="border-b border-zinc-200 py-4 pl-6 text-lg text-white">
           Menu de navegação

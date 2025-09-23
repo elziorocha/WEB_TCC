@@ -10,17 +10,17 @@ import { inicioBanners } from '@/utils/objetosExportaveis/objetosExportaveis';
 
 export const CarrosselInicio = () => {
   return (
-    <main>
+    <main className="max-w-400 self-center md:px-6">
       <Carousel className="w-full">
         <CarouselContent>
           {inicioBanners.map((imagem, index) => (
             <CarouselItem key={index}>
-              <Card className="relative rounded-none border-none p-0 shadow-md">
+              <Card className="relative border-none p-0 shadow-md md:rounded-3xl">
                 <CardContent className="flex items-center justify-center p-0">
                   <img
                     src={imagem.src}
                     alt={imagem.alt}
-                    className="h-full w-full object-contain"
+                    className="h-full w-full object-contain md:rounded-3xl"
                   />
                   <div className="pointer-events-none absolute inset-0 flex items-center justify-between p-3">
                     <CarouselPrevious className="pointer-events-auto relative top-0 left-0 translate-y-0 cursor-pointer border-none bg-white/40 shadow-md hover:bg-white" />
