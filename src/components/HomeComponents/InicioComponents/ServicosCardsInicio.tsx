@@ -2,8 +2,10 @@ import { cardsInicio } from '@/utils/objetosExportaveis/objetosExportaveis';
 
 const ServicosCardsInicio = () => {
   return (
-    <main className="mt-4 flex flex-col items-center justify-center gap-5 p-2">
-      <h2 className="text-tertiary text-2xl font-bold">Nossos Serviços</h2>
+    <main className="mt-4 mb-8 flex flex-col items-center justify-center gap-5 p-2">
+      <h2 className="text-tertiary text-2xl font-bold md:text-4xl">
+        Nossos Serviços
+      </h2>
 
       <article className="flex flex-wrap justify-center gap-4">
         {cardsInicio.map((item) => (
