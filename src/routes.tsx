@@ -3,7 +3,6 @@ import { Error } from './pages/Error';
 import { HomeLayout } from './_layouts/HomeLayout';
 import { Inicio } from './pages/HomePage/Inicio';
 import { FaleConosco } from './pages/HomePage/FaleConosco';
-import { NossaHistoria } from './pages/HomePage/NossaHistoria';
 import { Tarifas } from './pages/HomePage/Tarifas';
 import { HorariosItinerarios } from './pages/HomePage/HorariosItinerarios';
 import { MattosLeao } from './pages/HomePage/HorariosItinerarios/MattosLeao';
@@ -17,6 +16,7 @@ import { PortalDoAlunoNovaMatricula } from './pages/PortalDoAluno/PortalDoAlunoN
 import { PortalDoAlunoConsultarMatriculas } from './pages/PortalDoAluno/PortalDoAlunoConsultarMatriculas';
 import { PortalDoAlunoConsultarProcessos } from './pages/PortalDoAluno/PortalDoAlunoConsultarProcessos';
 import { PortalDoAlunoNovoProcesso } from './pages/PortalDoAluno/PortalDoAlunoNovoProcesso';
+import { SobreNos } from './pages/HomePage/SobreNos';
 
 export const router = createBrowserRouter([
   {
@@ -27,7 +27,7 @@ export const router = createBrowserRouter([
       { path: '', element: <Inicio /> },
       { path: 'fale-conosco', element: <FaleConosco /> },
       { path: 'tarifas', element: <Tarifas /> },
-      { path: 'nossa-historia', element: <NossaHistoria /> },
+      { path: 'sobre-nos', element: <SobreNos /> },
       { path: 'horarios-itinerarios', element: <HorariosItinerarios /> },
       { path: 'horarios-itinerarios/mattos-leao', element: <MattosLeao /> },
       { path: 'portal-do-aluno/login', element: <PortalDoAlunoLogin /> },

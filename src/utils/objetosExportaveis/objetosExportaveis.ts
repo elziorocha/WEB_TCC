@@ -32,7 +32,7 @@ export const cardsInicio = [
 
 export const navHome = [
   { key: '/', icon: Home, label: 'Página Inicial' },
-  { key: 'nossa-historia', icon: HistoryIcon, label: 'Nossa História' },
+  { key: 'sobre-nos', icon: HistoryIcon, label: 'Sobre Nós' },
   { key: 'fale-conosco', icon: MessageCircleMoreIcon, label: 'Fale Conosco' },
   {
     key: 'horarios-itinerarios',

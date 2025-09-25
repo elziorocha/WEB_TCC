@@ -5,7 +5,7 @@ export const TitulosDasPaginas = {
   '/': 'Pérola do Oeste - Página Inicial',
   '/fale-conosco': 'Pérola do Oeste - Fale Conosco',
   '/tarifas': 'Pérola do Oeste - Tarifas',
-  '/nossa-historia': 'Pérola do Oeste - Nossa História',
+  '/sobre-nos': 'Pérola do Oeste - Sobre Nós',
   '/horarios-itinerarios': 'Pérola do Oeste - Horários e Itinerários',
   '/horarios-itinerarios/mattos-leao': 'Pérola do Oeste - Mattos Leão',
   '/portal-do-aluno/login': 'Pérola do Oeste - Login do Aluno',

@@ -8,13 +8,13 @@ import { MegaphoneIcon } from 'lucide-react';
 
 export const TarifasEducardInfo = () => {
   return (
-    <main className="flex w-full flex-col gap-6 sm:grid sm:grid-cols-4 sm:px-8">
+    <main className="mt-4 flex w-full flex-col gap-6 sm:grid sm:grid-cols-4 sm:px-8">
       <Accordion type="single" collapsible>
         <AccordionItem
           value="item-1"
           className="rounded-2xl border-0 bg-white shadow-md"
         >
-          <AccordionTrigger className="flex items-center gap-3 p-4 hover:no-underline">
+          <AccordionTrigger className="flex cursor-pointer items-center gap-3 p-4 hover:no-underline">
             <div className="bg-primary/10 flex items-center justify-center rounded-full p-2 shadow-md">
               <MegaphoneIcon className="text-primary size-8 flex-shrink-0" />
             </div>
@@ -37,7 +37,7 @@ export const TarifasEducardInfo = () => {
           value="item-2"
           className="rounded-2xl border-0 bg-white shadow-md"
         >
-          <AccordionTrigger className="flex items-center gap-3 p-4 hover:no-underline">
+          <AccordionTrigger className="flex cursor-pointer items-center gap-3 p-4 hover:no-underline">
             <div className="bg-primary/10 flex items-center justify-center rounded-full p-2 shadow-md">
               <MegaphoneIcon className="text-primary size-8 flex-shrink-0" />
             </div>
@@ -60,7 +60,7 @@ export const TarifasEducardInfo = () => {
           value="item-3"
           className="rounded-2xl border-0 bg-white shadow-md"
         >
-          <AccordionTrigger className="flex items-center gap-3 p-4 hover:no-underline">
+          <AccordionTrigger className="flex cursor-pointer items-center gap-3 p-4 hover:no-underline">
             <div className="bg-primary/10 flex items-center justify-center rounded-full p-2 shadow-md">
               <MegaphoneIcon className="text-primary size-8 flex-shrink-0" />
             </div>
@@ -85,7 +85,7 @@ export const TarifasEducardInfo = () => {
           value="item-3"
           className="rounded-2xl border-0 bg-white shadow-md"
         >
-          <AccordionTrigger className="flex items-center gap-3 p-4 hover:no-underline">
+          <AccordionTrigger className="flex cursor-pointer items-center gap-3 p-4 hover:no-underline">
             <div className="bg-primary/10 flex items-center justify-center rounded-full p-2 shadow-md">
               <MegaphoneIcon className="text-primary size-8 flex-shrink-0" />
             </div>
