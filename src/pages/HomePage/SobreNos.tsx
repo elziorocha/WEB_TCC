@@ -1,33 +1,66 @@
+import { HistoryIcon } from 'lucide-react';
+import imagemHistoria1 from '../../../public/assets/foto_historia_1.jpg';
+import imagemHistoria2 from '../../../public/assets/foto_historia_2.png';
+
 export const SobreNos = () => {
   return (
-    <main className="flex flex-col gap-16 md:p-8">
-      {/* Seção 1: Nossa História */}
-      <section className="flex flex-col gap-4 text-center">
-        <h2 className="text-tertiary text-4xl font-bold">Nossa História</h2>
-        <h3 className="text-secondary text-2xl font-semibold">
-          Uma trajetória de dedicação que começou em 1973
-        </h3>
-        <p className="mx-auto max-w-3xl text-base text-gray-700 md:text-lg">
-          A Pérola do Oeste nasceu da visão do Sr. Waldemar Tonatto e, desde
-          então, tornou-se parte fundamental da história de Guarapuava.
-          Superamos desafios com trabalho árduo e, desde 1985, sob nova direção,
-          transformamos a empresa em uma referência em transporte.
-        </p>
-        <p className="mx-auto max-w-3xl text-base text-gray-700 md:text-lg">
-          Hoje, contamos com uma frota moderna de mais de 80 veículos e uma
-          equipe de 250 colaboradores dedicados, sempre evoluindo para servir
-          melhor nossa comunidade.
-        </p>
+    <main className="flex flex-col gap-7 md:gap-12">
+      <section className="flex flex-col gap-3 p-4 text-center md:p-8">
+        <h1 className="text-tertiary text-xl font-bold sm:text-4xl">
+          Conectando Guarapuava com Segurança e Qualidade
+        </h1>
+        <h2 className="text-secondary text-base font-bold sm:text-2xl">
+          Há 50 anos, somos o coração da mobilidade urbana em Guarapuava
+        </h2>
       </section>
 
-      {/* Seção 2: Missão, Visão e Valores */}
-      <section className="flex flex-col gap-8">
+      <hr className="-mt-10 rounded border-2 border-zinc-400" />
+
+      <section className="flex flex-col items-center gap-6 p-4 sm:gap-8 md:px-0 xl:flex-row xl:justify-between">
+        <img
+          src={imagemHistoria2}
+          alt="Imagem antiga de ônibus da Pérola do Oeste"
+          className="w-full max-w-md rounded-2xl object-cover shadow-sm sm:max-w-lg xl:max-w-md xl:rounded-r-full"
+        />
+
+        <article className="flex flex-col gap-5 text-center md:max-w-2xl lg:mx-6 lg:w-1/2">
+          <div className="flex items-center justify-center gap-3">
+            <h2 className="text-tertiary text-lg font-bold sm:text-3xl">
+              Nossa História
+            </h2>
+            <HistoryIcon className="text-tertiary size-8 font-bold" />
+          </div>
+
+          <h3 className="text-secondary text-base font-semibold sm:text-2xl">
+            Uma trajetória de dedicação que começou em 1973
+          </h3>
+
+          <p className="mx-auto max-w-3xl text-justify text-sm text-gray-700 sm:text-base md:text-center md:text-lg">
+            A Pérola do Oeste nasceu da visão do Sr. Waldemar Tonatto e, desde
+            então, tornou-se parte fundamental da história de Guarapuava.
+            Superamos desafios com trabalho árduo e, desde 1985, sob nova
+            direção, transformamos a empresa em uma referência em transporte.
+          </p>
+          <p className="mx-auto max-w-3xl text-justify text-sm text-gray-700 sm:text-base md:text-center md:text-lg">
+            Hoje, contamos com uma frota moderna superior a 80 veículos e uma
+            equipe de 250 colaboradores dedicados, sempre evoluindo para servir
+            melhor nossa comunidade.
+          </p>
+        </article>
+
+        <img
+          src={imagemHistoria1}
+          alt="Imagem antiga de ônibus da Pérola do Oeste"
+          className="w-full max-w-md rounded-2xl object-cover shadow-sm sm:max-w-lg xl:max-w-md xl:rounded-l-full"
+        />
+      </section>
+
+      <section className="mt-2 flex flex-col gap-8 p-4 md:p-8">
         <h2 className="text-tertiary text-center text-3xl font-bold">
           Nossos Compromissos
         </h2>
 
         <div className="grid gap-6 md:grid-cols-3">
-          {/* Missão */}
           <div className="flex flex-col gap-4 rounded-2xl bg-white p-6 shadow-md">
             <h3 className="text-secondary text-xl font-bold">Missão</h3>
             <p className="text-base text-gray-700">
@@ -38,7 +71,6 @@ export const SobreNos = () => {
             </p>
           </div>
 
-          {/* Visão */}
           <div className="flex flex-col gap-4 rounded-2xl bg-white p-6 shadow-md">
             <h3 className="text-secondary text-xl font-bold">Visão</h3>
             <p className="text-base text-gray-700">
@@ -48,7 +80,6 @@ export const SobreNos = () => {
             </p>
           </div>
 
-          {/* Valores */}
           <div className="flex flex-col gap-4 rounded-2xl bg-white p-6 shadow-md">
             <h3 className="text-secondary text-xl font-bold">Nossa Cultura</h3>
             <ul className="list-inside list-disc space-y-2 text-gray-700">
@@ -73,8 +104,7 @@ export const SobreNos = () => {
         </div>
       </section>
 
-      {/* Seção 3: Diferenciais e Qualidade */}
-      <section className="flex flex-col gap-6">
+      <section className="flex flex-col gap-6 p-4 md:p-8">
         <h2 className="text-tertiary text-center text-3xl font-bold">
           Qualidade que Faz a Diferença
         </h2>
@@ -108,20 +138,6 @@ export const SobreNos = () => {
             </p>
           </div>
         </div>
-      </section>
-
-      {/* Seção CTA */}
-      <section className="bg-primary rounded-3xl p-8 text-center text-white">
-        <h2 className="mb-4 text-3xl font-bold">
-          Pronto para Embarcar Conosco?
-        </h2>
-        <p className="mb-6 text-lg">
-          Seja no transporte urbano, fretamento empresarial ou turismo, estamos
-          aqui para servir você com excelência.
-        </p>
-        <button className="bg-tertiary hover:bg-tertiary/90 rounded-xl px-6 py-3 font-bold text-white transition-colors">
-          Saiba Mais
-        </button>
       </section>
     </main>
   );

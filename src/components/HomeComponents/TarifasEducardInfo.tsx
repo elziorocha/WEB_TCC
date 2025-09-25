@@ -12,7 +12,7 @@ export const TarifasEducardInfo = () => {
       <Accordion type="single" collapsible>
         <AccordionItem
           value="item-1"
-          className="rounded-2xl border-0 bg-white shadow-md"
+          className="rounded-2xl border-0 bg-white shadow-md transition-all hover:scale-101"
         >
           <AccordionTrigger className="flex cursor-pointer items-center gap-3 p-4 hover:no-underline">
             <div className="bg-primary/10 flex items-center justify-center rounded-full p-2 shadow-md">
@@ -35,7 +35,7 @@ export const TarifasEducardInfo = () => {
       <Accordion type="single" collapsible>
         <AccordionItem
           value="item-2"
-          className="rounded-2xl border-0 bg-white shadow-md"
+          className="rounded-2xl border-0 bg-white shadow-md transition-all hover:scale-101"
         >
           <AccordionTrigger className="flex cursor-pointer items-center gap-3 p-4 hover:no-underline">
             <div className="bg-primary/10 flex items-center justify-center rounded-full p-2 shadow-md">
@@ -58,7 +58,7 @@ export const TarifasEducardInfo = () => {
       <Accordion type="single" collapsible>
         <AccordionItem
           value="item-3"
-          className="rounded-2xl border-0 bg-white shadow-md"
+          className="rounded-2xl border-0 bg-white shadow-md transition-all hover:scale-101"
         >
           <AccordionTrigger className="flex cursor-pointer items-center gap-3 p-4 hover:no-underline">
             <div className="bg-primary/10 flex items-center justify-center rounded-full p-2 shadow-md">
@@ -82,8 +82,8 @@ export const TarifasEducardInfo = () => {
 
       <Accordion type="single" collapsible>
         <AccordionItem
-          value="item-3"
-          className="rounded-2xl border-0 bg-white shadow-md"
+          value="item-4"
+          className="rounded-2xl border-0 bg-white shadow-md transition-all hover:scale-101"
         >
           <AccordionTrigger className="flex cursor-pointer items-center gap-3 p-4 hover:no-underline">
             <div className="bg-primary/10 flex items-center justify-center rounded-full p-2 shadow-md">
