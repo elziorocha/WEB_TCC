@@ -1,6 +1,6 @@
 import { HistoryIcon } from 'lucide-react';
-import imagemHistoria1 from '../../../public/assets/foto_historia_1.jpg';
-import imagemHistoria2 from '../../../public/assets/foto_historia_2.png';
+import imagemHistoria1 from '/assets/foto_historia_1.jpg';
+import imagemHistoria2 from '/assets/foto_historia_2.png';
 
 export const SobreNos = () => {
   return (
