@@ -1,7 +1,7 @@
 import { CalendarDays, Clock } from 'lucide-react';
 export const horariosItinerarios = [
   {
-    titulo: 'Horários Dias Úteis',
+    titulo: 'Dias Úteis',
     icone: <Clock className="size-6 text-white" />,
     linhas: [
       { numero: '01', nome: 'Boqueirão' },
@@ -22,7 +22,7 @@ export const horariosItinerarios = [
       { numero: '23', nome: 'Mattos Leão' },
       { numero: '24', nome: 'Jordão' },
       { numero: '27', nome: 'Interbairros' },
-      { numero: '28', nome: 'Boqueirão Via Guairá' },
+      { numero: '28', nome: 'Boqueirão Via Guaira' },
       { numero: '31', nome: 'Jardim Américas Paz e Bem' },
       { numero: '33', nome: 'CEDETEG' },
       { numero: '34', nome: 'Coamo' },
@@ -39,23 +39,23 @@ export const horariosItinerarios = [
     ],
   },
   {
-    titulo: 'Horários Sábados',
+    titulo: 'Sábados',
     icone: <Clock className="size-6 text-white" />,
     linhas: [
       { numero: '02', nome: 'Cascavel' },
       { numero: '07', nome: 'Pérola do Oeste' },
-      { numero: '13', nome: 'Coronelinho Via Guairá' },
-      { numero: '14', nome: 'Sol Poente Feroz II Via Guairá' },
+      { numero: '13', nome: 'Coronelinho Via Guaira' },
+      { numero: '14', nome: 'Sol Poente Feroz II Via Guaira' },
       { numero: '19', nome: 'Col. Agrícola Via Rodoviária' },
       { numero: '22', nome: 'Jardim das Américas' },
-      { numero: '28', nome: 'Boqueirão Via Guairá' },
+      { numero: '28', nome: 'Boqueirão Via Guaira' },
       { numero: '34', nome: 'Coamo' },
       { numero: '36', nome: 'Residencial 2000' },
       { numero: '50', nome: 'UTFPR-Shopping' },
     ],
   },
   {
-    titulo: 'Horários Domingos e Feriados',
+    titulo: 'Domingos e Feriados',
     icone: <CalendarDays className="size-6 text-white" />,
     linhas: [
       { numero: '01', nome: 'Interbairros' },
