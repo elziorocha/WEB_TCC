@@ -1,4 +1,4 @@
-import { HistoryIcon } from 'lucide-react';
+import { EyeIcon, HistoryIcon, LandmarkIcon, ShieldIcon } from 'lucide-react';
 import imagemHistoria1 from '/assets/foto_historia_1.jpg';
 import imagemHistoria2 from '/assets/foto_historia_2.png';
 
@@ -28,7 +28,7 @@ export const SobreNos = () => {
             <h2 className="text-tertiary text-lg font-bold sm:text-3xl">
               Nossa História
             </h2>
-            <HistoryIcon className="text-tertiary size-8 font-bold" />
+            <HistoryIcon className="text-tertiary size-10 font-bold" />
           </div>
 
           <h3 className="text-secondary text-base font-semibold sm:text-2xl">
@@ -55,54 +55,74 @@ export const SobreNos = () => {
         />
       </section>
 
-      <section className="mt-2 flex flex-col gap-8 p-4 md:p-8">
+      <article className="mt-2 flex flex-col gap-8 p-4 md:p-8">
         <h2 className="text-tertiary text-center text-3xl font-bold">
           Nossos Compromissos
         </h2>
 
-        <div className="grid gap-6 md:grid-cols-3">
-          <div className="flex flex-col gap-4 rounded-2xl bg-white p-6 shadow-md">
-            <h3 className="text-secondary text-xl font-bold">Missão</h3>
-            <p className="text-base text-gray-700">
-              Atender às necessidades de mobilidade das pessoas, buscando
-              excelência em qualidade, segurança e preço justo. Valorizamos a
-              satisfação de colaboradores e comunidade, preservando o meio
-              ambiente e assegurando crescimento sustentável.
-            </p>
+        <section className="grid gap-6 md:grid-cols-3">
+          <div className="flex flex-col justify-between rounded-2xl bg-white p-6 shadow-md transition-all hover:scale-102">
+            <div className="flex flex-col gap-4">
+              <h3 className="text-secondary text-center text-xl font-bold">
+                Missão
+              </h3>
+              <p className="text-base text-gray-700">
+                Atender às necessidades de mobilidade das pessoas, buscando
+                excelência em qualidade, segurança e preço justo. Valorizamos a
+                satisfação de colaboradores e comunidade, preservando o meio
+                ambiente e assegurando crescimento sustentável.
+              </p>
+            </div>
+            <ShieldIcon className="text-secondary mt-6 size-14 self-center" />
           </div>
 
-          <div className="flex flex-col gap-4 rounded-2xl bg-white p-6 shadow-md">
-            <h3 className="text-secondary text-xl font-bold">Visão</h3>
-            <p className="text-base text-gray-700">
-              Ser o principal agente de integração social e econômica de
-              Guarapuava, conectando 100% dos bairros com soluções inovadoras e
-              eficientes.
-            </p>
+          <div className="flex flex-col justify-between rounded-2xl bg-white p-6 shadow-md transition-all hover:scale-102">
+            <div className="flex flex-col gap-2">
+              <h3 className="text-secondary text-center text-xl font-bold">
+                Visão
+              </h3>
+              <p className="text-base text-gray-700">
+                Ser o principal meio de integração social e econômica de nossa
+                cidade, conectando 100% dos bairros com soluções inovadoras e
+                eficientes.
+              </p>
+              <p>
+                <span className="text-secondary font-bold">ISO9001</span> – A
+                empresa está certificada na ISO9001 desde 2001. Em 2022 foi
+                recertificada pela 7ª vez. Esta certificação demonstra que a
+                Pérola do Oeste tem um sistema de gestão da qualidade adequado
+                aos requisitos exigidos.
+              </p>
+            </div>
+            <EyeIcon className="text-secondary mt-6 size-14 self-center" />
           </div>
 
-          <div className="flex flex-col gap-4 rounded-2xl bg-white p-6 shadow-md">
-            <h3 className="text-secondary text-xl font-bold">Nossa Cultura</h3>
-            <ul className="list-inside list-disc space-y-2 text-gray-700">
-              <li>
-                <strong>Qualidade:</strong> Atender e superar expectativas de
-                passageiros, poder público e empresas.
-              </li>
-              <li>
-                <strong>Pessoas:</strong> Investir em colaboradores treinados,
-                capacitados e valorizados.
-              </li>
-              <li>
-                <strong>Tecnologia:</strong> Manter frota e processos
-                continuamente atualizados.
-              </li>
-              <li>
-                <strong>Comunidade:</strong> Participar ativamente do
-                desenvolvimento da cidade.
-              </li>
-            </ul>
+          <div className="flex flex-col justify-between rounded-2xl bg-white p-6 shadow-md transition-all hover:scale-102">
+            <div className="flex flex-col gap-4">
+              <h3 className="text-secondary text-center text-xl font-bold">
+                Cultura
+              </h3>
+              <div className="space-y-2 text-gray-700">
+                <p>
+                  <span className="text-secondary font-bold">Qualidade</span>{' '}
+                  Atender e superar expectativas de passageiros, poder público e
+                  empresas.
+                </p>
+                <p>
+                  <span className="text-secondary font-bold">Pessoas</span>{' '}
+                  Investir em colaboradores treinados, capacitados e
+                  valorizados.
+                </p>
+                <p>
+                  <span className="text-secondary font-bold">Comunidade</span>{' '}
+                  Participar ativamente do desenvolvimento da cidade.
+                </p>
+              </div>
+            </div>
+            <LandmarkIcon className="text-secondary mt-6 size-14 self-center" />
           </div>
-        </div>
-      </section>
+        </section>
+      </article>
 
       <section className="flex flex-col gap-6 p-4 md:p-8">
         <h2 className="text-tertiary text-center text-3xl font-bold">
