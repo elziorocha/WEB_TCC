@@ -19,6 +19,8 @@ export function Inicio() {
 
       <CarrosselInicio />
 
+      <hr className="via-quarter mt-6 h-1 border-0 bg-gradient-to-r from-transparent to-transparent" />
+
       <ServicosCardsInicio />
     </main>
   );

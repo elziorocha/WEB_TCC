@@ -12,7 +12,7 @@ export const Tarifas = () => {
 
       <TarifasCardsInfo />
 
-      <hr className="w-11/12 self-center border-zinc-400" />
+      <hr className="via-quarter mt-4 h-1 border-0 bg-gradient-to-r from-transparent to-transparent" />
 
       <article className="mt-2 flex flex-col gap-4">
         <h2 className="text-tertiary text-center text-xl font-bold sm:text-2xl">
