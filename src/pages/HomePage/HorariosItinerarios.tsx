@@ -15,19 +15,18 @@ export const HorariosItinerarios = () => {
         </p>
       </div>
 
-      <section className="mx-auto flex w-full max-w-7xl flex-col gap-6">
-        {horariosItinerarios.map((grupo, index) => (
+      <section className="mx-auto flex w-full max-w-7xl flex-col gap-10">
+        {horariosItinerarios.map((grupo) => (
           <div
             key={grupo.titulo}
             className="group relative overflow-hidden rounded-xl border border-white/20 bg-white/80 shadow-lg backdrop-blur-sm"
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/3 via-indigo-500/3 to-blue-600/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-
-            <div className="relative p-4 md:p-6">
+            <div className="p-4 md:p-6">
               <div className="mb-4 flex items-center justify-center gap-3">
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 shadow-md">
                   <Clock className="size-5 text-white" />
                 </div>
+
                 <h2 className="text-center text-xl font-bold text-slate-800 md:text-2xl">
                   {grupo.titulo}
                 </h2>
@@ -49,7 +48,9 @@ export const HorariosItinerarios = () => {
                       <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-md bg-gradient-to-br from-blue-100 to-indigo-100 text-xs font-bold text-blue-700 transition-all duration-300 group-hover/item:from-blue-200 group-hover/item:to-indigo-200">
                         {linha.numero}
                       </div>
-                      {linha.nome}
+                      <span className="text-xs text-zinc-700">
+                        {linha.nome}
+                      </span>
                     </div>
                     <ChevronRight className="size-5 text-zinc-600 opacity-0 transition-opacity duration-300 group-hover/item:opacity-100" />
                   </Link>
