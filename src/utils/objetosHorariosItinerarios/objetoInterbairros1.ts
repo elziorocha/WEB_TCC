@@ -1,4 +1,4 @@
-export const interbairros27Data = [
+export const interbairros1Data = [
   {
     saidaFonte: '',
     hiperSupermercado: '',
@@ -220,8 +220,10 @@ export const interbairros27Data = [
     vilaKaren: '23:18',
     pig: '23:22',
     condomíniosMinhaCasa: '23:27',
-    pradoVeículos: '23:30',
-    panificadoraBomBocado: '23:34',
-    fonteChegada: '23:34',
+    planaltoVerde: '23:30',
+    condomíniosConradinho: '22:34',
+    pradoVeículos: '',
+    panificadoraBomBocado: '',
+    fonteChegada: '',
   },
 ];
