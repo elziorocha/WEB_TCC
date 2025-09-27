@@ -1,3 +1,4 @@
+import { useParams } from 'react-router-dom';
 import {
   Table,
   TableBody,
@@ -13,15 +14,36 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { mattosLeaoData } from '@/utils/objetosHorariosItinerarios/objetoMattosLeao';
-// import { Badge } from "@/components/ui/badge";
+import { linhasOnibusData } from '@/utils/objetosHorariosItinerarios/objetosHorariosItinerarios';
 
-export default function DataTable() {
+function formatColName(key: string) {
+  // Converte psfMorroAlto → PSF Morro Alto
+  return key
+    .replace(/([A-Z])/g, ' $1')
+    .replace(/Fonte/gi, 'Fonte')
+    .replace(/^./, (str) => str.toUpperCase());
+}
+
+export default function HorariosDataTable() {
+  const { linha } = useParams<{ linha: string }>();
+  const data = linha ? linhasOnibusData[linha] : [];
+
+  if (!data || data.length === 0) {
+    return (
+      <main className="container mx-auto px-4 py-10">
+        <p>Não há dados disponíveis para esta linha.</p>
+      </main>
+    );
+  }
+
+  // Pega todas as chaves da primeira viagem
+  const colunas = Object.keys(data[0]);
+
   return (
     <main className="container mx-auto px-4 py-10">
       <Card>
         <CardHeader>
-          <CardTitle>Horário (onibus.onibusnome)</CardTitle>
+          <CardTitle>Horários da linha {linha?.replace('-', ' ')}</CardTitle>
           <CardDescription>
             💡 Deslize horizontalmente para ver mais colunas
           </CardDescription>
@@ -32,47 +54,35 @@ export default function DataTable() {
               <Table className="min-w-full table-fixed">
                 <TableHeader className="sticky-header bg-muted">
                   <TableRow className="text-xs">
-                    <TableHead className="bg-muted sticky top-0 left-0 z-10 w-[75px] border-r text-center break-words whitespace-normal">
-                      Saída Fonte
-                    </TableHead>
-                    <TableHead className="w-[75px] text-center break-words whitespace-normal">
-                      PSF Morro Alto
-                    </TableHead>
-                    <TableHead className="w-[75px] text-center break-words whitespace-normal">
-                      Chegada Fonte
-                    </TableHead>
-                    <TableHead className="w-[75px] text-center break-words whitespace-normal">
-                      Chegada Fonte
-                    </TableHead>
-                    <TableHead className="w-[75px] text-center break-words whitespace-normal">
-                      Chegada Fonte
-                    </TableHead>
-                    <TableHead className="w-[75px] text-center break-words whitespace-normal">
-                      Chegada Fonte
-                    </TableHead>
+                    {colunas.map((col, index) => (
+                      <TableHead
+                        key={index}
+                        className={`${
+                          index === 0
+                            ? 'bg-muted sticky left-0 z-10 border-r'
+                            : ''
+                        } w-[90px] text-center break-words whitespace-normal`}
+                      >
+                        {formatColName(col)}
+                      </TableHead>
+                    ))}
                   </TableRow>
                 </TableHeader>
                 <TableBody className="font-mono">
-                  {mattosLeaoData.map((row, index) => (
-                    <TableRow key={index}>
-                      <TableCell className="bg-muted sticky left-0 z-10 w-[75px] border-r text-center font-medium whitespace-nowrap">
-                        {row.saidaFonte}
-                      </TableCell>
-                      <TableCell className="w-[75px] text-center whitespace-nowrap">
-                        {row.psfMorroAlto}
-                      </TableCell>
-                      <TableCell className="w-[75px] text-center whitespace-nowrap">
-                        {row.chegadaFonte}
-                      </TableCell>
-                      <TableCell className="w-[75px] text-center whitespace-nowrap">
-                        {row.chegadaFonte}
-                      </TableCell>
-                      <TableCell className="w-[75px] text-center whitespace-nowrap">
-                        {row.chegadaFonte}
-                      </TableCell>
-                      <TableCell className="w-[75px] text-center whitespace-nowrap">
-                        {row.chegadaFonte}
-                      </TableCell>
+                  {data.map((row, rowIndex) => (
+                    <TableRow key={rowIndex}>
+                      {colunas.map((col, colIndex) => (
+                        <TableCell
+                          key={colIndex}
+                          className={`${
+                            colIndex === 0
+                              ? 'bg-muted sticky left-0 z-10 border-r font-medium'
+                              : ''
+                          } w-[90px] text-center whitespace-nowrap`}
+                        >
+                          {row[col] || '-'}
+                        </TableCell>
+                      ))}
                     </TableRow>
                   ))}
                 </TableBody>

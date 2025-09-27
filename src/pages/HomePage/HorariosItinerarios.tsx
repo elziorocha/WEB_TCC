@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ChevronRight, Clock } from 'lucide-react';
 import { horariosItinerarios } from '@/utils/objetosHorariosItinerarios/listaHorarios';
+import { slugify } from '@/utils/slugfy';
 
 export const HorariosItinerarios = () => {
   return (
@@ -35,11 +36,7 @@ export const HorariosItinerarios = () => {
               <div className="mt-2 grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 md:gap-4 lg:grid-cols-5">
                 {grupo.linhas.map((linha) => (
                   <Link
-                    to={`/horarios-itinerarios/${linha.nome
-                      .toLowerCase()
-                      .normalize('NFD')
-                      .replace(/[\u0300-\u036f]/g, '')
-                      .replace(/\s+/g, '-')}`}
+                    to={`/horarios-itinerarios/${slugify(linha.nome)}`}
                     title={linha.nome}
                     key={linha.numero}
                     className="group/item flex w-full items-center justify-between rounded-lg border border-slate-200/50 bg-gradient-to-br from-white to-slate-50 p-2.5 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md md:p-3"

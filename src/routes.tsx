@@ -5,7 +5,6 @@ import { Inicio } from './pages/HomePage/Inicio';
 import { FaleConosco } from './pages/HomePage/FaleConosco';
 import { Tarifas } from './pages/HomePage/Tarifas';
 import { HorariosItinerarios } from './pages/HomePage/HorariosItinerarios';
-import { MattosLeao } from './pages/HomePage/HorariosItinerarios/MattosLeao';
 import { PortalDoAlunoRegistro } from './pages/HomePage/PortalDoAlunoRegistro';
 import { PortalDoAlunoLogin } from './pages/HomePage/PortalDoAlunoLogin';
 import { RotaProtegida } from './utils/rotaProtegida';
@@ -17,6 +16,7 @@ import { PortalDoAlunoConsultarMatriculas } from './pages/PortalDoAluno/PortalDo
 import { PortalDoAlunoConsultarProcessos } from './pages/PortalDoAluno/PortalDoAlunoConsultarProcessos';
 import { PortalDoAlunoNovoProcesso } from './pages/PortalDoAluno/PortalDoAlunoNovoProcesso';
 import { SobreNos } from './pages/HomePage/SobreNos';
+import HorariosDataTable from './components/componentesUI/DataTableComponent';
 
 export const router = createBrowserRouter([
   {
@@ -29,7 +29,7 @@ export const router = createBrowserRouter([
       { path: 'tarifas', element: <Tarifas /> },
       { path: 'sobre-nos', element: <SobreNos /> },
       { path: 'horarios-itinerarios', element: <HorariosItinerarios /> },
-      { path: 'horarios-itinerarios/mattos-leao', element: <MattosLeao /> },
+      { path: 'horarios-itinerarios/:linha', element: <HorariosDataTable /> },
       { path: 'portal-do-aluno/login', element: <PortalDoAlunoLogin /> },
       {
         path: 'portal-do-aluno/registrar',
