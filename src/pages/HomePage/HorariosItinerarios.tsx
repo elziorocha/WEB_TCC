@@ -5,7 +5,7 @@ import { slugify } from '@/utils/slugfy';
 
 export const HorariosItinerarios = () => {
   return (
-    <main className="flex min-h-screen flex-col gap-6 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 p-4 md:p-8">
+    <main className="flex min-h-screen flex-col gap-6 p-4 md:p-8">
       <div className="space-y-3 text-center">
         <h1 className="from-quarter to-tertiary bg-gradient-to-r bg-clip-text text-3xl font-bold text-transparent md:text-4xl">
           Horários e Itinerários
