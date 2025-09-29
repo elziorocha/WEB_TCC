@@ -91,11 +91,9 @@ export const SobreNos = () => {
                 eficientes.
               </p>
               <p className="text-gray-600">
-                <span className="text-primary font-bold">ISO9001</span> – A
-                empresa está certificada na ISO9001 desde 2001. Em 2022 foi
-                recertificada pela 7ª vez. Esta certificação demonstra que a
-                Pérola do Oeste tem um sistema de gestão da qualidade adequado
-                aos requisitos exigidos.
+                Oferecemos transporte coletivo em todos os bairros da cidade,
+                atendendo milhares de cidadãos todos os dias do ano. O trabalho
+                de concessão pública é garantido por concorrência licitatória.
               </p>
             </div>
             <div className="from-quarter to-tertiary mt-6 self-center rounded-full bg-gradient-to-br p-3">
