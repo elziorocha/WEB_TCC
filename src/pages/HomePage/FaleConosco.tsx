@@ -1,14 +1,13 @@
 import { type FormEvent, type ReactElement, useRef, useState } from 'react';
 import { MailIcon } from 'lucide-react';
 
-// Tipos
 interface FormErrors {
   name?: string;
   email?: string;
   message?: string;
 }
 
-interface FormData {
+interface ContactFormData {
   name: string;
   email: string;
   message: string;
@@ -20,7 +19,6 @@ interface EmailResponse {
   message?: string;
 }
 
-// Validações
 const validateName = (name: string): string | undefined => {
   const trimmed = name.trim();
   if (!trimmed) return 'Nome é obrigatório.';
@@ -55,14 +53,13 @@ export const FaleConosco = (): ReactElement => {
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const validateForm = (formData: FormData): boolean => {
+  const validateForm = (formData: ContactFormData): boolean => {
     const newErrors: FormErrors = {
       name: validateName(formData.name),
       email: validateEmail(formData.email),
       message: validateMessage(formData.message),
     };
 
-    // Remove undefined values
     const filteredErrors = Object.fromEntries(
       Object.entries(newErrors).filter(([, value]) => value !== undefined)
     ) as FormErrors;
@@ -71,7 +68,7 @@ export const FaleConosco = (): ReactElement => {
     return Object.keys(filteredErrors).length === 0;
   };
 
-  const getFormData = (): FormData | null => {
+  const getFormData = (): ContactFormData | null => {
     if (!formRef.current) return null;
 
     const formElements = formRef.current.elements;
@@ -104,12 +101,11 @@ export const FaleConosco = (): ReactElement => {
     setIsSubmitting(true);
 
     try {
-      // Importação dinâmica para code splitting
       const { enviarEmail } = await import('@/utils/enviarEmail');
 
       const response: EmailResponse = await enviarEmail({
         formData,
-        timestamp: Date.now(), // Prevenção contra replay attacks
+        timestamp: Date.now(),
       });
 
       if (response.success) {
@@ -139,7 +135,7 @@ export const FaleConosco = (): ReactElement => {
         ref={formRef}
         onSubmit={handleSubmit}
         className="flex w-full max-w-md flex-col gap-6 rounded-2xl border border-zinc-200 bg-gradient-to-br from-white to-zinc-100 p-8 shadow-xl transition-all duration-300 hover:shadow-2xl"
-        noValidate // Deixa a validação nativa do HTML desativada
+        noValidate
       >
         <div className="flex items-center justify-center gap-3">
           <h1 className="from-quarter to-tertiary bg-gradient-to-r bg-clip-text text-2xl font-bold text-transparent sm:text-3xl">
