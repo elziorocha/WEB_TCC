@@ -3,7 +3,7 @@ import { TarifasEducardInfo } from '@/components/HomeComponents/TarifasEducardIn
 
 export const Tarifas = () => {
   return (
-    <main className="flex flex-col gap-4 p-4">
+    <main className="mb-10 flex flex-col gap-4 p-4">
       <h2 className="text-tertiary my-2 text-center text-xl font-bold sm:text-2xl">
         Quais os custos{' '}
         <span className="font-semibold text-green-600 italic">tarifários</span>{' '}
