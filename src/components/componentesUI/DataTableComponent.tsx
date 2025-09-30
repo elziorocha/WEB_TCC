@@ -7,21 +7,17 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { linhasOnibusData } from '@/utils/objetosHorariosItinerarios/objetosHorariosItinerarios';
 
 function formatColName(key: string) {
-  // Converte psfMorroAlto → PSF Morro Alto
   return key
     .replace(/([A-Z])/g, ' $1')
     .replace(/Fonte/gi, 'Fonte')
-    .replace(/^./, (str) => str.toUpperCase());
+    .replace(/^./, (str) => str.toUpperCase())
+    .trim()
+    .split(' ')
+    .join('\n');
 }
 
 export default function HorariosDataTable() {
@@ -30,57 +26,78 @@ export default function HorariosDataTable() {
 
   if (!data || data.length === 0) {
     return (
-      <main className="container mx-auto px-4 py-10">
-        <p>Não há dados disponíveis para esta linha.</p>
+      <main className="container mx-auto flex min-h-screen flex-col gap-6 px-4 py-16">
+        <section className="flex flex-col gap-4 text-center">
+          <h1 className="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-4xl font-extrabold tracking-tight text-transparent sm:text-5xl">
+            Horários de Ônibus
+          </h1>
+          <p className="text-base text-gray-500 sm:text-lg">
+            Não há dados disponíveis para esta linha.
+          </p>
+        </section>
       </main>
     );
   }
 
-  // Pega todas as chaves da primeira viagem
   const colunas = Object.keys(data[0]);
 
   return (
-    <main className="container mx-auto px-4 py-10">
-      <Card>
-        <CardHeader>
-          <CardTitle>Horários da linha {linha?.replace('-', ' ')}</CardTitle>
-          <CardDescription>
-            💡 Deslize horizontalmente para ver mais colunas
-          </CardDescription>
+    <main className="container mx-auto flex min-h-screen flex-col gap-8 px-4 py-12">
+      <section className="flex flex-col gap-3 text-center">
+        <h1 className="from-tertiary to-quarter bg-gradient-to-r bg-clip-text text-4xl font-extrabold tracking-tight text-transparent sm:text-5xl">
+          Linha {linha?.replace('-', ' ')}
+        </h1>
+        <p className="text-base font-medium text-gray-600 sm:text-lg">
+          Confira os horários de partida e chegada atualizados
+        </p>
+      </section>
+
+      <Card className="gap-0 rounded-3xl border-none bg-white p-0 shadow-xl">
+        <CardHeader className="gap-0 pb-0">
+          <CardTitle className="text-center text-xl font-bold text-gray-800 sm:text-2xl"></CardTitle>
         </CardHeader>
-        <CardContent>
-          <div className="relative">
-            <section className="max-h-96 overflow-x-auto">
-              <Table className="min-w-full table-fixed">
-                <TableHeader className="sticky-header bg-muted">
-                  <TableRow className="text-xs">
+
+        <CardContent className="p-0">
+          <div className="relative rounded-xl">
+            <section className="max-h-[32rem] overflow-x-auto overflow-y-auto rounded-xl border border-zinc-200">
+              <Table className="min-w-full border-collapse">
+                <TableHeader className="sticky top-0 z-20 bg-gradient-to-r from-zinc-50 to-zinc-100 shadow-md">
+                  <TableRow>
                     {colunas.map((col, index) => (
                       <TableHead
                         key={index}
                         className={`${
                           index === 0
-                            ? 'bg-muted sticky left-0 z-10 border-r'
+                            ? 'sticky left-0 z-30 border-r bg-gradient-to-r from-zinc-50 to-zinc-100 shadow-md'
                             : ''
-                        } w-[90px] text-center break-words whitespace-normal`}
+                        } w-[90px] text-center font-semibold tracking-wide text-gray-700 uppercase`}
                       >
-                        {formatColName(col)}
+                        <div className="px-2 py-3 whitespace-pre-line">
+                          {formatColName(col)}
+                        </div>
                       </TableHead>
                     ))}
                   </TableRow>
                 </TableHeader>
-                <TableBody className="font-mono">
+
+                <TableBody className="font-mono text-sm">
                   {data.map((row, rowIndex) => (
-                    <TableRow key={rowIndex}>
+                    <TableRow
+                      key={rowIndex}
+                      className="transition-colors odd:bg-white even:bg-zinc-50 hover:bg-blue-50"
+                    >
                       {colunas.map((col, colIndex) => (
                         <TableCell
                           key={colIndex}
                           className={`${
                             colIndex === 0
-                              ? 'bg-muted sticky left-0 z-10 border-r font-medium'
+                              ? 'sticky left-0 z-10 border-r bg-gradient-to-r from-zinc-50 to-zinc-100 font-semibold shadow-md'
                               : ''
-                          } w-[90px] text-center whitespace-nowrap`}
+                          } w-[90px] text-center`}
                         >
-                          {row[col] || '-'}
+                          <span className="whitespace-nowrap">
+                            {row[col] || '-'}
+                          </span>
                         </TableCell>
                       ))}
                     </TableRow>
@@ -91,6 +108,20 @@ export default function HorariosDataTable() {
           </div>
         </CardContent>
       </Card>
+
+      <section className="flex flex-col gap-4 rounded-2xl border border-zinc-200 bg-gradient-to-br from-white to-zinc-50 p-6 shadow-lg">
+        <h3 className="text-center text-lg font-bold text-gray-800 sm:text-xl">
+          ℹ️ Informações Importantes
+        </h3>
+        <div className="space-y-3 text-center text-sm text-gray-600 sm:text-base">
+          <p>📍 Os horários podem variar devido às condições de trânsito</p>
+          <p>🕐 Chegue ao ponto com pelo menos 5 minutos de antecedência</p>
+          <p>
+            ☎️ Para mais informações, entre em contato com nossa central de
+            atendimento
+          </p>
+        </div>
+      </section>
     </main>
   );
 }
