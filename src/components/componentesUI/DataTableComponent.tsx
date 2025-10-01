@@ -8,7 +8,11 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { linhasOnibusData } from '@/utils/objetosHorariosItinerarios/objetosHorariosItinerarios';
+import {
+  linhasOnibusData,
+  linhasOnibusPDF,
+} from '@/utils/objetosHorariosItinerarios/objetosHorariosItinerarios';
+import { DownloadIcon } from 'lucide-react';
 
 function formatColName(key: string) {
   return key
@@ -44,7 +48,7 @@ export default function HorariosDataTable() {
   return (
     <main className="container mx-auto flex min-h-screen flex-col gap-8 px-4 py-12">
       <section className="flex flex-col gap-3 text-center">
-        <h1 className="from-tertiary to-quarter bg-gradient-to-r bg-clip-text text-4xl font-extrabold tracking-tight text-transparent sm:text-5xl">
+        <h1 className="from-tertiary to-quarter bg-gradient-to-r bg-clip-text text-4xl font-extrabold tracking-tight text-transparent capitalize sm:text-5xl">
           Linha {linha?.replace('-', ' ')}
         </h1>
         <p className="text-base font-medium text-gray-600 sm:text-lg">
@@ -108,6 +112,20 @@ export default function HorariosDataTable() {
           </div>
         </CardContent>
       </Card>
+
+      {linha && linhasOnibusPDF[linha] && (
+        <section className="flex justify-center">
+          <a
+            href={linhasOnibusPDF[linha]}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-quarter text-whiteText hover:bg-tertiary inline-flex items-center gap-2 rounded-xl px-5 py-3 font-semibold shadow-lg transition"
+          >
+            <DownloadIcon />
+            <span>Baixar horário em PDF</span>
+          </a>
+        </section>
+      )}
 
       <section className="flex flex-col gap-4 rounded-2xl border border-zinc-200 bg-gradient-to-br from-white to-zinc-50 p-6 shadow-lg">
         <h3 className="text-center text-lg font-bold text-gray-800 sm:text-xl">
