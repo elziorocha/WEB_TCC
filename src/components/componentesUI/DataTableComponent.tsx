@@ -72,7 +72,7 @@ export default function HorariosDataTable() {
                             : ''
                         } w-[90px] text-center font-semibold tracking-wide text-gray-700 uppercase`}
                       >
-                        <div className="px-2 py-3 whitespace-pre-line">
+                        <div className="p-1 text-xs whitespace-pre-line">
                           {formatColName(col)}
                         </div>
                       </TableHead>
@@ -95,7 +95,7 @@ export default function HorariosDataTable() {
                               : ''
                           } w-[90px] text-center`}
                         >
-                          <span className="whitespace-nowrap">
+                          <span className="text-xs whitespace-nowrap">
                             {row[col] || '-'}
                           </span>
                         </TableCell>
@@ -111,14 +111,14 @@ export default function HorariosDataTable() {
 
       <section className="flex flex-col gap-4 rounded-2xl border border-zinc-200 bg-gradient-to-br from-white to-zinc-50 p-6 shadow-lg">
         <h3 className="text-center text-lg font-bold text-gray-800 sm:text-xl">
-          ℹ️ Informações Importantes
+          Informações Importantes
         </h3>
         <div className="space-y-3 text-center text-sm text-gray-600 sm:text-base">
           <p>📍 Os horários podem variar devido às condições de trânsito</p>
           <p>🕐 Chegue ao ponto com pelo menos 5 minutos de antecedência</p>
           <p>
             ☎️ Para mais informações, entre em contato com nossa central de
-            atendimento
+            atendimento - (42) 3035-3388
           </p>
         </div>
       </section>
