@@ -106,6 +106,8 @@ export const PortalDoAlunoRegistro = () => {
                 type="date"
                 name="data_nascimento"
                 required
+                min="1925-01-01"
+                max="2020-12-31"
                 value={formData.data_nascimento}
                 onChange={handleChange}
                 className="w-full text-sm outline-none placeholder:text-gray-400"
