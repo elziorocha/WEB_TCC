@@ -6,6 +6,14 @@ export interface AlunoLoginInterface {
   senha: string;
 }
 
+export interface AlunoRegistroInterface {
+  nome: string;
+  email: string;
+  senha: string;
+  telefone: string;
+  data_nascimento: string;
+}
+
 export interface AlunoInterface {
   alunoId: number;
   nome: string;

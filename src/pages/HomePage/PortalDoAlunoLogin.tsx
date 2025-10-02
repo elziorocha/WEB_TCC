@@ -1,13 +1,13 @@
 import { chamadaLogin } from '@/services/AuthApi/chamadaLogin';
 import { Link } from 'react-router-dom';
 import {
-  User,
   Mail,
   Lock,
   ArrowRight,
   Eye,
   EyeOff,
   UsersRoundIcon,
+  GraduationCapIcon,
 } from 'lucide-react';
 import { useState } from 'react';
 
@@ -22,13 +22,15 @@ export const PortalDoAlunoLogin = () => {
 
   return (
     <main className="-mb-8 flex items-center justify-center p-6">
-      <div className="flex w-full max-w-md flex-col gap-3">
+      <div className="flex w-full max-w-2xl flex-col gap-3">
         <section className="flex flex-col items-center gap-2">
-          <User className="text-whiteText from-tertiary to-quarter size-14 rounded-2xl bg-gradient-to-bl p-2 shadow-md" />
-          <div className="flex flex-col gap-0.5 text-center">
-            <h2 className="text-3xl font-bold text-gray-800">
-              Portal do Aluno
-            </h2>
+          <div className="flex flex-col gap-1 text-center">
+            <div className="flex items-center gap-3">
+              <h2 className="text-3xl font-bold text-gray-800">
+                Portal do Aluno
+              </h2>
+              <GraduationCapIcon className="text-whiteText from-tertiary to-quarter size-12 rounded-2xl bg-gradient-to-bl p-2 shadow-md sm:size-14" />
+            </div>
             <h3 className="text-gray-600">Acesse sua conta para continuar</h3>
           </div>
         </section>

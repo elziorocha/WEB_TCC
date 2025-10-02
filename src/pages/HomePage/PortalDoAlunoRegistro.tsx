@@ -1,94 +1,143 @@
+import { chamadaRegistro } from '@/services/AuthApi/chamadaRegistro';
 import {
   ArrowRight,
   CalendarDaysIcon,
   CircleUserIcon,
   Mail,
-  MailCheck,
   SmartphoneIcon,
   UserRoundPlusIcon,
+  Lock,
+  Eye,
+  EyeOff,
+  GraduationCapIcon,
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 export const PortalDoAlunoRegistro = () => {
+  const { formData, handleChange, loading, registrarAluno } = chamadaRegistro();
+  const [exibirSenha, setExibirSenha] = useState(false);
+
+  const alterarVisibilidadeSenha = () => {
+    setExibirSenha(!exibirSenha);
+  };
+
   return (
     <main className="-mb-8 flex items-center justify-center p-6">
-      <div className="flex w-full max-w-md flex-col gap-3">
+      <div className="flex w-full max-w-2xl flex-col gap-3">
         <section className="flex flex-col items-center gap-2">
-          <h2 className="text-3xl font-bold text-gray-800">Portal do Aluno</h2>
-          <h3 className="text-gray-600">Crie sua conta</h3>
+          <div className="flex flex-col gap-1 text-center">
+            <div className="flex items-center gap-3">
+              <h2 className="text-3xl font-bold text-gray-800">
+                Portal do Aluno
+              </h2>
+              <GraduationCapIcon className="text-whiteText from-tertiary to-quarter size-12 rounded-2xl bg-gradient-to-bl p-2 shadow-md sm:size-14" />
+            </div>
+            <h3 className="text-gray-600">Crie sua conta gratuitamente</h3>
+          </div>
         </section>
 
         <form
-          action="/"
-          method="post"
-          className="flex flex-col gap-5 rounded-3xl border border-zinc-300 bg-white/80 p-4 shadow-xl"
+          onSubmit={registrarAluno}
+          className="rounded-3xl border border-zinc-300 bg-white/80 p-4 shadow-xl"
         >
-          <div className="text-tertiary flex items-center justify-center gap-3">
+          <div className="text-tertiary mb-4 flex items-center justify-center gap-3">
             <h2 className="text-2xl font-bold">Registro</h2>
             <UserRoundPlusIcon strokeWidth={3} />
           </div>
 
-          <section className="flex flex-col gap-2">
-            <div className="flex items-center gap-2 rounded-xl border border-zinc-400 bg-white px-4 py-2.5 shadow-sm">
-              <Mail className="size-5 text-gray-400" />
-              <input
-                type="email"
-                placeholder="Seu e-mail"
-                required
-                className="text-sm outline-none placeholder:text-gray-400"
-              />
-            </div>
-
-            <div className="flex items-center gap-2 rounded-xl border border-zinc-400 bg-white px-4 py-2.5 shadow-sm">
-              <MailCheck className="size-5 text-gray-400" />
-              <input
-                type="email"
-                placeholder="Confirme seu e-mail"
-                required
-                className="text-sm outline-none placeholder:text-gray-400"
-              />
-            </div>
-          </section>
-
-          <section className="flex flex-col gap-2">
+          <section className="flex flex-col gap-3">
             <div className="flex items-center gap-2 rounded-xl border border-zinc-400 bg-white px-4 py-2.5 shadow-sm">
               <CircleUserIcon className="size-5 text-gray-400" />
               <input
                 type="text"
+                name="nome"
                 placeholder="Seu nome completo"
                 required
-                className="text-sm outline-none placeholder:text-gray-400"
+                value={formData.nome}
+                onChange={handleChange}
+                className="w-full text-sm outline-none placeholder:text-gray-400"
               />
             </div>
+
+            <div className="flex items-center gap-2 rounded-xl border border-zinc-400 bg-white px-4 py-2.5 shadow-sm">
+              <Mail className="size-5 text-gray-400" />
+              <input
+                type="email"
+                name="email"
+                autoComplete="email"
+                placeholder="Seu e-mail"
+                required
+                value={formData.email}
+                onChange={handleChange}
+                className="w-full text-sm outline-none placeholder:text-gray-400"
+              />
+            </div>
+
+            <div className="flex items-center gap-2 rounded-xl border border-zinc-400 bg-white py-2.5 pr-3 pl-4 shadow-sm">
+              <Lock className="size-5 text-gray-400" />
+              <input
+                type={exibirSenha ? 'text' : 'password'}
+                name="senha"
+                autoComplete="new-password"
+                placeholder="Crie uma senha"
+                required
+                value={formData.senha}
+                onChange={handleChange}
+                className="w-full text-sm outline-none placeholder:text-gray-400"
+              />
+              <span
+                className="flex cursor-pointer items-center justify-around"
+                onClick={alterarVisibilidadeSenha}
+              >
+                {exibirSenha ? (
+                  <EyeOff className="size-5 text-gray-500" />
+                ) : (
+                  <Eye className="size-5 text-gray-500" />
+                )}
+              </span>
+            </div>
+
+            <hr className="my-3 w-10/12 self-center rounded border-2 border-zinc-300" />
 
             <div className="flex items-center gap-2 rounded-xl border border-zinc-400 bg-white px-4 py-2.5 shadow-sm">
               <CalendarDaysIcon className="size-5 text-gray-400" />
               <input
                 type="date"
-                placeholder="Sua data de nascimento"
+                name="data_nascimento"
                 required
-                className="text-sm outline-none placeholder:text-gray-400"
+                value={formData.data_nascimento}
+                onChange={handleChange}
+                className="w-full text-sm outline-none placeholder:text-gray-400"
+              />
+            </div>
+
+            <div className="flex items-center gap-2 rounded-xl border border-zinc-400 bg-white px-4 py-2.5 shadow-sm">
+              <SmartphoneIcon className="size-5 text-gray-400" />
+              <input
+                type="number"
+                name="telefone"
+                placeholder="Seu número de telefone"
+                required
+                value={formData.telefone}
+                onChange={handleChange}
+                className="w-full text-sm outline-none placeholder:text-gray-400"
               />
             </div>
           </section>
 
-          <div className="flex items-center gap-2 rounded-xl border border-zinc-400 bg-white px-4 py-2.5 shadow-sm">
-            <SmartphoneIcon className="size-5 text-gray-400" />
-            <input
-              type="text"
-              placeholder="Seu número de telefone"
-              required
-              className="text-sm outline-none placeholder:text-gray-400"
-            />
-          </div>
-
-          <section className="flex flex-col gap-2">
+          <section className="mt-6 flex flex-col gap-2">
             <button
               type="submit"
-              className="bg-secondary hover:bg-tertiary text-whiteText flex transform cursor-pointer items-center justify-center gap-1 rounded-2xl py-4 font-semibold shadow-lg transition-all duration-300 hover:scale-[1.01]"
+              disabled={loading}
+              className={`bg-secondary text-whiteText flex cursor-pointer items-center justify-center gap-1 rounded-2xl py-4 font-semibold shadow-lg transition-all duration-300 ${
+                loading
+                  ? 'cursor-not-allowed opacity-80'
+                  : 'hover:bg-tertiary hover:scale-[1.01]'
+              }`}
             >
-              Entrar
-              <ArrowRight className="size-5" />
+              {loading ? 'Criando conta...' : 'Registrar'}
+              {!loading && <ArrowRight className="size-5" />}
             </button>
 
             <div className="flex items-center gap-2">
