@@ -1,7 +1,9 @@
+// src/services/ChamadasApi/apiDocumentos.ts
 import { useEffect, useState } from 'react';
 import { apiError } from '../apiError';
+import { getAlunoDocumentos, postAlunoDocumentos } from '../api';
 import type { AlunoDocumentoInterface } from '@/utils/interfaces.interface';
-import { getAlunoDocumentos } from '../api';
+import toast from 'react-hot-toast';
 
 export function alunoDocumentoData() {
   const [alunoDocumento, setAlunoDocumento] =
@@ -25,4 +27,26 @@ export function alunoDocumentoData() {
   }, []);
 
   return { alunoDocumento, loading };
+}
+
+export function criarAlunoDocumento() {
+  const [loading, setLoading] = useState(false);
+
+  const criarDocumento: (
+    dados: AlunoDocumentoInterface
+  ) => Promise<AlunoDocumentoInterface> = async (documentos) => {
+    setLoading(true);
+    try {
+      const novoDoc = await postAlunoDocumentos(documentos);
+      toast.success('Documento salvo com sucesso!');
+      return novoDoc;
+    } catch (err: any) {
+      apiError(err, 'Erro ao salvar documento.');
+      throw err;
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return { criarDocumento, loading };
 }

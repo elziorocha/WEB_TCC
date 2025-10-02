@@ -1,4 +1,7 @@
-import type { AlunoMatriculaInterface } from '@/utils/interfaces.interface';
+import type {
+  AlunoDocumentoInterface,
+  AlunoMatriculaInterface,
+} from '@/utils/interfaces.interface';
 import instanciaAPI from './instanciaApi';
 import Cookies from 'js-cookie';
 
@@ -21,6 +24,22 @@ export const getAlunoDocumentos = async () => {
   if (!token) throw new Error('Usuário não autenticado');
 
   const response = await instanciaAPI.get('/aluno/documento', {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    withCredentials: true,
+  });
+
+  return response.data;
+};
+
+export const postAlunoDocumentos = async (
+  documentos: AlunoDocumentoInterface
+) => {
+  const token = Cookies.get('token');
+  if (!token) throw new Error('Usuário não autenticado');
+
+  const response = await instanciaAPI.post('/aluno/documento', documentos, {
     headers: {
       Authorization: `Bearer ${token}`,
     },

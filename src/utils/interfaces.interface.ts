@@ -28,9 +28,8 @@ export interface AlunoInterface {
 }
 
 export interface AlunoDocumentoInterface {
-  alunoDocumentoId: number;
-  rg: number;
-  cpf: number;
+  rg: string;
+  cpf: string;
   orgao_emissor: string;
 }
 
