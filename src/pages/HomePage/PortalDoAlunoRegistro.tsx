@@ -1,7 +1,7 @@
+import type React from 'react';
 import { chamadaRegistro } from '@/services/AuthApi/chamadaRegistro';
 import {
   ArrowRight,
-  CalendarDaysIcon,
   CircleUserIcon,
   Mail,
   SmartphoneIcon,
@@ -13,6 +13,7 @@ import {
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import { DatePickerInput } from './date-picker-input.tsx';
 
 export const PortalDoAlunoRegistro = () => {
   const { formData, handleChange, loading, registrarAluno } = chamadaRegistro();
@@ -20,6 +21,15 @@ export const PortalDoAlunoRegistro = () => {
 
   const alterarVisibilidadeSenha = () => {
     setExibirSenha(!exibirSenha);
+  };
+
+  const handleDateChange = (date: string) => {
+    handleChange({
+      target: {
+        name: 'data_nascimento',
+        value: date,
+      },
+    } as React.ChangeEvent<HTMLInputElement>);
   };
 
   return (
@@ -100,19 +110,13 @@ export const PortalDoAlunoRegistro = () => {
 
             <hr className="my-3 w-10/12 self-center rounded border-2 border-zinc-300" />
 
-            <div className="flex items-center gap-2 rounded-xl border border-zinc-400 bg-white px-4 py-2.5 shadow-sm">
-              <CalendarDaysIcon className="size-5 text-gray-400" />
-              <input
-                type="date"
-                name="data_nascimento"
-                required
-                min="1925-01-01"
-                max="2020-12-31"
-                value={formData.data_nascimento}
-                onChange={handleChange}
-                className="w-full text-sm outline-none placeholder:text-gray-400"
-              />
-            </div>
+            <DatePickerInput
+              value={formData.data_nascimento}
+              onChange={handleDateChange}
+              min="1925-01-01"
+              max="2020-12-31"
+              required
+            />
 
             <div className="flex items-center gap-2 rounded-xl border border-zinc-400 bg-white px-4 py-2.5 shadow-sm">
               <SmartphoneIcon className="size-5 text-gray-400" />

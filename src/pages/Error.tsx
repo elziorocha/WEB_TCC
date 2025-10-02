@@ -22,7 +22,7 @@ export function Error() {
 
       <Button
         onClick={() => navigate(-1)}
-        className="bg-tertiary text-whiteText hover:bg-secondary px-6 text-lg"
+        className="bg-tertiary text-whiteText hover:bg-secondary cursor-pointer px-6 text-lg"
       >
         Voltar
       </Button>

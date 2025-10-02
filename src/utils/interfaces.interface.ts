@@ -69,6 +69,12 @@ export interface AlunoProcessoInterface {
   liberado: boolean;
 }
 
+export interface PortalDoAlunoDocumentoProcessoInterface {
+  label: string;
+  status: boolean;
+  arquivoUrl?: string;
+}
+
 export interface DataTableInterface<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
@@ -76,8 +82,10 @@ export interface DataTableInterface<TData, TValue> {
   mensagemDadosVazios?: string;
 }
 
-export interface PortalDoAlunoDocumentoProcessoInterface {
-  label: string;
-  status: boolean;
-  arquivoUrl?: string;
+export interface DatePickerInputPropsInterface {
+  value: string;
+  onChange: (date: string) => void;
+  min?: string;
+  max?: string;
+  required?: boolean;
 }
