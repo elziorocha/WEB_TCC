@@ -86,7 +86,7 @@ export const dispararToastAvisoPerfil = (aluno: any) => {
                 <p>{item}</p>
               </span>
               <button
-                className="ml-2 rounded px-2 py-0.5"
+                className="ml-2 cursor-pointer rounded px-2 py-0.5"
                 onClick={() => toast.dismiss(t.id)}
               >
                 <X className="size-5 text-red-500" />

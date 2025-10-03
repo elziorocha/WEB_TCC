@@ -33,6 +33,14 @@ export interface AlunoDocumentoInterface {
   orgao_emissor: string;
 }
 
+export interface AlunoEnderecoInterface {
+  cep: string;
+  cidade: string;
+  bairro: string;
+  rua: string;
+  numero: number;
+}
+
 export interface AlunoMatriculaInterface {
   id: number;
   ano_letivo: number;

@@ -1,4 +1,3 @@
-// src/services/ChamadasApi/apiDocumentos.ts
 import { useEffect, useState } from 'react';
 import { apiError } from '../apiError';
 import { getAlunoDocumentos, postAlunoDocumentos } from '../api';
