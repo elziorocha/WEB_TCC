@@ -2,6 +2,7 @@ import type {
   AlunoDocumentoInterface,
   AlunoEnderecoInterface,
   AlunoMatriculaInterface,
+  AlunoResponsavelInterface,
 } from '@/utils/interfaces.interface';
 import instanciaAPI from './instanciaApi';
 import Cookies from 'js-cookie';
@@ -69,6 +70,36 @@ export const postAlunoEnderecos = async (enderecos: AlunoEnderecoInterface) => {
   if (!token) throw new Error('Usuário não autenticado');
 
   const response = await instanciaAPI.post('/aluno/endereco', enderecos, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    withCredentials: true,
+  });
+
+  return response.data;
+};
+
+export const getAlunoResponsaveis = async () => {
+  const token = Cookies.get('token');
+  if (!token) throw new Error('Usuário não autenticado');
+
+  const response = await instanciaAPI.get('/aluno/responsavel', {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    withCredentials: true,
+  });
+
+  return response.data;
+};
+
+export const postAlunoResponsaveis = async (
+  responsaveis: AlunoResponsavelInterface
+) => {
+  const token = Cookies.get('token');
+  if (!token) throw new Error('Usuário não autenticado');
+
+  const response = await instanciaAPI.post('/aluno/responsavel', responsaveis, {
     headers: {
       Authorization: `Bearer ${token}`,
     },

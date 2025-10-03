@@ -41,6 +41,13 @@ export interface AlunoEnderecoInterface {
   numero: number;
 }
 
+export interface AlunoResponsavelInterface {
+  cpf_mae: string;
+  nome_mae: string;
+  nome_pai: string;
+  nome_responsavel: string;
+}
+
 export interface AlunoMatriculaInterface {
   id: number;
   ano_letivo: number;

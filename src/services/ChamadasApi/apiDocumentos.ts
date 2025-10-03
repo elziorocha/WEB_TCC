@@ -36,9 +36,9 @@ export function criarAlunoDocumento() {
   ) => Promise<AlunoDocumentoInterface> = async (documentos) => {
     setLoading(true);
     try {
-      const novoDoc = await postAlunoDocumentos(documentos);
+      const novoDocumento = await postAlunoDocumentos(documentos);
       toast.success('Documento salvo com sucesso!');
-      return novoDoc;
+      return novoDocumento;
     } catch (err: any) {
       apiError(err, 'Erro ao salvar documento.');
       throw err;

@@ -7,6 +7,7 @@ import { Card, CardContent } from '../ui/card';
 import { AlertCircle, IdCard, Home } from 'lucide-react';
 import { DocumentoModal } from './Modals/PortalDoAlunoDocumentoAlunoModal';
 import { EnderecoModal } from './Modals/PortalDoAlunoEnderecoAlunoModal';
+import { ResponsavelModal } from './Modals/PortalDoAlunoResponsavelAlunoModal';
 
 export const PortalDoAlunoPerfilCards = ({ aluno }: any) => {
   const [alunoData, setAlunoData] = useState(aluno);
@@ -14,6 +15,7 @@ export const PortalDoAlunoPerfilCards = ({ aluno }: any) => {
 
   const [modalDocumentoAberto, setModalDocumentoAberto] = useState(false);
   const [modalEnderecoAberto, setModalEnderecoAberto] = useState(false);
+  const [modalResponsavelAberto, setModalResponsavelAberto] = useState(false);
 
   dispararToastAvisoPerfil(alunoData);
 
@@ -86,9 +88,10 @@ export const PortalDoAlunoPerfilCards = ({ aluno }: any) => {
               onClick={() => {
                 if (card.titulo.includes('Documentos')) {
                   setModalDocumentoAberto(true);
-                }
-                if (card.titulo.includes('Endereço')) {
+                } else if (card.titulo.includes('Endereços')) {
                   setModalEnderecoAberto(true);
+                } else if (card.titulo.includes('Responsáveis')) {
+                  setModalResponsavelAberto(true);
                 }
               }}
             >
@@ -132,6 +135,18 @@ export const PortalDoAlunoPerfilCards = ({ aluno }: any) => {
           setAlunoData((prev: any) => ({
             ...prev,
             aluno_endereco: novoEndereco,
+          }))
+        }
+      />
+
+      <ResponsavelModal
+        open={modalResponsavelAberto}
+        onClose={() => setModalResponsavelAberto(false)}
+        responsavelAtual={alunoData?.aluno_responsavel}
+        onSave={(novoResp) =>
+          setAlunoData((prev: any) => ({
+            ...prev,
+            aluno_responsavel: novoResp,
           }))
         }
       />

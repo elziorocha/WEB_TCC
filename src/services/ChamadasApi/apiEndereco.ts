@@ -36,9 +36,9 @@ export function criarAlunoEndereco() {
   ) => Promise<AlunoEnderecoInterface> = async (enderecos) => {
     setLoading(true);
     try {
-      const novoDoc = await postAlunoEnderecos(enderecos);
+      const novoEndereco = await postAlunoEnderecos(enderecos);
       toast.success('Endereco salvo com sucesso!');
-      return novoDoc;
+      return novoEndereco;
     } catch (err: any) {
       apiError(err, 'Erro ao salvar endereco.');
       throw err;

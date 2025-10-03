@@ -59,7 +59,7 @@ export const alunoPerfilCards = (aluno: any) => [
   },
   {
     condicao: aluno?.aluno_endereco === null,
-    titulo: 'Endereço',
+    titulo: 'Endereços',
     descricao: 'Informe seu endereço',
     icon: <MapPin className="size-6 text-red-500" />,
   },
