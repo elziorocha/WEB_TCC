@@ -10,6 +10,8 @@ import { Input } from '@/components/ui/input';
 import { useState } from 'react';
 import type { AlunoDocumentoInterface } from '@/utils/interfaces.interface';
 import { criarAlunoDocumento } from '@/services/ChamadasApi/apiDocumentos';
+import { DialogClose } from '@radix-ui/react-dialog';
+import { X } from 'lucide-react';
 
 interface DocumentoModalProps {
   open: boolean;
@@ -63,7 +65,15 @@ export function DocumentoModal({
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="border-none sm:max-w-md">
+      <DialogContent
+        showCloseButton={false}
+        className="border-none sm:max-w-md"
+      >
+        <DialogClose asChild>
+          <button className="absolute top-4 right-4 flex cursor-pointer items-center justify-center rounded-full bg-gray-200 p-1 transition-all hover:bg-gray-300 focus:outline-none">
+            <X className="size-5" />
+          </button>
+        </DialogClose>
         <DialogHeader>
           <DialogTitle>Adicionar Documentos</DialogTitle>
         </DialogHeader>
@@ -110,14 +120,14 @@ export function DocumentoModal({
             variant="outline"
             onClick={onClose}
             disabled={loading}
-            className="text-whiteText hover:text-whiteText border-none bg-red-600 shadow-sm hover:bg-red-500"
+            className="text-whiteText hover:text-whiteText cursor-pointer border-none bg-red-600 shadow-sm hover:bg-red-500"
           >
             Cancelar
           </Button>
           <Button
             onClick={handleSubmit}
             disabled={loading}
-            className="bg-tertiary hover:bg-secondary transition-all"
+            className="bg-tertiary hover:bg-secondary cursor-pointer transition-all"
           >
             {loading ? 'Salvando...' : 'Salvar'}
           </Button>
