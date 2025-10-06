@@ -9,7 +9,7 @@ import {
 } from '@/components/ui/dialog';
 import { Eye, FolderSymlink, Plus, X } from 'lucide-react';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { criarAlunoProcesso } from '@/services/ChamadasApi/apiProcessos';
 import { Button } from '@/components/ui/button';
 import toast from 'react-hot-toast';
@@ -20,6 +20,8 @@ export const PortalDoAlunoProcessoModal = ({ item }: any) => {
   const [confirmOpen, setConfirmOpen] = useState(false);
   const { loading } = criarAlunoProcesso();
 
+  const navigate = useNavigate();
+
   const handleConfirmarNovoProcesso = async () => {
     try {
       const response = await iniciarAlunoProcesso();
@@ -27,13 +29,15 @@ export const PortalDoAlunoProcessoModal = ({ item }: any) => {
       toast.success(response.data.message);
       setConfirmOpen(false);
       setOpen(false);
+
+      navigate('/portal-do-aluno/consultar-processo');
     } catch (error) {
       toast.error('Erro ao iniciar o processo.');
     }
   };
 
   return (
-    <>
+    <main>
       <Dialog open={open} onOpenChange={setOpen} key={item.key}>
         <DialogTrigger asChild>
           <section className="hover:bg-tertiary/5 flex min-h-36 w-36 cursor-pointer flex-col gap-4 rounded-2xl bg-white px-2 py-4 shadow-md transition-colors">
@@ -118,7 +122,7 @@ export const PortalDoAlunoProcessoModal = ({ item }: any) => {
       <Dialog open={confirmOpen} onOpenChange={setConfirmOpen}>
         <DialogContent
           showCloseButton={false}
-          className="max-w-sm rounded-2xl border-none"
+          className="w-[90vw] max-w-md rounded-2xl border-none"
         >
           <DialogClose asChild>
             <button className="absolute top-4 right-4 flex cursor-pointer items-center justify-center rounded-full bg-gray-200 p-1 transition-all hover:bg-gray-300 focus:outline-none">
@@ -126,10 +130,10 @@ export const PortalDoAlunoProcessoModal = ({ item }: any) => {
             </button>
           </DialogClose>
           <DialogHeader>
-            <DialogTitle className="text-tertiary text-center text-xl font-bold">
+            <DialogTitle className="text-tertiary text-center text-lg font-bold sm:text-xl">
               Iniciar novo processo?
             </DialogTitle>
-            <DialogDescription className="text-center text-base text-zinc-700">
+            <DialogDescription className="text-center text-zinc-700 sm:text-base">
               Você terá{' '}
               <span className="text-primary font-semibold underline">
                 15 dias
@@ -157,6 +161,6 @@ export const PortalDoAlunoProcessoModal = ({ item }: any) => {
           </div>
         </DialogContent>
       </Dialog>
-    </>
+    </main>
   );
 };
