@@ -9,7 +9,7 @@ import {
 } from '@/components/ui/dialog';
 import { Eye, FolderSymlink, Plus, X } from 'lucide-react';
 import { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { criarAlunoProcesso } from '@/services/ChamadasApi/apiProcessos';
 import { Button } from '@/components/ui/button';
 import toast from 'react-hot-toast';
@@ -19,7 +19,6 @@ export const PortalDoAlunoProcessoModal = ({ item }: any) => {
   const [open, setOpen] = useState(false);
   const [confirmOpen, setConfirmOpen] = useState(false);
   const { loading } = criarAlunoProcesso();
-  const navigate = useNavigate();
 
   const handleConfirmarNovoProcesso = async () => {
     try {
@@ -28,7 +27,6 @@ export const PortalDoAlunoProcessoModal = ({ item }: any) => {
       toast.success(response.data.message);
       setConfirmOpen(false);
       setOpen(false);
-      navigate('/portal-do-aluno/novo-processo');
     } catch (error) {
       toast.error('Erro ao iniciar o processo.');
     }
@@ -97,7 +95,7 @@ export const PortalDoAlunoProcessoModal = ({ item }: any) => {
                 setOpen(false);
                 setTimeout(() => setConfirmOpen(true), 150);
               }}
-              className="from-primary/15 to-primary/25 hover:from-primary/25 hover:to-primary/35 border-primary/40 relative w-full overflow-hidden rounded-xl border bg-gradient-to-r p-4 text-left transition-all duration-300 hover:scale-[1.02] hover:shadow-lg sm:p-6"
+              className="from-primary/15 to-primary/25 hover:from-primary/25 hover:to-primary/35 border-primary/40 relative w-full cursor-pointer overflow-hidden rounded-xl border bg-gradient-to-r p-4 text-left transition-all duration-300 hover:scale-[1.02] hover:shadow-lg sm:p-6"
             >
               <div className="flex items-center gap-3 sm:gap-4">
                 <div className="bg-primary flex h-10 w-10 items-center justify-center rounded-lg shadow-md sm:h-12 sm:w-12">
@@ -117,7 +115,6 @@ export const PortalDoAlunoProcessoModal = ({ item }: any) => {
         </DialogContent>
       </Dialog>
 
-      {/* Modal de confirmação */}
       <Dialog open={confirmOpen} onOpenChange={setConfirmOpen}>
         <DialogContent className="max-w-sm rounded-2xl border-none">
           <DialogHeader>
