@@ -1,15 +1,15 @@
 import { ArrowLeftIcon } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { DataTable } from '../../components/PortalDoAlunoComponents/PortalDoAlunoDataTable';
-import { alunoProcessosData } from '@/services/ChamadasApi/apiProcessos';
 import TelaCarregando from '@/components/componentesUI/TelaCarregando';
 import PortalDoAlunoProcessosCard from '@/components/PortalDoAlunoComponents/PortalDoAlunoCards/PortalDoAlunoProcessosCard';
 import { colunasAlunoProcessoDataTable } from '@/utils/objetosExportaveis/objetosExportaveisDataTable';
 import { useEffect } from 'react';
+import { chamadaAlunoProcessos } from '@/services/ChamadasApi/apiProcessos';
 import toast from 'react-hot-toast';
 
 export const PortalDoAlunoConsultarProcessos = () => {
-  const { alunoProcessos, loading } = alunoProcessosData();
+  const { alunoProcessos, loading } = chamadaAlunoProcessos();
   const location = useLocation();
 
   useEffect(() => {

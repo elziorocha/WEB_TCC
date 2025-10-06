@@ -10,14 +10,14 @@ import {
 import { Eye, FolderSymlink, Plus, X } from 'lucide-react';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { criarAlunoProcesso } from '@/services/ChamadasApi/apiProcessos';
 import { Button } from '@/components/ui/button';
 import { iniciarAlunoProcesso } from '@/services/api';
+import { chamadaCriarProcesso } from '@/services/ChamadasApi/apiProcessos';
 
 export const PortalDoAlunoProcessoModal = ({ item }: any) => {
   const [open, setOpen] = useState(false);
   const [confirmOpen, setConfirmOpen] = useState(false);
-  const { loading } = criarAlunoProcesso();
+  const { loading } = chamadaCriarProcesso();
 
   const navigate = useNavigate();
 
