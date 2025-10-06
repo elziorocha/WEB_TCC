@@ -116,14 +116,25 @@ export const PortalDoAlunoProcessoModal = ({ item }: any) => {
       </Dialog>
 
       <Dialog open={confirmOpen} onOpenChange={setConfirmOpen}>
-        <DialogContent className="max-w-sm rounded-2xl border-none">
+        <DialogContent
+          showCloseButton={false}
+          className="max-w-sm rounded-2xl border-none"
+        >
+          <DialogClose asChild>
+            <button className="absolute top-4 right-4 flex cursor-pointer items-center justify-center rounded-full bg-gray-200 p-1 transition-all hover:bg-gray-300 focus:outline-none">
+              <X className="size-5" />
+            </button>
+          </DialogClose>
           <DialogHeader>
-            <DialogTitle className="text-center text-lg font-bold text-gray-800">
+            <DialogTitle className="text-tertiary text-center text-xl font-bold">
               Iniciar novo processo?
             </DialogTitle>
-            <DialogDescription className="text-center text-gray-600">
-              Você terá <b>15 dias</b> para completar o envio dos documentos.
-              Deseja continuar?
+            <DialogDescription className="text-center text-base text-zinc-700">
+              Você terá{' '}
+              <span className="text-primary font-semibold underline">
+                15 dias
+              </span>{' '}
+              para completar o envio dos documentos. Deseja continuar?
             </DialogDescription>
           </DialogHeader>
 
@@ -132,14 +143,14 @@ export const PortalDoAlunoProcessoModal = ({ item }: any) => {
               variant="outline"
               onClick={() => setConfirmOpen(false)}
               disabled={loading}
-              className="rounded-lg border-gray-300"
+              className="text-whiteText hover:text-whiteText cursor-pointer rounded-lg border-none bg-red-600 hover:bg-red-500"
             >
               Cancelar
             </Button>
             <Button
               onClick={handleConfirmarNovoProcesso}
               disabled={loading}
-              className="bg-primary text-blackText hover:bg-primary/80 rounded-lg px-4"
+              className="bg-secondary hover:bg-quarter text-whiteText cursor-pointer rounded-lg px-4"
             >
               {loading ? 'Criando...' : 'Confirmar'}
             </Button>
