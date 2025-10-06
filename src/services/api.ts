@@ -167,3 +167,20 @@ export const postAlunoProcessos = async (formData: FormData) => {
 
   return response.data;
 };
+
+export const iniciarAlunoProcesso = async () => {
+  const token = Cookies.get('token');
+  if (!token) throw new Error('Usuário não autenticado');
+
+  const response = await instanciaAPI.post(
+    '/aluno/processo/iniciar',
+    {},
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+
+  return response.data;
+};

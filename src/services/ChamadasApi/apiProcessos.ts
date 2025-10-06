@@ -1,6 +1,10 @@
 import { useEffect, useState } from 'react';
 import { apiError } from '../apiError';
-import { getAlunoProcessos, postAlunoProcessos } from '../api';
+import {
+  getAlunoProcessos,
+  iniciarAlunoProcesso,
+  postAlunoProcessos,
+} from '../api';
 import toast from 'react-hot-toast';
 
 export function alunoProcessosData() {
@@ -33,9 +37,17 @@ export function criarAlunoProcesso() {
     setLoading(true);
 
     try {
-      await postAlunoProcessos(formData);
+      const processo = await iniciarAlunoProcesso();
 
-      toast.success('Processo criado com sucesso!');
+      if (!processo.existente) {
+        await postAlunoProcessos(formData);
+        toast.success('Processo iniciado e documentos enviados com sucesso!');
+      } else {
+        await postAlunoProcessos(formData);
+        toast.success('Documentos atualizados no processo existente!');
+      }
+
+      return processo;
     } catch (err: any) {
       apiError(err, 'Erro ao criar processo.');
     } finally {
