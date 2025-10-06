@@ -12,7 +12,6 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { criarAlunoProcesso } from '@/services/ChamadasApi/apiProcessos';
 import { Button } from '@/components/ui/button';
-import toast from 'react-hot-toast';
 import { iniciarAlunoProcesso } from '@/services/api';
 
 export const PortalDoAlunoProcessoModal = ({ item }: any) => {
@@ -24,15 +23,17 @@ export const PortalDoAlunoProcessoModal = ({ item }: any) => {
 
   const handleConfirmarNovoProcesso = async () => {
     try {
-      const response = await iniciarAlunoProcesso();
-
-      toast.success(response.data.message);
+      await iniciarAlunoProcesso();
+      setConfirmOpen(false);
+      setOpen(false);
+      navigate('/portal-do-aluno/consultar-processo');
+    } catch (error: any) {
       setConfirmOpen(false);
       setOpen(false);
 
-      navigate('/portal-do-aluno/consultar-processo');
-    } catch (error) {
-      toast.error('Erro ao iniciar o processo.');
+      navigate('/portal-do-aluno/consultar-processo', {
+        state: { toastMessage: 'Existe um processo em andamento' },
+      });
     }
   };
 

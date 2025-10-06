@@ -1,13 +1,23 @@
 import { ArrowLeftIcon } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { DataTable } from '../../components/PortalDoAlunoComponents/PortalDoAlunoDataTable';
 import { alunoProcessosData } from '@/services/ChamadasApi/apiProcessos';
 import TelaCarregando from '@/components/componentesUI/TelaCarregando';
 import PortalDoAlunoProcessosCard from '@/components/PortalDoAlunoComponents/PortalDoAlunoCards/PortalDoAlunoProcessosCard';
 import { colunasAlunoProcessoDataTable } from '@/utils/objetosExportaveis/objetosExportaveisDataTable';
+import { useEffect } from 'react';
+import toast from 'react-hot-toast';
 
 export const PortalDoAlunoConsultarProcessos = () => {
   const { alunoProcessos, loading } = alunoProcessosData();
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.state?.toastMessage) {
+      toast.error(location.state.toastMessage);
+      window.history.replaceState({}, document.title);
+    }
+  }, [location.state]);
 
   if (loading) return <TelaCarregando />;
 
