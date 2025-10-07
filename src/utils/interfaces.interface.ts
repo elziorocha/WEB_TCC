@@ -65,6 +65,7 @@ export interface AlunoMatriculaInterface {
 }
 
 export interface AlunoProcessoInterface {
+  processoId: number;
   formulario_educard: boolean;
   formulario_educard_url?: string;
 

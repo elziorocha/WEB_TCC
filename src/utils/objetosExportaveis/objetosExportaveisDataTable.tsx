@@ -161,66 +161,77 @@ export function getStatusProcessoBadge(valor: string | boolean) {
   );
 }
 
-export const colunasAlunoProcessoDataTable: ColumnDef<AlunoProcessoInterface>[] =
-  [
-    {
-      accessorKey: 'formulario_educard',
-      header: 'Formulário Educard',
-      cell: ({ row }) => (
-        <PortalDoAlunoDocumentoProcesso
-          label="Formulário Educard"
-          status={row.getValue<boolean>('formulario_educard')}
-          arquivoUrl={row.original.formulario_educard_url}
-        />
-      ),
-    },
-    {
-      accessorKey: 'declaracao_matricula',
-      header: 'Declaração de Matrícula',
-      cell: ({ row }) => (
-        <PortalDoAlunoDocumentoProcesso
-          label="Declaração de Matrícula"
-          status={row.getValue<boolean>('declaracao_matricula')}
-          arquivoUrl={row.original.declaracao_matricula_url}
-        />
-      ),
-    },
-    {
-      accessorKey: 'comprovante_pagamento',
-      header: 'Comprovante de Pagamento',
-      cell: ({ row }) => (
-        <PortalDoAlunoDocumentoProcesso
-          label="Comprovante de Pagamento"
-          status={row.getValue<boolean>('comprovante_pagamento')}
-          arquivoUrl={row.original.comprovante_pagamento_url}
-        />
-      ),
-    },
-    {
-      accessorKey: 'comprovante_residencia',
-      header: 'Comprovante de Residência',
-      cell: ({ row }) => (
-        <PortalDoAlunoDocumentoProcesso
-          label="Comprovante de Residência"
-          status={row.getValue<boolean>('comprovante_residencia')}
-          arquivoUrl={row.original.comprovante_residencia_url}
-        />
-      ),
-    },
-    {
-      accessorKey: 'rg_frente_ou_verso',
-      header: 'RG/CPF',
-      cell: ({ row }) => (
-        <PortalDoAlunoDocumentoProcesso
-          label="RG/CPF"
-          status={row.getValue<boolean>('rg_frente_ou_verso')}
-          arquivoUrl={row.original.rg_frente_ou_verso_url}
-        />
-      ),
-    },
-    {
-      accessorKey: 'liberado',
-      header: 'Situação Final',
-      cell: ({ row }) => getStatusProcessoBadge(row.getValue('liberado')),
-    },
-  ];
+export const colunasAlunoProcessoDataTable = (
+  onUpload: (campo: string, arquivo: File) => Promise<void>
+): ColumnDef<AlunoProcessoInterface>[] => [
+  {
+    accessorKey: 'formulario_educard',
+    header: 'Formulário Educard',
+    cell: ({ row }) => (
+      <PortalDoAlunoDocumentoProcesso
+        name="formulario_educard"
+        label="Formulário Educard"
+        status={row.getValue<boolean>('formulario_educard')}
+        arquivoUrl={row.original.formulario_educard_url}
+        onUpload={onUpload}
+      />
+    ),
+  },
+  {
+    accessorKey: 'declaracao_matricula',
+    header: 'Declaração de Matrícula',
+    cell: ({ row }) => (
+      <PortalDoAlunoDocumentoProcesso
+        name="declaracao_matricula"
+        label="Declaração de Matrícula"
+        status={row.getValue<boolean>('declaracao_matricula')}
+        arquivoUrl={row.original.declaracao_matricula_url}
+        onUpload={onUpload}
+      />
+    ),
+  },
+  {
+    accessorKey: 'comprovante_pagamento',
+    header: 'Comprovante de Pagamento',
+    cell: ({ row }) => (
+      <PortalDoAlunoDocumentoProcesso
+        name="comprovante_pagamento"
+        label="Comprovante de Pagamento"
+        status={row.getValue<boolean>('comprovante_pagamento')}
+        arquivoUrl={row.original.comprovante_pagamento_url}
+        onUpload={onUpload}
+      />
+    ),
+  },
+  {
+    accessorKey: 'comprovante_residencia',
+    header: 'Comprovante de Residência',
+    cell: ({ row }) => (
+      <PortalDoAlunoDocumentoProcesso
+        name="comprovante_residencia"
+        label="Comprovante de Residência"
+        status={row.getValue<boolean>('comprovante_residencia')}
+        arquivoUrl={row.original.comprovante_residencia_url}
+        onUpload={onUpload}
+      />
+    ),
+  },
+  {
+    accessorKey: 'rg_frente_ou_verso',
+    header: 'RG/CPF',
+    cell: ({ row }) => (
+      <PortalDoAlunoDocumentoProcesso
+        name="rg_frente_ou_verso"
+        label="RG/CPF"
+        status={row.getValue<boolean>('rg_frente_ou_verso')}
+        arquivoUrl={row.original.rg_frente_ou_verso_url}
+        onUpload={onUpload}
+      />
+    ),
+  },
+  {
+    accessorKey: 'liberado',
+    header: 'Situação Final',
+    cell: ({ row }) => getStatusProcessoBadge(row.getValue('liberado')),
+  },
+];

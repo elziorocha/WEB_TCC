@@ -3,7 +3,7 @@ import { apiError } from '../apiError';
 import {
   getAlunoProcessos,
   iniciarAlunoProcesso,
-  postAlunoProcessos,
+  uploadAlunoProcessos,
 } from '../api';
 import toast from 'react-hot-toast';
 
@@ -18,7 +18,7 @@ export function alunoProcessosData() {
         setAlunoProcessos(dadosAlunoProcessos);
       } catch (err: unknown) {
         console.error(err);
-        apiError('Erro ao carregar dados de processos do aluno');
+        apiError(err, 'Erro ao carregar dados de processos do aluno.');
       } finally {
         setLoading(false);
       }
@@ -35,17 +35,25 @@ export function criarAlunoProcesso() {
 
   const criarProcesso = async (formData: FormData) => {
     setLoading(true);
-
     try {
-      const processo = await iniciarAlunoProcesso();
+      let processo;
 
-      if (!processo.existente) {
-        await postAlunoProcessos(formData);
-        toast.success('Processo iniciado e documentos enviados com sucesso!');
-      } else {
-        await postAlunoProcessos(formData);
-        toast.success('Documentos atualizados no processo existente!');
+      try {
+        // Tenta iniciar um novo processo
+        processo = await iniciarAlunoProcesso();
+        toast.success('Processo iniciado com sucesso!');
+      } catch (err: any) {
+        if (err.response?.status === 409) {
+          // Já existe um processo ativo → apenas faz upload
+          toast('Já existe um processo ativo. Enviando documentos...');
+        } else {
+          throw err;
+        }
       }
+
+      // Envia ou atualiza documentos
+      await uploadAlunoProcessos(formData);
+      toast.success('Documentos enviados/atualizados com sucesso!');
 
       return processo;
     } catch (err: any) {
