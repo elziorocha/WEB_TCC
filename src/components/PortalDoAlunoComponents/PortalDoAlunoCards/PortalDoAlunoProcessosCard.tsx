@@ -1,7 +1,7 @@
 import type { AlunoProcessoInterface } from '@/utils/interfaces.interface';
 import { Card, CardContent, CardHeader, CardTitle } from '../../ui/card';
 import { getStatusProcessoBadge } from '@/utils/objetosExportaveis/objetosExportaveisDataTable';
-import { PortalDoAlunoDocumentoProcesso } from '../Modals/PortalDoAlunoDocumentoProcesso';
+import { PortalDoAlunoDocumentoProcesso } from '../Modals/PortalDoAlunoDocumentoProcessoModal';
 
 export const PortalDoAlunoProcessosCard = ({
   alunoProcesso,

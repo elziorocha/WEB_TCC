@@ -15,7 +15,7 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip';
 import { Badge } from '@/components/ui/badge';
-import { PortalDoAlunoDocumentoProcesso } from '@/components/PortalDoAlunoComponents/Modals/PortalDoAlunoDocumentoProcesso';
+import { PortalDoAlunoDocumentoProcesso } from '@/components/PortalDoAlunoComponents/Modals/PortalDoAlunoDocumentoProcessoModal';
 
 export function BadgeCartao({ tipo }: { tipo: TipoCartao }) {
   const badgeStyle: Record<TipoCartao, string> = {
