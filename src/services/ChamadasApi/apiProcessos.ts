@@ -36,26 +36,16 @@ export function criarAlunoProcesso() {
   const criarProcesso = async (formData: FormData) => {
     setLoading(true);
     try {
-      let processo;
-
       try {
-        // Tenta iniciar um novo processo
-        processo = await iniciarAlunoProcesso();
+        await iniciarAlunoProcesso();
         toast.success('Processo iniciado com sucesso!');
       } catch (err: any) {
-        if (err.response?.status === 409) {
-          // Já existe um processo ativo → apenas faz upload
-          toast('Já existe um processo ativo. Enviando documentos...');
-        } else {
-          throw err;
-        }
+        apiError(err, 'Erro ao iniciar processo.');
+        return;
       }
 
-      // Envia ou atualiza documentos
       await uploadAlunoProcessos(formData);
       toast.success('Documentos enviados/atualizados com sucesso!');
-
-      return processo;
     } catch (err: any) {
       apiError(err, 'Erro ao criar processo.');
     } finally {

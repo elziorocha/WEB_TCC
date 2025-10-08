@@ -12,29 +12,20 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { criarAlunoProcesso } from '@/services/ChamadasApi/apiProcessos';
 import { Button } from '@/components/ui/button';
-import { iniciarAlunoProcesso } from '@/services/api';
 
 export const PortalDoAlunoProcessoModal = ({ item }: any) => {
   const [open, setOpen] = useState(false);
   const [confirmOpen, setConfirmOpen] = useState(false);
-  const { loading } = criarAlunoProcesso();
+  const { criarProcesso, loading } = criarAlunoProcesso();
 
   const navigate = useNavigate();
 
   const handleConfirmarNovoProcesso = async () => {
-    try {
-      await iniciarAlunoProcesso();
-      setConfirmOpen(false);
-      setOpen(false);
-      navigate('/portal-do-aluno/consultar-processo');
-    } catch (error: any) {
-      setConfirmOpen(false);
-      setOpen(false);
-
-      navigate('/portal-do-aluno/consultar-processo', {
-        state: { toastMessage: 'Existe um processo em andamento' },
-      });
-    }
+    const formData = new FormData();
+    await criarProcesso(formData);
+    setConfirmOpen(false);
+    setOpen(false);
+    navigate('/portal-do-aluno/consultar-processo');
   };
 
   return (
