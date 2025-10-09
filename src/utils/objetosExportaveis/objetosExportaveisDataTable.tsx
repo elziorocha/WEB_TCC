@@ -162,7 +162,8 @@ export function getStatusProcessoBadge(valor: string | boolean) {
 }
 
 export const colunasAlunoProcessoDataTable = (
-  onUpload: (campo: string, arquivo: File) => Promise<void>
+  onUpload: (campo: string, arquivo: File) => Promise<void>,
+  onUpdate?: (campo: string, arquivoUrl: string | null) => void
 ): ColumnDef<AlunoProcessoInterface>[] => [
   {
     accessorKey: 'formulario_educard',
@@ -174,6 +175,7 @@ export const colunasAlunoProcessoDataTable = (
         status={row.getValue<boolean>('formulario_educard')}
         arquivoUrl={row.original.formulario_educard_url}
         onUpload={onUpload}
+        onUpdate={onUpdate}
       />
     ),
   },
@@ -187,6 +189,7 @@ export const colunasAlunoProcessoDataTable = (
         status={row.getValue<boolean>('declaracao_matricula')}
         arquivoUrl={row.original.declaracao_matricula_url}
         onUpload={onUpload}
+        onUpdate={onUpdate}
       />
     ),
   },
@@ -200,6 +203,7 @@ export const colunasAlunoProcessoDataTable = (
         status={row.getValue<boolean>('comprovante_pagamento')}
         arquivoUrl={row.original.comprovante_pagamento_url}
         onUpload={onUpload}
+        onUpdate={onUpdate}
       />
     ),
   },
@@ -213,6 +217,7 @@ export const colunasAlunoProcessoDataTable = (
         status={row.getValue<boolean>('comprovante_residencia')}
         arquivoUrl={row.original.comprovante_residencia_url}
         onUpload={onUpload}
+        onUpdate={onUpdate}
       />
     ),
   },
@@ -226,6 +231,7 @@ export const colunasAlunoProcessoDataTable = (
         status={row.getValue<boolean>('rg_frente_ou_verso')}
         arquivoUrl={row.original.rg_frente_ou_verso_url}
         onUpload={onUpload}
+        onUpdate={onUpdate}
       />
     ),
   },

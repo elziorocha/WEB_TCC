@@ -29,6 +29,7 @@ export const PortalDoAlunoDocumentoProcesso = ({
   const isPdf = urlLocal?.match(/\.pdf$/i);
 
   const handleClick = () => setOpen(true);
+
   const handleArquivoSelecionado = (e: React.ChangeEvent<HTMLInputElement>) => {
     const arquivo = e.target.files?.[0];
     if (arquivo) setArquivoSelecionado(arquivo);
@@ -41,9 +42,8 @@ export const PortalDoAlunoDocumentoProcesso = ({
     setLoading(true);
     try {
       await onUpload(name, arquivoSelecionado);
-      const novoUrl = URL.createObjectURL(arquivoSelecionado);
-      setUrlLocal(novoUrl);
-      onUpdate?.(name, novoUrl);
+      onUpdate?.(name, 'pending');
+
       toast.success('Arquivo enviado com sucesso!');
       setArquivoSelecionado(null);
       setOpen(false);
@@ -59,7 +59,9 @@ export const PortalDoAlunoDocumentoProcesso = ({
     try {
       await deleteAlunoArquivoProcesso(name);
       setUrlLocal(null);
+
       onUpdate?.(name, null);
+
       toast.success(`Arquivo de "${label}" removido com sucesso!`);
       setOpen(false);
     } catch (error) {
@@ -67,6 +69,10 @@ export const PortalDoAlunoDocumentoProcesso = ({
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleCancelarSelecao = () => {
+    setArquivoSelecionado(null);
   };
 
   return (
@@ -131,6 +137,25 @@ export const PortalDoAlunoDocumentoProcesso = ({
                       </div>
                     </div>
                   )}
+
+                  {!isPdf && !isImage && (
+                    <div className="relative flex h-full w-full items-center justify-center">
+                      <div className="flex flex-col items-center justify-center gap-4">
+                        <FileText className="size-16 text-gray-400" />
+                        <p className="text-gray-600">
+                          Arquivo não visualizável
+                        </p>
+                        <button
+                          onClick={handleRemoverArquivo}
+                          disabled={loading}
+                          className="flex items-center gap-2 rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white hover:bg-red-700 disabled:bg-red-400"
+                        >
+                          <Trash2 className="size-4" />
+                          {loading ? 'Removendo...' : 'Remover Arquivo'}
+                        </button>
+                      </div>
+                    </div>
+                  )}
                 </div>
               ) : (
                 <div className="flex h-full flex-col items-center justify-center gap-4">
@@ -160,11 +185,11 @@ export const PortalDoAlunoDocumentoProcesso = ({
                         {loading ? 'Enviando...' : 'Enviar'}
                       </button>
                       <button
-                        onClick={() => setArquivoSelecionado(null)}
+                        onClick={handleCancelarSelecao}
                         disabled={loading}
                         className="rounded-lg bg-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-400"
                       >
-                        Remover
+                        Cancelar
                       </button>
                     </div>
                   )}

@@ -1,16 +1,18 @@
 import { ArrowLeftIcon } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { DataTable } from '../../components/PortalDoAlunoComponents/PortalDoAlunoDataTable';
-import { alunoProcessosData } from '@/services/ChamadasApi/apiProcessos';
 import TelaCarregando from '@/components/componentesUI/TelaCarregando';
 import { colunasAlunoProcessoDataTable } from '@/utils/objetosExportaveis/objetosExportaveisDataTable';
 import { useEffect } from 'react';
 import toast from 'react-hot-toast';
 import { PortalDoAlunoProcessosCard } from '@/components/PortalDoAlunoComponents/PortalDoAlunoCards/PortalDoAlunoProcessosCard';
 import { uploadAlunoProcessos } from '@/services/api';
+import { useProcessos } from '@/services/hooks/useProcessos';
+import { apiError } from '@/services/apiError';
 
 export const PortalDoAlunoConsultarProcessos = () => {
-  const { alunoProcessos, loading } = alunoProcessosData();
+  const { processos, loading, carregarProcessos, atualizarProcesso } =
+    useProcessos();
   const location = useLocation();
 
   const handleUpload = async (campo: string, arquivo: File) => {
@@ -19,11 +21,19 @@ export const PortalDoAlunoConsultarProcessos = () => {
       formData.append(campo, arquivo);
 
       await uploadAlunoProcessos(formData);
+      await carregarProcessos();
 
       toast.success(`${campo.replaceAll('_', ' ')} enviado com sucesso!`);
     } catch (err) {
-      console.error(err);
-      toast.error('Erro ao enviar o arquivo.');
+      apiError(err, 'Erro ao enviar o arquivo.');
+    }
+  };
+
+  const handleUpdate = async (campo: string, novaUrl: string | null) => {
+    if (novaUrl === 'pending') {
+      await carregarProcessos();
+    } else {
+      atualizarProcesso(campo, false, null);
     }
   };
 
@@ -49,10 +59,13 @@ export const PortalDoAlunoConsultarProcessos = () => {
       </Link>
 
       <DataTable
-        columns={colunasAlunoProcessoDataTable(handleUpload)} // Chamando a função passando handleUpload
-        data={alunoProcessos}
+        columns={colunasAlunoProcessoDataTable(handleUpload, handleUpdate)}
+        data={processos}
         renderizarMobile={(alunoProcesso) => (
-          <PortalDoAlunoProcessosCard alunoProcesso={alunoProcesso} />
+          <PortalDoAlunoProcessosCard
+            alunoProcesso={alunoProcesso}
+            onUpdate={handleUpdate}
+          />
         )}
       />
     </main>

@@ -4,24 +4,27 @@ import { getStatusProcessoBadge } from '@/utils/objetosExportaveis/objetosExport
 import { PortalDoAlunoDocumentoProcesso } from '../Modals/PortalDoAlunoDocumentoProcessoModal';
 import toast from 'react-hot-toast';
 import { uploadAlunoProcessos } from '@/services/api';
+import { apiError } from '@/services/apiError';
 
 export const PortalDoAlunoProcessosCard = ({
   alunoProcesso,
+  onUpdate,
 }: {
   alunoProcesso: AlunoProcessoInterface;
+  onUpdate?: (name: string, arquivoUrl: string | null) => void;
 }) => {
   const handleUpload = async (campo: string, arquivo: File) => {
     try {
       const formData = new FormData();
       formData.append(campo, arquivo);
-
-      console.log('📤 FormData enviado:', campo, arquivo);
       await uploadAlunoProcessos(formData);
+
+      const novoUrl = URL.createObjectURL(arquivo);
+      onUpdate?.(campo, novoUrl);
 
       toast.success(`${campo.replaceAll('_', ' ')} enviado com sucesso!`);
     } catch (error) {
-      console.error('❌ Erro ao enviar arquivo:', error);
-      toast.error('Erro ao enviar o arquivo.');
+      apiError(error, 'Erro ao enviar o arquivo.');
     }
   };
 
@@ -65,7 +68,7 @@ export const PortalDoAlunoProcessosCard = ({
             },
             {
               name: 'rg_frente_ou_verso',
-              label: 'RG/CPF',
+              label: 'RG Frente e Verso',
               status: alunoProcesso.rg_frente_ou_verso,
               url: alunoProcesso.rg_frente_ou_verso_url,
             },
@@ -77,9 +80,9 @@ export const PortalDoAlunoProcessosCard = ({
               status={doc.status}
               arquivoUrl={doc.url}
               onUpload={(name, file) => {
-                console.log('onUpload chamado:', name, file);
                 return handleUpload(name, file);
               }}
+              onUpdate={onUpdate}
             />
           ))}
         </div>
