@@ -184,3 +184,20 @@ export const uploadAlunoProcessos = async (formData: FormData) => {
 
   return response.data;
 };
+
+export const deleteAlunoArquivoProcesso = async (campo: string) => {
+  const token = Cookies.get('token');
+  if (!token) throw new Error('Usuário não autenticado');
+
+  const response = await instanciaAPI.delete(
+    `/aluno/processo/arquivo/${campo}`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      withCredentials: true,
+    }
+  );
+
+  return response.data;
+};

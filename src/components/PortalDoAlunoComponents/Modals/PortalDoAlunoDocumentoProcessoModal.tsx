@@ -1,8 +1,10 @@
-import { FileText, Upload, X } from 'lucide-react';
+import { FileText, Upload, X, Trash2 } from 'lucide-react';
 import { getStatusProcessoBadge } from '@/utils/objetosExportaveis/objetosExportaveisDataTable';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 import type { PortalDoAlunoDocumentoProcessoInterface } from '@/utils/interfaces.interface';
+import { deleteAlunoArquivoProcesso } from '@/services/api';
+import { apiError } from '@/services/apiError';
 
 export const PortalDoAlunoDocumentoProcesso = ({
   label,
@@ -10,59 +12,65 @@ export const PortalDoAlunoDocumentoProcesso = ({
   arquivoUrl,
   name,
   onUpload,
+  onUpdate,
 }: PortalDoAlunoDocumentoProcessoInterface & {
   name: string;
   onUpload?: (name: string, file: File) => Promise<void> | void;
+  onUpdate?: (name: string, arquivoUrl: string | null) => void;
 }) => {
   const [open, setOpen] = useState(false);
   const [arquivoSelecionado, setArquivoSelecionado] = useState<File | null>(
     null
   );
   const [loading, setLoading] = useState(false);
+  const [urlLocal, setUrlLocal] = useState<string | null>(arquivoUrl ?? null);
 
-  const isImage = arquivoUrl?.match(/\.(jpg|jpeg|png)$/i);
-  const isPdf = arquivoUrl?.match(/\.pdf$/i);
+  const isImage = urlLocal?.match(/\.(jpg|jpeg|png)$/i);
+  const isPdf = urlLocal?.match(/\.pdf$/i);
 
   const handleClick = () => setOpen(true);
-
   const handleArquivoSelecionado = (e: React.ChangeEvent<HTMLInputElement>) => {
     const arquivo = e.target.files?.[0];
-    console.log('Arquivo selecionado:', arquivo);
     if (arquivo) setArquivoSelecionado(arquivo);
   };
 
   const handleUploadClick = async () => {
-    console.log('Arquivo antes do upload:', arquivoSelecionado);
-    console.log('Função onUpload:', onUpload);
-
-    if (!arquivoSelecionado) {
-      toast.error('Selecione um arquivo primeiro.');
-      return;
-    }
-
-    if (!onUpload) {
-      toast.error('Função de upload não configurada.');
-      return;
-    }
+    if (!arquivoSelecionado) return apiError('Selecione um arquivo primeiro.');
+    if (!onUpload) return apiError('Função de upload não configurada.');
 
     setLoading(true);
     try {
       await onUpload(name, arquivoSelecionado);
+      const novoUrl = URL.createObjectURL(arquivoSelecionado);
+      setUrlLocal(novoUrl);
+      onUpdate?.(name, novoUrl);
       toast.success('Arquivo enviado com sucesso!');
       setArquivoSelecionado(null);
       setOpen(false);
     } catch (error) {
-      console.error('Erro no upload:', error);
-      toast.error('Erro ao enviar o arquivo.');
+      apiError(error, 'Erro ao enviar o arquivo.');
     } finally {
       setLoading(false);
     }
   };
 
-  const removerArquivo = () => setArquivoSelecionado(null);
+  const handleRemoverArquivo = async () => {
+    setLoading(true);
+    try {
+      await deleteAlunoArquivoProcesso(name);
+      setUrlLocal(null);
+      onUpdate?.(name, null);
+      toast.success(`Arquivo de "${label}" removido com sucesso!`);
+      setOpen(false);
+    } catch (error) {
+      apiError(error, 'Erro ao remover o arquivo.');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
-    <div className="flex flex-row items-center justify-between sm:flex-col sm:gap-1">
+    <div className="flex flex-row items-center justify-between transition-all sm:flex-col sm:gap-1">
       <div className="text-muted-foreground flex items-center gap-2">
         <FileText
           className={`size-5 cursor-pointer ${status ? 'text-primary' : 'text-zinc-400'}`}
@@ -75,7 +83,6 @@ export const PortalDoAlunoDocumentoProcesso = ({
       {open && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
           <div className="flex h-[90%] w-[90%] max-w-3xl flex-col rounded-xl bg-white p-4 shadow-lg">
-            {/* CABEÇALHO */}
             <header className="flex items-center justify-between border-b pb-2">
               <h2 className="text-lg font-semibold text-gray-700">{label}</h2>
               <button
@@ -86,24 +93,45 @@ export const PortalDoAlunoDocumentoProcesso = ({
               </button>
             </header>
 
-            {/* CONTEÚDO */}
             <div className="flex-1 overflow-hidden py-4">
-              {arquivoUrl ? (
-                <>
+              {urlLocal ? (
+                <div className="relative flex h-full w-full items-center justify-center rounded-lg bg-gray-100">
                   {isPdf && (
-                    <iframe
-                      src={arquivoUrl}
-                      className="h-full w-full rounded border"
-                    />
+                    <div className="relative flex h-full w-full items-center justify-center">
+                      <iframe
+                        src={`${urlLocal}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
+                        className="h-full w-full rounded bg-gray-100 shadow-md"
+                        style={{
+                          border: 'none',
+                          overflow: 'hidden',
+                          scrollbarWidth: 'none',
+                        }}
+                      />
+                      <div
+                        className="absolute inset-0 flex cursor-pointer items-center justify-center rounded bg-black/40 opacity-0 transition-opacity hover:opacity-100"
+                        onClick={handleRemoverArquivo}
+                      >
+                        <Trash2 className="size-8 text-white" />
+                      </div>
+                    </div>
                   )}
+
                   {isImage && (
-                    <img
-                      src={arquivoUrl}
-                      alt={label}
-                      className="h-full w-full rounded object-contain"
-                    />
+                    <div className="relative flex h-full w-full items-center justify-center">
+                      <img
+                        src={urlLocal}
+                        alt={label}
+                        className="max-h-full max-w-full rounded object-contain shadow-md"
+                      />
+                      <div
+                        className="absolute inset-0 flex cursor-pointer items-center justify-center rounded bg-black/40 opacity-0 transition-opacity hover:opacity-100"
+                        onClick={handleRemoverArquivo}
+                      >
+                        <Trash2 className="size-8 text-white" />
+                      </div>
+                    </div>
                   )}
-                </>
+                </div>
               ) : (
                 <div className="flex h-full flex-col items-center justify-center gap-4">
                   <label className="relative flex w-64 flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 p-6 text-center hover:bg-gray-50">
@@ -132,7 +160,8 @@ export const PortalDoAlunoDocumentoProcesso = ({
                         {loading ? 'Enviando...' : 'Enviar'}
                       </button>
                       <button
-                        onClick={removerArquivo}
+                        onClick={() => setArquivoSelecionado(null)}
+                        disabled={loading}
                         className="rounded-lg bg-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-400"
                       >
                         Remover
@@ -143,11 +172,10 @@ export const PortalDoAlunoDocumentoProcesso = ({
               )}
             </div>
 
-            {/* BOTÃO FECHAR */}
-            <footer className="mt-4 border-t pt-3">
+            <footer className="mt-4 flex justify-center border-t pt-3">
               <button
                 onClick={() => setOpen(false)}
-                className="bg-primary mt-1 cursor-pointer self-center rounded px-5 py-2 text-base font-medium text-white"
+                className="bg-primary mt-1 cursor-pointer rounded px-5 py-2 text-base font-medium text-white"
               >
                 Fechar
               </button>

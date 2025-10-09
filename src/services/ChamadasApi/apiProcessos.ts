@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { apiError } from '../apiError';
 import {
+  deleteAlunoArquivoProcesso,
   getAlunoProcessos,
   iniciarAlunoProcesso,
   uploadAlunoProcessos,
@@ -54,4 +55,22 @@ export function criarAlunoProcesso() {
   };
 
   return { criarProcesso, loading };
+}
+
+export function removerArquivoProcesso() {
+  const [loading, setLoading] = useState(false);
+
+  const removerArquivo = async (campo: string) => {
+    setLoading(true);
+    try {
+      await deleteAlunoArquivoProcesso(campo);
+      toast.success(`Arquivo '${campo}' removido com sucesso!`);
+    } catch (err: any) {
+      apiError(err, 'Erro ao remover arquivo.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return { removerArquivo, loading };
 }
