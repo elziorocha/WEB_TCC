@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import {
   Table,
   TableBody,
@@ -32,12 +32,18 @@ export default function HorariosDataTable() {
     return (
       <main className="container mx-auto flex min-h-screen flex-col gap-6 px-4 py-16">
         <section className="flex flex-col gap-4 text-center">
-          <h1 className="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-4xl font-extrabold tracking-tight text-transparent sm:text-5xl">
+          <h1 className="from-tertiary to-quarter bg-gradient-to-r bg-clip-text py-2 text-4xl font-extrabold tracking-tight text-transparent sm:text-5xl">
             Horários de Ônibus
           </h1>
-          <p className="text-base text-gray-500 sm:text-lg">
+          <p className="text-base text-zinc-600 sm:text-lg">
             Não há dados disponíveis para esta linha.
           </p>
+          <Link
+            to="/horarios-itinerarios"
+            className="bg-tertiary text-whiteText hover:bg-secondary mt-6 cursor-pointer self-center rounded-lg px-8 py-1.5 text-lg font-medium transition-colors"
+          >
+            Voltar
+          </Link>
         </section>
       </main>
     );
