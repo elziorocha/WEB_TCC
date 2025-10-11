@@ -4,7 +4,7 @@ import {
   dispararToastAvisoPerfil,
 } from '@/utils/objetosExportaveis/objetosExportaveisReact';
 import { Card, CardContent } from '../ui/card';
-import { AlertCircle, IdCard, Home } from 'lucide-react';
+import { AlertCircle, IdCard, Home, Users } from 'lucide-react';
 import { DocumentoModal } from './Modals/PortalDoAlunoDocumentoAlunoModal';
 import { EnderecoModal } from './Modals/PortalDoAlunoEnderecoAlunoModal';
 import { ResponsavelModal } from './Modals/PortalDoAlunoResponsavelAlunoModal';
@@ -12,6 +12,8 @@ import { ResponsavelModal } from './Modals/PortalDoAlunoResponsavelAlunoModal';
 export const PortalDoAlunoPerfilCards = ({ aluno }: any) => {
   const [alunoData, setAlunoData] = useState(aluno);
   const cards = alunoPerfilCards(alunoData);
+
+  console.log(alunoData);
 
   const [modalDocumentoAberto, setModalDocumentoAberto] = useState(false);
   const [modalEnderecoAberto, setModalEnderecoAberto] = useState(false);
@@ -33,15 +35,17 @@ export const PortalDoAlunoPerfilCards = ({ aluno }: any) => {
                   <h2 className="text-base font-semibold text-green-700">
                     Documentos Pessoais
                   </h2>
-                  <p className="text-muted-foreground text-xs">
-                    RG: {alunoData.aluno_documento.rg}
-                  </p>
-                  <p className="text-muted-foreground text-xs">
-                    CPF: {alunoData.aluno_documento.cpf}
-                  </p>
-                  <p className="text-muted-foreground text-xs">
-                    Órgão emissor: {alunoData.aluno_documento.orgao_emissor}
-                  </p>
+                  <div className="flex flex-col gap-1.5">
+                    <p className="text-muted-foreground text-xs">
+                      RG: {alunoData.aluno_documento.rg}
+                    </p>
+                    <p className="text-muted-foreground text-xs">
+                      CPF: {alunoData.aluno_documento.cpf}
+                    </p>
+                    <p className="text-muted-foreground text-xs">
+                      Órgão emissor: {alunoData.aluno_documento.orgao_emissor}
+                    </p>
+                  </div>
                 </section>
               </section>
             </CardContent>
@@ -61,17 +65,53 @@ export const PortalDoAlunoPerfilCards = ({ aluno }: any) => {
                   <h2 className="text-base font-semibold text-green-700">
                     Endereço
                   </h2>
-                  <p className="text-muted-foreground text-xs">
-                    {alunoData.aluno_endereco.rua}, nº{' '}
-                    {alunoData.aluno_endereco.numero}
-                  </p>
-                  <p className="text-muted-foreground text-xs">
-                    {alunoData.aluno_endereco.bairro} -{' '}
-                    {alunoData.aluno_endereco.cidade}
-                  </p>
-                  <p className="text-muted-foreground text-xs">
-                    CEP: {alunoData.aluno_endereco.cep}
-                  </p>
+                  <div className="flex flex-col gap-1.5">
+                    <p className="text-muted-foreground text-xs">
+                      {alunoData.aluno_endereco.rua}, nº{' '}
+                      {alunoData.aluno_endereco.numero}
+                    </p>
+                    <p className="text-muted-foreground text-xs">
+                      {alunoData.aluno_endereco.bairro} -{' '}
+                      {alunoData.aluno_endereco.cidade}
+                    </p>
+                    <p className="text-muted-foreground text-xs">
+                      CEP: {alunoData.aluno_endereco.cep}
+                    </p>
+                  </div>
+                </section>
+              </section>
+            </CardContent>
+          </Card>
+        </main>
+      )}
+
+      {alunoData?.aluno_responsavel && (
+        <main>
+          <Card className="flex flex-col rounded-2xl border-none px-4 py-3 shadow-sm transition-all hover:bg-zinc-100">
+            <CardContent className="flex items-center justify-between p-0">
+              <section className="flex gap-2">
+                <div className="flex size-12 items-center justify-center self-center rounded-full bg-green-100 shadow-sm">
+                  <Users className="size-6 text-green-600" />
+                </div>
+                <section className="flex flex-col gap-0.5">
+                  <h2 className="text-base font-semibold text-green-700">
+                    Responsáveis
+                  </h2>
+                  <div className="flex flex-col gap-1.5">
+                    <p className="text-muted-foreground text-xs">
+                      CPF da Mãe: {alunoData.aluno_responsavel.cpf_mae}
+                    </p>
+                    <p className="text-muted-foreground text-xs">
+                      Nome da Mãe: {alunoData.aluno_responsavel.nome_mae}
+                    </p>
+                    <p className="text-muted-foreground text-xs">
+                      Nome do Pai: {alunoData.aluno_responsavel.nome_pai}
+                    </p>
+                    <p className="text-muted-foreground text-xs">
+                      Responsável:{' '}
+                      {alunoData.aluno_responsavel.nome_responsavel}
+                    </p>
+                  </div>
                 </section>
               </section>
             </CardContent>
