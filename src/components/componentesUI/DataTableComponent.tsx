@@ -52,12 +52,23 @@ export default function HorariosDataTable() {
   const colunas = Object.keys(data[0]);
 
   return (
-    <main className="container mx-auto flex min-h-screen flex-col gap-8 px-4 py-12">
-      <section className="flex flex-col gap-3 text-center">
-        <h1 className="from-tertiary to-quarter bg-gradient-to-r bg-clip-text text-4xl font-extrabold tracking-tight text-transparent capitalize sm:text-5xl">
-          Linha {linha?.replace('-', ' ')}
-        </h1>
-        <p className="text-base font-medium text-gray-600 sm:text-lg">
+    <main className="container mx-auto flex min-h-screen flex-col gap-8 px-4 py-4 sm:py-12">
+      <section className="flex flex-col text-center sm:gap-3">
+        <div className="flex flex-col items-center justify-between gap-1 sm:mt-6 sm:flex-row sm:gap-0">
+          <Link
+            to="/horarios-itinerarios"
+            className="bg-tertiary text-whiteText hover:bg-secondary self-start rounded-lg px-8 py-1.5 text-lg font-medium transition-colors sm:self-center"
+          >
+            Voltar
+          </Link>
+
+          <h1 className="from-tertiary to-quarter mt-3 flex-1 bg-gradient-to-r bg-clip-text text-center text-4xl font-extrabold tracking-tight text-transparent capitalize sm:mt-0 sm:text-5xl">
+            Linha {linha?.replace('-', ' ')}
+          </h1>
+
+          <div className="sm:w-[120px]" />
+        </div>
+        <p className="text-base font-medium text-zinc-600 sm:text-lg">
           Confira os horários de partida e chegada atualizados
         </p>
       </section>
