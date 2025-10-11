@@ -17,10 +17,18 @@ import {
 import { Badge } from '@/components/ui/badge';
 import { PortalDoAlunoDocumentoProcesso } from '@/components/PortalDoAlunoComponents/Modals/PortalDoAlunoDocumentoProcessoModal';
 
-export function BadgeCartao({ tipo }: { tipo: TipoCartao }) {
+export function BadgeCartao({ tipo }: { tipo: TipoCartao | null | undefined }) {
+  if (!tipo) {
+    return (
+      <span className="text-whiteText inline-flex items-center rounded-full border border-red-700 bg-red-500 px-4 py-1 text-sm font-medium">
+        Sem Cartão Definido
+      </span>
+    );
+  }
+
   const badgeStyle: Record<TipoCartao, string> = {
-    EDUCARD: 'bg-quarter text-white border-quarter',
-    VEM: 'bg-orange-600 text-white border-orange-600',
+    EDUCARD: 'bg-quarter text-white border-secondary',
+    VEM: 'bg-orange-600 text-white border-orange-700',
   };
 
   const style = badgeStyle[tipo] ?? 'bg-gray-100 text-gray-800 border-gray-200';

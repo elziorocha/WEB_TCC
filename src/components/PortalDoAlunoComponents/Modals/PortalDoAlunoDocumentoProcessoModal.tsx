@@ -44,7 +44,6 @@ export const PortalDoAlunoDocumentoProcesso = ({
       await onUpload(name, arquivoSelecionado);
       onUpdate?.(name, 'pending');
 
-      toast.success('Arquivo enviado com sucesso!');
       setArquivoSelecionado(null);
       setOpen(false);
     } catch (error) {

@@ -13,8 +13,6 @@ export const PortalDoAlunoPerfilCards = ({ aluno }: any) => {
   const [alunoData, setAlunoData] = useState(aluno);
   const cards = alunoPerfilCards(alunoData);
 
-  console.log(alunoData);
-
   const [modalDocumentoAberto, setModalDocumentoAberto] = useState(false);
   const [modalEnderecoAberto, setModalEnderecoAberto] = useState(false);
   const [modalResponsavelAberto, setModalResponsavelAberto] = useState(false);

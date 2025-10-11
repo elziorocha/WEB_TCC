@@ -37,7 +37,7 @@ export function PortalDoAlunoPerfil() {
               <User className="text-secondary size-6" />
               <span className="text-lg font-semibold">Perfil do Aluno</span>
             </div>
-            {aluno?.tipo_cartao && <BadgeCartao tipo={aluno.tipo_cartao} />}
+            <BadgeCartao tipo={aluno?.tipo_cartao} />
           </CardTitle>
         </CardHeader>
 
