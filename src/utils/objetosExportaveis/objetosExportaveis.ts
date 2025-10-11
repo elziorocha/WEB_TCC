@@ -12,7 +12,7 @@ import {
   TicketIcon,
   FileInputIcon,
   UniversityIcon,
-  BookAlertIcon,
+  CogIcon,
 } from 'lucide-react';
 
 export const cardsInicio = [
@@ -73,8 +73,8 @@ export const cardsDashboardPortalAluno = [
   },
   {
     key: '4',
-    icon: BookAlertIcon,
-    label: 'Tutorial',
+    icon: CogIcon,
+    label: 'Configurações',
   },
 ];
 
