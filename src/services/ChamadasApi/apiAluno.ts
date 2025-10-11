@@ -7,21 +7,33 @@ export function alunoData() {
   const [aluno, setAluno] = useState<AlunoInterface | null>(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchAluno = async () => {
-      try {
-        const dadosAluno = await getAluno();
-        setAluno(dadosAluno);
-      } catch (err: unknown) {
-        console.error(err);
-        apiError('Erro ao carregar dados do aluno');
-      } finally {
-        setLoading(false);
-      }
-    };
+  const carregarAluno = async () => {
+    try {
+      setLoading(true);
+      const dadosAluno = await getAluno();
+      setAluno(dadosAluno);
+      return dadosAluno;
+    } catch (err: unknown) {
+      console.error(err);
+      apiError('Erro ao carregar dados do aluno');
+      return null;
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    fetchAluno();
+  useEffect(() => {
+    carregarAluno();
   }, []);
 
-  return { aluno, loading };
+  const atualizarAluno = (alunoAtualizado: AlunoInterface) => {
+    setAluno(alunoAtualizado);
+  };
+
+  return {
+    aluno,
+    loading,
+    carregarAluno,
+    atualizarAluno,
+  };
 }

@@ -1,7 +1,11 @@
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { alunoData } from '@/services/ChamadasApi/apiAluno';
+import { useAlunoTipoCartao } from '@/services/hooks/useTipoCartao';
+import type { TipoCartao } from '@/utils/intarfaces-enum';
 import TelaCarregando from '@/components/componentesUI/TelaCarregando';
 import { PortalDoAlunoPerfilCards } from '@/components/PortalDoAlunoComponents/PortalDoAlunoPerfilCards';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { alunoData } from '@/services/ChamadasApi/apiAluno';
 import { BadgeCartao } from '@/utils/objetosExportaveis/objetosExportaveisDataTable';
 import {
   User,
@@ -10,13 +14,36 @@ import {
   Calendar,
   UserCircle,
   ArrowLeftIcon,
+  CreditCardIcon,
+  AlertTriangleIcon,
 } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+} from '@/components/ui/dialog';
+import { Button } from '@/components/ui/button';
 
 export function PortalDoAlunoPerfil() {
-  const { aluno, loading: loadingAluno } = alunoData();
+  const { aluno, loading: loadingAluno, atualizarAluno } = alunoData();
+  const [openDialog, setOpenDialog] = useState(false);
+
+  const { tipoCartao, setTipoCartao, salvarTipoCartao, loadingCartao } =
+    useAlunoTipoCartao(aluno, atualizarAluno);
 
   if (loadingAluno) return <TelaCarregando />;
+
+  const mostrarSelect = !aluno?.tipo_cartao;
 
   return (
     <main className="flex flex-col gap-4 p-3">
@@ -37,7 +64,13 @@ export function PortalDoAlunoPerfil() {
               <User className="text-secondary size-6" />
               <span className="text-lg font-semibold">Perfil do Aluno</span>
             </div>
-            <BadgeCartao tipo={aluno?.tipo_cartao} />
+            {aluno?.tipo_cartao ? (
+              <BadgeCartao tipo={aluno.tipo_cartao} />
+            ) : (
+              <span className="rounded-full border border-gray-300 bg-gray-200 px-4 py-1 text-sm font-medium text-gray-800">
+                Sem Cartão
+              </span>
+            )}
           </CardTitle>
         </CardHeader>
 
@@ -66,7 +99,7 @@ export function PortalDoAlunoPerfil() {
                 <p className="ml-0.5 font-semibold break-all">{aluno?.email}</p>
               </section>
 
-              <div className="space-y-1">
+              <section className="space-y-1">
                 <div className="flex items-center gap-2">
                   <Phone className="text-muted-foreground size-4" />
                   <span className="text-muted-foreground font-medium">
@@ -74,11 +107,11 @@ export function PortalDoAlunoPerfil() {
                   </span>
                 </div>
                 <p className="ml-0.5 font-semibold">{aluno?.telefone}</p>
-              </div>
+              </section>
             </section>
 
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              <div className="space-y-1">
+              <section className="space-y-1">
                 <div className="flex items-center gap-2">
                   <Calendar className="text-muted-foreground size-4" />
                   <span className="text-muted-foreground font-medium">
@@ -90,7 +123,76 @@ export function PortalDoAlunoPerfil() {
                     'pt-BR'
                   )}
                 </p>
-              </div>
+              </section>
+
+              {mostrarSelect && (
+                <section className="space-y-2">
+                  <div className="flex items-center gap-2">
+                    <CreditCardIcon className="text-muted-foreground size-4" />
+                    <span className="text-muted-foreground font-medium">
+                      Tipo do Cartão:
+                    </span>
+                  </div>
+
+                  <section className="flex gap-2">
+                    <Select
+                      value={tipoCartao || ''}
+                      onValueChange={(value) =>
+                        setTipoCartao(value as TipoCartao | '')
+                      }
+                    >
+                      <SelectTrigger className="min-w-30 font-medium">
+                        <SelectValue placeholder="Selecione..." />
+                      </SelectTrigger>
+                      <SelectContent className="border-none font-medium">
+                        <SelectItem value="EDUCARD">EDUCARD</SelectItem>
+                        <SelectItem value="VEM">VEM</SelectItem>
+                      </SelectContent>
+                    </Select>
+
+                    <Button
+                      onClick={() => setOpenDialog(true)}
+                      disabled={loadingCartao || !tipoCartao}
+                      className="bg-secondary hover:bg-quarter cursor-pointer"
+                    >
+                      Salvar
+                    </Button>
+                  </section>
+
+                  <Dialog open={openDialog} onOpenChange={setOpenDialog}>
+                    <DialogContent className="border-none sm:max-w-[425px]">
+                      <DialogHeader>
+                        <DialogTitle className="flex items-center gap-2 text-xl">
+                          <AlertTriangleIcon className="size-8 text-red-600" />
+                          Aviso
+                        </DialogTitle>
+                        <DialogDescription className="mt-2">
+                          Deseja realmente salvar o tipo de cartão selecionado?
+                        </DialogDescription>
+                      </DialogHeader>
+                      <DialogFooter className="flex justify-end gap-2">
+                        <Button
+                          variant="outline"
+                          onClick={() => setOpenDialog(false)}
+                          className="text-whiteText hover:text-whiteText cursor-pointer border-none bg-red-700 hover:bg-red-600"
+                        >
+                          Fechar
+                        </Button>
+                        <Button
+                          onClick={async () => {
+                            await salvarTipoCartao();
+                            setOpenDialog(false);
+                          }}
+                          disabled={loadingCartao || !tipoCartao}
+                          className="bg-secondary hover:bg-quarter cursor-pointer"
+                        >
+                          Salvar Cartão
+                        </Button>
+                      </DialogFooter>
+                    </DialogContent>
+                  </Dialog>
+                </section>
+              )}
             </div>
           </div>
         </CardContent>
