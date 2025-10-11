@@ -11,7 +11,7 @@ const ServicosCardsInicio = () => {
         {cardsInicio.map((item) => (
           <section
             key={item.key}
-            className="hover:bg-tertiary/5 flex w-36 flex-col gap-4 rounded-2xl bg-white px-2 py-4 shadow-md transition-colors md:w-72"
+            className="flex w-36 flex-col gap-4 rounded-2xl bg-white px-2 py-4 shadow-md transition-colors hover:bg-zinc-100 md:w-72"
           >
             <div className="bg-secondary/10 flex items-center justify-center self-center rounded-full p-3 shadow-md">
               <item.icon className="text-secondary size-7" />

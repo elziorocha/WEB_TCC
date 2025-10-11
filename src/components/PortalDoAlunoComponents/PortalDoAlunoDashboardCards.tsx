@@ -18,7 +18,7 @@ export const PortalDoAlunoDashboardCards = ({
             <Link
               key={item.key}
               to="/portal-do-aluno/aluno-perfil"
-              className="hover:bg-tertiary/5 flex min-h-36 w-36 flex-col gap-4 rounded-2xl bg-white px-2 py-4 shadow-md transition-colors"
+              className="flex min-h-36 w-36 flex-col gap-4 rounded-2xl bg-white px-2 py-4 shadow-md transition-colors hover:bg-zinc-100"
             >
               <div className="bg-secondary/10 flex items-center justify-center self-center rounded-full p-3 shadow-md">
                 <item.icon className="text-secondary size-7" />
@@ -44,7 +44,7 @@ export const PortalDoAlunoDashboardCards = ({
         return (
           <section
             key={item.key}
-            className="hover:bg-tertiary/5 flex min-h-36 w-36 cursor-pointer flex-col gap-4 rounded-2xl bg-white px-2 py-4 shadow-md transition-colors"
+            className="flex min-h-36 w-36 cursor-pointer flex-col gap-4 rounded-2xl bg-white px-2 py-4 shadow-md transition-colors hover:bg-zinc-100"
           >
             <div className="bg-secondary/10 flex items-center justify-center self-center rounded-full p-3 shadow-md">
               <item.icon className="text-secondary size-7" />
