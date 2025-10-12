@@ -6,6 +6,7 @@ export const DatePickerInput = ({
   value,
   onChange,
   required = false,
+  placeholder,
 }: DatePickerInputPropsInterface) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState<Date | null>(
@@ -112,7 +113,7 @@ export const DatePickerInput = ({
         <input
           type="text"
           value={formatDate(selectedDate)}
-          placeholder="Sua data de nascimento"
+          placeholder={placeholder}
           readOnly
           required={required}
           className="w-full cursor-pointer text-sm text-gray-700 outline-none placeholder:text-gray-400"

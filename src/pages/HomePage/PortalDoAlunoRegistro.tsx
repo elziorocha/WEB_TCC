@@ -116,6 +116,7 @@ export const PortalDoAlunoRegistro = () => {
               min="1925-01-01"
               max="2020-12-31"
               required
+              placeholder="Sua data de nascimento"
             />
 
             <div className="flex items-center gap-2 rounded-xl border border-zinc-400 bg-white px-4 py-2.5 shadow-sm">

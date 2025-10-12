@@ -14,7 +14,7 @@ export const PortalDoAlunoMatriculaModal = ({ item }: any) => {
   return (
     <Dialog key={item.key}>
       <DialogTrigger asChild>
-        <section className="flex min-h-36 w-36 cursor-pointer flex-col gap-4 rounded-2xl bg-white px-2 py-4 shadow-md transition-colors hover:bg-zinc-100">
+        <section className="flex min-h-36 w-36 cursor-pointer flex-col gap-4 rounded-2xl bg-white px-2 py-4 shadow-md transition-all hover:scale-102 hover:bg-zinc-100">
           <div className="bg-secondary/10 flex items-center justify-center self-center rounded-full p-3 shadow-md">
             <item.icon className="text-secondary size-7" />
           </div>

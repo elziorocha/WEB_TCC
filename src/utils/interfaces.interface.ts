@@ -103,4 +103,5 @@ export interface DatePickerInputPropsInterface {
   min?: string;
   max?: string;
   required?: boolean;
+  placeholder?: string;
 }

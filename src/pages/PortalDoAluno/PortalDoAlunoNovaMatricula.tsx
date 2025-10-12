@@ -17,6 +17,7 @@ import {
 } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { criarAlunoMatricula } from '@/services/ChamadasApi/apiMatricula';
+import { DatePickerInput } from '../HomePage/date-picker-input';
 
 export function PortalDoAlunoNovaMatricula() {
   const [formData, setFormData] = useState<Partial<AlunoMatriculaInterface>>({
@@ -73,7 +74,7 @@ export function PortalDoAlunoNovaMatricula() {
         </div>
       </Link>
 
-      <div className="max-w-5xl self-center overflow-hidden rounded-2xl bg-white shadow-lg sm:w-14/12">
+      <div className="max-w-5xl self-center rounded-2xl bg-white shadow-lg sm:w-14/12">
         <header className="from-quarter/20 to-quarter/45 border-b border-dashed border-zinc-400 bg-gradient-to-br p-3 sm:px-6 sm:py-6">
           <h1 className="text-secondary flex items-center gap-2 text-xl font-bold sm:text-2xl">
             <GraduationCap className="size-6 sm:size-8" />
@@ -152,19 +153,13 @@ export function PortalDoAlunoNovaMatricula() {
                     <Calendar className="size-3 sm:size-4" />
                     Data de Início
                   </label>
-                  <input
-                    type="date"
-                    name="data_inicio"
-                    value={
-                      formData.data_inicio
-                        ? new Date(formData.data_inicio)
-                            .toISOString()
-                            .split('T')[0]
-                        : ''
+                  <DatePickerInput
+                    value={formData.data_inicio ?? ''}
+                    onChange={(value) =>
+                      setFormData((prev) => ({ ...prev, data_inicio: value }))
                     }
-                    onChange={handleChange}
                     required
-                    className="input_matricula text-xs"
+                    placeholder="Data de Início"
                   />
                 </div>
 
@@ -173,19 +168,13 @@ export function PortalDoAlunoNovaMatricula() {
                     <Calendar className="size-3 sm:size-4" />
                     Data de Fim
                   </label>
-                  <input
-                    type="date"
-                    name="data_fim"
-                    value={
-                      formData.data_fim
-                        ? new Date(formData.data_fim)
-                            .toISOString()
-                            .split('T')[0]
-                        : ''
+                  <DatePickerInput
+                    value={formData.data_fim ?? ''}
+                    onChange={(value) =>
+                      setFormData((prev) => ({ ...prev, data_fim: value }))
                     }
-                    onChange={handleChange}
                     required
-                    className="input_matricula text-xs"
+                    placeholder="Data de Fim"
                   />
                 </div>
 
