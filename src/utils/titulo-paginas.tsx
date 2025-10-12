@@ -15,9 +15,8 @@ export const TitulosDasPaginas = {
   '/portal-do-aluno/consultar-matricula':
     'Portal do Aluno - Consultar Matrículas',
   '/portal-do-aluno/nova-matricula': 'Portal do Aluno - Nova Matrícula',
-  '/portal-do-aluno/consultar-processo':
-    'Portal do Aluno - Consultar Processos',
-  '/portal-do-aluno/novo-processo': 'Portal do Aluno - Novo Processo',
+  '/portal-do-aluno/consultar-processo': 'Portal do Aluno - Processos',
+  '/portal-do-aluno/configuracoes': 'Portal do Aluno - Configurações',
 };
 
 const getTituloPagina = (path: string): string => {

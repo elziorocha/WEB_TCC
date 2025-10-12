@@ -14,8 +14,8 @@ import { PortalDoAlunoLayout } from './_layouts/PortalDoAlunoLayout';
 import { PortalDoAlunoNovaMatricula } from './pages/PortalDoAluno/PortalDoAlunoNovaMatricula';
 import { PortalDoAlunoConsultarMatriculas } from './pages/PortalDoAluno/PortalDoAlunoConsultarMatriculas';
 import { PortalDoAlunoConsultarProcessos } from './pages/PortalDoAluno/PortalDoAlunoConsultarProcessos';
-// import { PortalDoAlunoNovoProcesso } from './pages/PortalDoAluno/PortalDoAlunoNovoProcesso';
 import { SobreNos } from './pages/HomePage/SobreNos';
+import { PortalDoAlunoConfiguracoes } from './pages/PortalDoAluno/PortalDoAlunoConfiguracoes';
 import HorariosDataTable from './components/componentesUI/DataTableComponent';
 
 export const router = createBrowserRouter([
@@ -66,10 +66,10 @@ export const router = createBrowserRouter([
         path: 'consultar-processo',
         element: <PortalDoAlunoConsultarProcessos />,
       },
-      // {
-      //   path: 'novo-processo',
-      //   element: <PortalDoAlunoNovoProcesso />,
-      // },
+      {
+        path: 'configuracoes',
+        element: <PortalDoAlunoConfiguracoes />,
+      },
     ],
   },
 ]);

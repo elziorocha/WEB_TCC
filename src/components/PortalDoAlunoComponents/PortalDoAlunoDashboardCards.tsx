@@ -41,6 +41,23 @@ export const PortalDoAlunoDashboardCards = ({
           return <PortalDoAlunoMatriculaModal key={item.key} item={item} />;
         }
 
+        if (item.key === '4') {
+          return (
+            <Link
+              key={item.key}
+              to="/portal-do-aluno/configuracoes"
+              className="flex min-h-36 w-36 flex-col gap-4 rounded-2xl bg-white px-2 py-4 shadow-md transition-all hover:scale-102 hover:bg-zinc-100"
+            >
+              <div className="bg-secondary/10 flex items-center justify-center self-center rounded-full p-3 shadow-md">
+                <item.icon className="text-secondary size-7" />
+              </div>
+              <h4 className="text-tertiary text-center text-base font-medium">
+                {item.label}
+              </h4>
+            </Link>
+          );
+        }
+
         return (
           <section
             key={item.key}
