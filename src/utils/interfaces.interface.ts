@@ -1,6 +1,9 @@
 import type { ColumnDef } from '@tanstack/react-table';
 import type { Convenio, GrauEscolaridade, TipoCartao } from './intarfaces-enum';
 
+export interface alunoProps {
+  aluno: any;
+}
 export interface AlunoLoginInterface {
   email: string;
   senha: string;

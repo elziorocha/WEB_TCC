@@ -94,15 +94,19 @@ export const PortalDoAlunoDashboardMatriculaCard = () => {
               </p>
             </section>
 
-            <section className="space-y-1">
-              <div className="flex items-center gap-2">
-                <Calendar className="text-muted-foreground size-4" />
-                <span className="text-muted-foreground font-medium">
-                  Vigência:
-                </span>
-              </div>
+            <section className="flex items-center gap-1">
+              <Calendar className="text-muted-foreground size-4" />
+              <span className="text-muted-foreground font-medium">
+                Vigência:
+              </span>
+
               <p className="text-tertiary ml-0.5 text-xs font-semibold sm:text-sm">
-                De: {matriculaAtiva.data_inicio} Até {matriculaAtiva.data_fim}
+                De:{' '}
+                {new Date(matriculaAtiva.data_inicio).toLocaleDateString(
+                  'pt-BR'
+                )}{' '}
+                Até{' '}
+                {new Date(matriculaAtiva.data_fim).toLocaleDateString('pt-BR')}
               </p>
             </section>
           </div>

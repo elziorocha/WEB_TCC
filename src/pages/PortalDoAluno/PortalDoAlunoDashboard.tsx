@@ -1,38 +1,17 @@
 import TelaCarregando from '@/components/componentesUI/TelaCarregando';
 import { PortalDoAlunoDashboardMatriculaCard } from '@/components/PortalDoAlunoComponents/PortalDoAlunoCards/PortalDoAlunoDashboardMatriculaCard';
+import { PortalDoAlunoDashboardaCardsCentrais } from '@/components/PortalDoAlunoComponents/PortalDoAlunoDashboardaCardsCentrais';
 import { PortalDoAlunoDashboardCards } from '@/components/PortalDoAlunoComponents/PortalDoAlunoDashboardCards';
 import { alunoData } from '@/services/ChamadasApi/apiAluno';
-import { IdCardIcon } from 'lucide-react';
 
 export function PortalDoAlunoDashboard() {
   const { aluno, loading: loadingAluno } = alunoData();
 
   if (loadingAluno) return <TelaCarregando />;
 
-  const tipoCartao = (tipoCartao: any) => {
-    switch (tipoCartao) {
-      case 'EDUCARD':
-        return {
-          css: 'text-secondary border-secondary/30 bg-secondary/10',
-          cartao: 'EDUCARD',
-        };
-      case 'VEM':
-        return {
-          css: 'text-primary border-primary/30 bg-primary/10',
-          cartao: 'VEM ESCOLAR',
-        };
-      default:
-        return {
-          css: 'text-red-600 border-red-300 bg-red-50',
-          cartao: 'Sem cartão definido',
-        };
-    }
-  };
-
-  const { css, cartao } = tipoCartao(aluno?.tipo_cartao);
-
   return (
     <main className="flex flex-col gap-5 p-6">
+      <div className="bg-primary absolute -top-10 -left-24 rounded-[41%_59%_75%_25%_/_58%_40%_60%_42%] sm:size-72"></div>
       <div className="flex flex-col gap-1 sm:text-center">
         <h2 className="text-2xl font-bold sm:text-4xl">
           Olá,{' '}
@@ -44,22 +23,12 @@ export function PortalDoAlunoDashboard() {
         <h3 className="font-medium sm:text-xl">O que deseja fazer hoje?</h3>
       </div>
 
-      <PortalDoAlunoDashboardCards aluno={aluno ?? null} />
+      <PortalDoAlunoDashboardCards aluno={aluno} />
 
       <section className="mt-10 flex w-full flex-col items-center gap-6 sm:flex-row">
-        <div
-          className={`flex items-center gap-3 rounded-2xl border px-6 py-5 shadow-sm backdrop-blur-md transition hover:shadow-md ${css}`}
-        >
-          <div className="flex items-center justify-center rounded-xl bg-white/60 p-2 shadow-inner">
-            <IdCardIcon className="size-8" />
-          </div>
-          <div>
-            <h3 className="text-base font-semibold">Seu cartão:</h3>
-            <p className="text-lg font-bold tracking-wide">{cartao}</p>
-          </div>
-        </div>
-
         <PortalDoAlunoDashboardMatriculaCard />
+
+        <PortalDoAlunoDashboardaCardsCentrais aluno={aluno} />
       </section>
     </main>
   );

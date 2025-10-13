@@ -18,7 +18,7 @@ export const PortalDoAlunoHeader = () => {
   };
 
   return (
-    <main className="bg-secondary text-whiteText flex items-center justify-between px-6 py-3">
+    <main className="bg-secondary text-whiteText z-50 flex items-center justify-between px-6 py-3">
       <img src={logo} alt="logo da pérola do oeste" />
       <button
         onClick={Logout}
