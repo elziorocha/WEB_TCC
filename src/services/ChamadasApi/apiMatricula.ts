@@ -44,7 +44,7 @@ export function criarAlunoMatricula() {
           .split('T')[0],
         data_fim: new Date(formData.data_fim!).toISOString().split('T')[0],
         turno: formData.turno!,
-        grau_scolaridade: formData.grau_scolaridade!,
+        grau_escolaridade: formData.grau_escolaridade!,
         convenio: formData.convenio!,
         cgm: formData.cgm!,
         curso: formData.curso!,

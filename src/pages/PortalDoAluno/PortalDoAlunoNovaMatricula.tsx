@@ -57,10 +57,10 @@ export function PortalDoAlunoNovaMatricula() {
   };
 
   const mostrarCurso =
-    formData.grau_scolaridade === 'Ensino Superior' ||
-    formData.grau_scolaridade?.includes('Técnico');
+    formData.grau_escolaridade === 'Ensino Superior' ||
+    formData.grau_escolaridade?.includes('Técnico');
 
-  const mostrarDadosCEEBJA = formData.grau_scolaridade?.includes('CEEBJA');
+  const mostrarDadosCEEBJA = formData.grau_escolaridade?.includes('CEEBJA');
 
   return (
     <main className="flex w-full flex-col gap-4 self-center p-3">
@@ -184,8 +184,8 @@ export function PortalDoAlunoNovaMatricula() {
                     Grau de Escolaridade
                   </label>
                   <select
-                    name="grau_scolaridade"
-                    value={formData.grau_scolaridade || ''}
+                    name="grau_escolaridade"
+                    value={formData.grau_escolaridade || ''}
                     onChange={handleChange}
                     required
                     className="input_matricula py-1.5"

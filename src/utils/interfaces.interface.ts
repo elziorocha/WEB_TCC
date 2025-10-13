@@ -54,7 +54,7 @@ export interface AlunoMatriculaInterface {
   instituicao: string;
   data_inicio: string;
   data_fim: string;
-  grau_scolaridade: GrauEscolaridade;
+  grau_escolaridade: GrauEscolaridade;
   serie_ou_periodo: number;
   curso: string;
   turno: 'matutino' | 'vespertino' | 'noturno' | 'integral' | 'Sem Convênio';

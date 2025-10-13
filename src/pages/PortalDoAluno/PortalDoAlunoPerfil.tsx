@@ -166,8 +166,10 @@ export function PortalDoAlunoPerfil() {
                           <AlertTriangleIcon className="size-8 text-red-600" />
                           Aviso
                         </DialogTitle>
-                        <DialogDescription className="mt-2">
-                          Deseja realmente salvar o tipo de cartão selecionado?
+                        <DialogDescription className="mt-2 text-justify">
+                          Deseja salvar o tipo de cartão selecionado? Apenas
+                          será possível alterar quando sua matrícula vigente
+                          expirar.
                         </DialogDescription>
                       </DialogHeader>
                       <DialogFooter className="flex justify-end gap-2">

@@ -21,10 +21,10 @@ const PortalDoAlunoMatriculasCard = ({
   alunoMatricula: AlunoMatriculaInterface;
 }) => {
   const mostrarDadosCEEBJA =
-    alunoMatricula.grau_scolaridade?.includes('CEEBJA');
+    alunoMatricula.grau_escolaridade?.includes('CEEBJA');
   const mostrarCurso =
-    alunoMatricula.grau_scolaridade === 'Ensino Superior' ||
-    alunoMatricula.grau_scolaridade?.includes('Técnico');
+    alunoMatricula.grau_escolaridade === 'Ensino Superior' ||
+    alunoMatricula.grau_escolaridade?.includes('Técnico');
 
   return (
     <Card className="mb-8 gap-2 overflow-hidden rounded-2xl border-none pt-4 pb-0 shadow-md">
