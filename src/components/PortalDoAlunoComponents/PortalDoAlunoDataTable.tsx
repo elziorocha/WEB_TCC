@@ -58,7 +58,7 @@ export function DataTable<TData, TValue>({
                 <TableRow
                   key={row.id}
                   data-state={row.getIsSelected() && 'selected'}
-                  className="hover:from-primary/15 hover:to-primary/20 border-b border-zinc-400 transition-colors hover:bg-gradient-to-br"
+                  className="hover:from-primary/10 hover:to-secondary/10 border-b border-zinc-400 transition-colors hover:bg-gradient-to-br"
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell

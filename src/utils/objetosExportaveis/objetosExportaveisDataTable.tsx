@@ -153,20 +153,58 @@ export const colunasAlunoMatriculaDataTable: ColumnDef<AlunoMatriculaInterface>[
     },
   ];
 
-export function getStatusProcessoBadge(valor: string | boolean) {
-  if (typeof valor === 'boolean') {
-    return valor ? (
-      <Badge className="bg-green-500/20 text-green-700">Liberado</Badge>
-    ) : (
-      <Badge className="bg-red-500/20 text-red-700">Pendente</Badge>
+export function getStatusProcessoBadge(alunoProcesso: AlunoProcessoInterface) {
+  const documentos = [
+    alunoProcesso.formulario_educard,
+    alunoProcesso.declaracao_matricula,
+    alunoProcesso.comprovante_pagamento,
+    alunoProcesso.comprovante_residencia,
+    alunoProcesso.rg_frente_ou_verso,
+  ];
+
+  const validados = [
+    alunoProcesso.formulario_educard_validado,
+    alunoProcesso.declaracao_matricula_validado,
+    alunoProcesso.comprovante_pagamento_validado,
+    alunoProcesso.comprovante_residencia_validado,
+    alunoProcesso.rg_frente_ou_verso_validado,
+  ];
+
+  const algumEnviado = documentos.some((doc) => doc);
+  const todosValidados = validados.every((v) => v);
+
+  if (alunoProcesso.liberado && todosValidados) {
+    return <Badge className="bg-green-500/20 text-green-700">Aprovado</Badge>;
+  }
+
+  if (!alunoProcesso.liberado && algumEnviado) {
+    return (
+      <Badge className="bg-yellow-500/20 text-yellow-700">Em Análise</Badge>
     );
   }
 
-  return valor && valor.trim() !== '' ? (
-    <Badge className="bg-green-500/20 text-green-700">Enviado</Badge>
-  ) : (
-    <Badge className="bg-red-500/20 text-red-700">Faltando</Badge>
-  );
+  return <Badge className="bg-red-500/20 text-red-700">Pendente</Badge>;
+}
+
+export function getStatusDocumentoBadge(
+  enviado?: boolean | null,
+  validado?: boolean | null
+) {
+  if (!enviado) {
+    return <Badge className="bg-red-500/20 text-red-700">Pendente</Badge>;
+  }
+
+  if (enviado && !validado) {
+    return (
+      <Badge className="bg-yellow-500/20 text-yellow-700">Em Análise</Badge>
+    );
+  }
+
+  if (validado) {
+    return <Badge className="bg-green-500/20 text-green-700">Aprovado</Badge>;
+  }
+
+  return <Badge className="bg-gray-300/50 text-gray-700">Indefinido</Badge>;
 }
 
 export const colunasAlunoProcessoDataTable = (
@@ -181,6 +219,7 @@ export const colunasAlunoProcessoDataTable = (
         name="formulario_educard"
         label="Formulário Educard"
         status={row.getValue<boolean>('formulario_educard')}
+        validado={row.original.formulario_educard_validado}
         arquivoUrl={row.original.formulario_educard_url}
         onUpload={onUpload}
         onUpdate={onUpdate}
@@ -195,6 +234,7 @@ export const colunasAlunoProcessoDataTable = (
         name="declaracao_matricula"
         label="Declaração de Matrícula"
         status={row.getValue<boolean>('declaracao_matricula')}
+        validado={row.original.declaracao_matricula_validado}
         arquivoUrl={row.original.declaracao_matricula_url}
         onUpload={onUpload}
         onUpdate={onUpdate}
@@ -209,6 +249,7 @@ export const colunasAlunoProcessoDataTable = (
         name="comprovante_pagamento"
         label="Comprovante de Pagamento"
         status={row.getValue<boolean>('comprovante_pagamento')}
+        validado={row.original.comprovante_pagamento_validado}
         arquivoUrl={row.original.comprovante_pagamento_url}
         onUpload={onUpload}
         onUpdate={onUpdate}
@@ -223,6 +264,7 @@ export const colunasAlunoProcessoDataTable = (
         name="comprovante_residencia"
         label="Comprovante de Residência"
         status={row.getValue<boolean>('comprovante_residencia')}
+        validado={row.original.comprovante_residencia_validado}
         arquivoUrl={row.original.comprovante_residencia_url}
         onUpload={onUpload}
         onUpdate={onUpdate}
@@ -237,6 +279,7 @@ export const colunasAlunoProcessoDataTable = (
         name="rg_frente_ou_verso"
         label="RG/CPF"
         status={row.getValue<boolean>('rg_frente_ou_verso')}
+        validado={row.original.rg_frente_ou_verso_validado}
         arquivoUrl={row.original.rg_frente_ou_verso_url}
         onUpload={onUpload}
         onUpdate={onUpdate}
@@ -246,6 +289,6 @@ export const colunasAlunoProcessoDataTable = (
   {
     accessorKey: 'liberado',
     header: 'Situação Final',
-    cell: ({ row }) => getStatusProcessoBadge(row.getValue('liberado')),
+    cell: ({ row }) => getStatusProcessoBadge(row.original),
   },
 ];

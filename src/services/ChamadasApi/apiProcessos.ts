@@ -46,7 +46,6 @@ export function criarAlunoProcesso() {
       }
 
       await uploadAlunoProcessos(formData);
-      toast.success('Documentos enviados/atualizados com sucesso!');
     } catch (err: any) {
       apiError(err, 'Erro ao criar processo.');
     } finally {

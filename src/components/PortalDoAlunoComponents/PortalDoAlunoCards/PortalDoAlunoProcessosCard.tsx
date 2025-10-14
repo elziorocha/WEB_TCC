@@ -33,7 +33,7 @@ export const PortalDoAlunoProcessosCard = ({
       <CardHeader className="px-4">
         <CardTitle className="flex items-center justify-between">
           <span className="text-lg font-semibold">Processo</span>
-          {getStatusProcessoBadge(alunoProcesso.liberado)}
+          {getStatusProcessoBadge(alunoProcesso)}
         </CardTitle>
       </CardHeader>
 
@@ -46,30 +46,35 @@ export const PortalDoAlunoProcessosCard = ({
               name: 'formulario_educard',
               label: 'Formulário Educard',
               status: alunoProcesso.formulario_educard,
+              validado: alunoProcesso.formulario_educard_validado,
               url: alunoProcesso.formulario_educard_url,
             },
             {
               name: 'declaracao_matricula',
               label: 'Declaração de Matrícula',
               status: alunoProcesso.declaracao_matricula,
+              validado: alunoProcesso.declaracao_matricula_validado,
               url: alunoProcesso.declaracao_matricula_url,
             },
             {
               name: 'comprovante_pagamento',
               label: 'Comprovante de Pagamento',
               status: alunoProcesso.comprovante_pagamento,
+              validado: alunoProcesso.comprovante_pagamento_validado,
               url: alunoProcesso.comprovante_pagamento_url,
             },
             {
               name: 'comprovante_residencia',
               label: 'Comprovante de Residência',
               status: alunoProcesso.comprovante_residencia,
+              validado: alunoProcesso.comprovante_residencia_validado,
               url: alunoProcesso.comprovante_residencia_url,
             },
             {
               name: 'rg_frente_ou_verso',
               label: 'RG Frente e Verso',
               status: alunoProcesso.rg_frente_ou_verso,
+              validado: alunoProcesso.rg_frente_ou_verso_validado,
               url: alunoProcesso.rg_frente_ou_verso_url,
             },
           ].map((doc) => (
@@ -78,10 +83,9 @@ export const PortalDoAlunoProcessosCard = ({
               name={doc.name}
               label={doc.label}
               status={doc.status}
+              validado={doc.validado}
               arquivoUrl={doc.url}
-              onUpload={(name, file) => {
-                return handleUpload(name, file);
-              }}
+              onUpload={(name, file) => handleUpload(name, file)}
               onUpdate={onUpdate}
             />
           ))}

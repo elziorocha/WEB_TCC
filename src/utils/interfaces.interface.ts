@@ -69,22 +69,28 @@ export interface AlunoMatriculaInterface {
 
 export interface AlunoProcessoInterface {
   processoId: number;
+  matriculaId: number;
+  liberado: boolean;
+
   formulario_educard: boolean;
   formulario_educard_url?: string;
+  formulario_educard_validado: boolean;
 
   declaracao_matricula: boolean;
   declaracao_matricula_url?: string;
+  declaracao_matricula_validado: boolean;
 
   comprovante_pagamento: boolean;
   comprovante_pagamento_url?: string;
+  comprovante_pagamento_validado: boolean;
 
   comprovante_residencia_url?: string;
   comprovante_residencia: boolean;
+  comprovante_residencia_validado: boolean;
 
   rg_frente_ou_verso: boolean;
   rg_frente_ou_verso_url?: string;
-
-  liberado: boolean;
+  rg_frente_ou_verso_validado: boolean;
 }
 
 export interface PortalDoAlunoDocumentoProcessoInterface {

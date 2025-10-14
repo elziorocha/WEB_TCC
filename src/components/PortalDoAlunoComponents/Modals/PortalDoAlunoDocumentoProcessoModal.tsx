@@ -1,5 +1,5 @@
 import { FileText, Upload, X, Trash2 } from 'lucide-react';
-import { getStatusProcessoBadge } from '@/utils/objetosExportaveis/objetosExportaveisDataTable';
+import { getStatusDocumentoBadge } from '@/utils/objetosExportaveis/objetosExportaveisDataTable';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 import type { PortalDoAlunoDocumentoProcessoInterface } from '@/utils/interfaces.interface';
@@ -9,12 +9,14 @@ import { apiError } from '@/services/apiError';
 export const PortalDoAlunoDocumentoProcesso = ({
   label,
   status,
+  validado,
   arquivoUrl,
   name,
   onUpload,
   onUpdate,
 }: PortalDoAlunoDocumentoProcessoInterface & {
   name: string;
+  validado?: boolean | null;
   onUpload?: (name: string, file: File) => Promise<void> | void;
   onUpdate?: (name: string, arquivoUrl: string | null) => void;
 }) => {
@@ -28,14 +30,27 @@ export const PortalDoAlunoDocumentoProcesso = ({
   const isImage = urlLocal?.match(/\.(jpg|jpeg|png)$/i);
   const isPdf = urlLocal?.match(/\.pdf$/i);
 
-  const handleClick = () => setOpen(true);
+  const abrirModal = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setOpen(true);
+  };
+
+  const fecharModal = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setOpen(false);
+  };
+
+  const handleModalClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+  };
 
   const handleArquivoSelecionado = (e: React.ChangeEvent<HTMLInputElement>) => {
     const arquivo = e.target.files?.[0];
     if (arquivo) setArquivoSelecionado(arquivo);
   };
 
-  const handleUploadClick = async () => {
+  const handleUploadClick = async (e: React.MouseEvent) => {
+    e.stopPropagation();
     if (!arquivoSelecionado) return apiError('Selecione um arquivo primeiro.');
     if (!onUpload) return apiError('Função de upload não configurada.');
 
@@ -53,7 +68,8 @@ export const PortalDoAlunoDocumentoProcesso = ({
     }
   };
 
-  const handleRemoverArquivo = async () => {
+  const handleRemoverArquivo = async (e: React.MouseEvent) => {
+    e.stopPropagation();
     setLoading(true);
     try {
       await deleteAlunoArquivoProcesso(name);
@@ -70,28 +86,37 @@ export const PortalDoAlunoDocumentoProcesso = ({
     }
   };
 
-  const handleCancelarSelecao = () => {
+  const handleCancelarSelecao = (e: React.MouseEvent) => {
+    e.stopPropagation();
     setArquivoSelecionado(null);
   };
 
   return (
-    <div className="flex flex-row items-center justify-between transition-all sm:flex-col sm:gap-1">
-      <div className="text-muted-foreground flex items-center gap-2">
+    <div
+      onClick={abrirModal}
+      className="flex cursor-pointer flex-row items-center justify-between rounded-xl border-2 border-transparent py-3 transition-all hover:border-dashed hover:border-zinc-400 sm:flex-col sm:gap-1"
+    >
+      <div className="text-muted-foreground flex cursor-pointer items-center gap-2">
         <FileText
-          className={`size-5 cursor-pointer ${status ? 'text-primary' : 'text-zinc-400'}`}
-          onClick={handleClick}
+          className={`size-5 ${status ? 'text-primary' : 'text-zinc-400'}`}
         />
         <span className="font-medium">{label}</span>
       </div>
-      {getStatusProcessoBadge(status)}
+      {getStatusDocumentoBadge(status, validado)}
 
       {open && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-          <div className="flex h-[90%] w-[90%] max-w-3xl flex-col rounded-xl bg-white p-4 shadow-lg">
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"
+          onClick={fecharModal}
+        >
+          <div
+            className="flex h-[90%] w-[90%] max-w-3xl flex-col rounded-xl bg-white p-4 shadow-lg"
+            onClick={handleModalClick}
+          >
             <header className="flex items-center justify-between border-b pb-2">
               <h2 className="text-lg font-semibold text-gray-700">{label}</h2>
               <button
-                onClick={() => setOpen(false)}
+                onClick={fecharModal}
                 className="rounded-full bg-red-500 p-1 text-white hover:bg-red-600"
               >
                 <X className="size-4" />
@@ -158,7 +183,7 @@ export const PortalDoAlunoDocumentoProcesso = ({
                 </div>
               ) : (
                 <div className="flex h-full flex-col items-center justify-center gap-4">
-                  <label className="relative flex w-64 flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 p-6 text-center hover:bg-gray-50">
+                  <label className="relative flex size-64 flex-col items-center justify-center rounded-xl border-2 border-dashed border-gray-300 p-6 text-center hover:bg-gray-50 sm:size-96">
                     <Upload className="mb-2 size-6 text-gray-400" />
                     <span className="text-sm text-gray-600">
                       {arquivoSelecionado
@@ -198,7 +223,7 @@ export const PortalDoAlunoDocumentoProcesso = ({
 
             <footer className="mt-4 flex justify-center border-t pt-3">
               <button
-                onClick={() => setOpen(false)}
+                onClick={fecharModal}
                 className="bg-primary mt-1 cursor-pointer rounded px-5 py-2 text-base font-medium text-white"
               >
                 Fechar
