@@ -102,7 +102,8 @@ export const PortalDoAlunoDocumentoProcesso = ({
         />
         <span className="font-medium">{label}</span>
       </div>
-      {getStatusDocumentoBadge(status, validado)}
+
+      <span className="mt-2">{getStatusDocumentoBadge(status, validado)}</span>
 
       {open && (
         <div

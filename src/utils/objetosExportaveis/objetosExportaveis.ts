@@ -111,3 +111,23 @@ export const inicioBanners = [
     alt: 'Imagem sobre o cartão VEM',
   },
 ];
+
+export const tipoCartao = (tipoCartao: any) => {
+  switch (tipoCartao) {
+    case 'EDUCARD':
+      return {
+        css: 'text-secondary border-secondary/30 bg-secondary/10',
+        cartao: 'EDUCARD',
+      };
+    case 'VEM':
+      return {
+        css: 'text-yellowText border-primary/50 bg-primary/20',
+        cartao: 'VEM ESCOLAR',
+      };
+    default:
+      return {
+        css: 'text-red-600 border-red-300 bg-red-50',
+        cartao: 'Sem cartão definido',
+      };
+  }
+};

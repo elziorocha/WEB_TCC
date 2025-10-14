@@ -68,8 +68,9 @@ export interface AlunoMatriculaInterface {
 }
 
 export interface AlunoProcessoInterface {
-  processoId: number;
-  matriculaId: number;
+  processo_id: number;
+  matricula_id: number;
+  aluno_id: number;
   liberado: boolean;
 
   formulario_educard: boolean;

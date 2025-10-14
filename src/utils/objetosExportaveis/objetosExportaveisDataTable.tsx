@@ -16,6 +16,7 @@ import {
 } from '@/components/ui/tooltip';
 import { Badge } from '@/components/ui/badge';
 import { PortalDoAlunoDocumentoProcesso } from '@/components/PortalDoAlunoComponents/Modals/PortalDoAlunoDocumentoProcessoModal';
+import { CheckIcon, HourglassIcon, TriangleAlertIcon } from 'lucide-react';
 
 export function BadgeCartao({ tipo }: { tipo: TipoCartao | null | undefined }) {
   if (!tipo) {
@@ -174,16 +175,26 @@ export function getStatusProcessoBadge(alunoProcesso: AlunoProcessoInterface) {
   const todosValidados = validados.every((v) => v);
 
   if (alunoProcesso.liberado && todosValidados) {
-    return <Badge className="bg-green-500/20 text-green-700">Aprovado</Badge>;
+    return (
+      <Badge className="bg-green-500/20 px-2 py-1 font-semibold text-green-700">
+        Aprovado
+      </Badge>
+    );
   }
 
   if (!alunoProcesso.liberado && algumEnviado) {
     return (
-      <Badge className="bg-yellow-500/20 text-yellow-700">Em Análise</Badge>
+      <Badge className="bg-yellow-500/20 px-2 py-1 font-semibold text-yellow-700">
+        Em Análise
+      </Badge>
     );
   }
 
-  return <Badge className="bg-red-500/20 text-red-700">Pendente</Badge>;
+  return (
+    <Badge className="bg-red-500/20 px-2 py-1 font-semibold text-red-700">
+      Pendente
+    </Badge>
+  );
 }
 
 export function getStatusDocumentoBadge(
@@ -191,20 +202,79 @@ export function getStatusDocumentoBadge(
   validado?: boolean | null
 ) {
   if (!enviado) {
-    return <Badge className="bg-red-500/20 text-red-700">Pendente</Badge>;
+    return (
+      <Badge className="bg-red-500/20 px-2 py-1 font-semibold text-red-700">
+        Pendente
+      </Badge>
+    );
   }
 
   if (enviado && !validado) {
     return (
-      <Badge className="bg-yellow-500/20 text-yellow-700">Em Análise</Badge>
+      <Badge className="bg-yellow-500/20 px-2 py-1 font-semibold text-yellow-700">
+        Em Análise
+      </Badge>
     );
   }
 
   if (validado) {
-    return <Badge className="bg-green-500/20 text-green-700">Aprovado</Badge>;
+    return (
+      <Badge className="bg-green-500/20 px-2 py-1 font-semibold text-green-700">
+        Aprovado
+      </Badge>
+    );
   }
 
-  return <Badge className="bg-gray-300/50 text-gray-700">Indefinido</Badge>;
+  return (
+    <Badge className="bg-gray-300/50 px-2 py-1 font-semibold text-gray-700">
+      Indefinido
+    </Badge>
+  );
+}
+
+export function getStatusProcessoBadgeDashboard(
+  alunoProcesso: AlunoProcessoInterface
+) {
+  const documentos = [
+    alunoProcesso.formulario_educard,
+    alunoProcesso.declaracao_matricula,
+    alunoProcesso.comprovante_pagamento,
+    alunoProcesso.comprovante_residencia,
+    alunoProcesso.rg_frente_ou_verso,
+  ];
+
+  const validados = [
+    alunoProcesso.formulario_educard_validado,
+    alunoProcesso.declaracao_matricula_validado,
+    alunoProcesso.comprovante_pagamento_validado,
+    alunoProcesso.comprovante_residencia_validado,
+    alunoProcesso.rg_frente_ou_verso_validado,
+  ];
+
+  const algumEnviado = documentos.some((doc) => doc);
+  const todosValidados = validados.every((v) => v);
+
+  if (alunoProcesso.liberado && todosValidados) {
+    return (
+      <Badge className="text-whiteText rounded-lg bg-gradient-to-r from-emerald-400 to-green-600 px-4 py-2 font-semibold shadow-md">
+        <CheckIcon className="size-12" /> Aprovado
+      </Badge>
+    );
+  }
+
+  if (!alunoProcesso.liberado && algumEnviado) {
+    return (
+      <Badge className="text-blackText rounded-lg bg-gradient-to-r from-yellow-400 to-amber-500 px-4 py-2 font-semibold shadow-md">
+        <HourglassIcon className="size-12" /> Em Análise
+      </Badge>
+    );
+  }
+
+  return (
+    <Badge className="text-whiteText rounded-lg bg-gradient-to-r from-rose-400 to-red-600 px-4 py-2 font-semibold shadow-md">
+      <TriangleAlertIcon className="size-12" /> Pendente
+    </Badge>
+  );
 }
 
 export const colunasAlunoProcessoDataTable = (
