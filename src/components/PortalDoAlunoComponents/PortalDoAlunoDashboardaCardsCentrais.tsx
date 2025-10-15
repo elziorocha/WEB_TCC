@@ -20,18 +20,18 @@ export const PortalDoAlunoDashboardaCardsCentrais = ({ aluno }: alunoProps) => {
   return (
     <main className="flex flex-col items-center justify-between gap-12">
       <div
-        className={`flex items-center gap-3 self-center rounded-2xl border px-6 py-5 shadow-sm transition hover:shadow-md sm:min-w-md sm:self-start ${css}`}
+        className={`flex min-w-xs items-center gap-3 self-center rounded-2xl border px-6 py-5 shadow-sm transition hover:shadow-md sm:min-w-md sm:self-start ${css}`}
       >
         <div className="flex items-center justify-center rounded-xl bg-white/60 p-2 shadow-inner">
           <IdCardIcon className="size-8" />
         </div>
-        <div className="flex flex-col items-center gap-2 text-lg font-bold tracking-wide sm:flex-row">
+        <div className="flex w-full flex-col items-center gap-2 text-lg font-bold tracking-wide sm:flex-row">
           <h3>Seu cartão:</h3>
           <p>{cartao}</p>
         </div>
       </div>
 
-      <div className="bg-quarter/15 border-quarter/45 flex items-center gap-3 self-center rounded-2xl border px-6 py-5 shadow-sm transition hover:shadow-md sm:min-w-md sm:self-start">
+      <div className="bg-quarter/15 border-quarter/45 flex min-w-xs items-center gap-3 self-center rounded-2xl border px-6 py-5 shadow-sm transition hover:shadow-md sm:min-w-md sm:self-start">
         <div className="flex items-center justify-center rounded-xl bg-white/60 p-2 shadow-inner">
           <IdCardIcon className="text-secondary size-8" />
         </div>

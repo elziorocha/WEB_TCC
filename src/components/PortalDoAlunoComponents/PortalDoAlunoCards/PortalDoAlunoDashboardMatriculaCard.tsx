@@ -43,7 +43,7 @@ export const PortalDoAlunoDashboardMatriculaCard = () => {
   }
 
   return (
-    <Card className="max-w-3xl gap-0 overflow-hidden rounded-2xl border-none py-3 shadow-md">
+    <Card className="w-full max-w-3xl gap-0 overflow-hidden rounded-2xl border-none py-3 shadow-md">
       <CardHeader className="px-4">
         <CardTitle className="flex items-center gap-2">
           <School2Icon className="text-secondary size-6" />

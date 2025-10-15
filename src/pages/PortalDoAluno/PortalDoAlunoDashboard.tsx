@@ -1,4 +1,5 @@
 import TelaCarregando from '@/components/componentesUI/TelaCarregando';
+import { PortalDoAlunoDashboardDocumentosCard } from '@/components/PortalDoAlunoComponents/PortalDoAlunoCards/PortalDoAlunoDashboardDocumentosCard';
 import { PortalDoAlunoDashboardMatriculaCard } from '@/components/PortalDoAlunoComponents/PortalDoAlunoCards/PortalDoAlunoDashboardMatriculaCard';
 import { PortalDoAlunoDashboardaCardsCentrais } from '@/components/PortalDoAlunoComponents/PortalDoAlunoDashboardaCardsCentrais';
 import { PortalDoAlunoDashboardCards } from '@/components/PortalDoAlunoComponents/PortalDoAlunoDashboardCards';
@@ -25,10 +26,12 @@ export function PortalDoAlunoDashboard() {
 
       <PortalDoAlunoDashboardCards aluno={aluno} />
 
-      <section className="mt-10 flex w-full flex-col items-center gap-6 sm:flex-row">
+      <section className="mt-10 flex w-full flex-col items-center justify-center gap-8 sm:flex-row">
         <PortalDoAlunoDashboardMatriculaCard />
 
         <PortalDoAlunoDashboardaCardsCentrais aluno={aluno} />
+
+        <PortalDoAlunoDashboardDocumentosCard aluno={aluno} />
       </section>
     </main>
   );
