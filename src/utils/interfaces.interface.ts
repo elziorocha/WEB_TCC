@@ -17,6 +17,17 @@ export interface AlunoRegistroInterface {
   data_nascimento: string;
 }
 
+export interface AlterarSenhaBody {
+  senhaAntiga: string;
+  novaSenha: string;
+}
+
+export interface AlterarSenhaForm {
+  senhaAntiga: string;
+  novaSenha: string;
+  confirmarSenha: string;
+}
+
 export interface AlunoInterface {
   alunoId: number;
   nome: string;

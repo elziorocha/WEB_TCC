@@ -1,4 +1,5 @@
 import type {
+  AlterarSenhaBody,
   AlunoDocumentoInterface,
   AlunoEnderecoInterface,
   AlunoMatriculaInterface,
@@ -17,6 +18,27 @@ export const getAluno = async () => {
     },
     withCredentials: true,
   });
+
+  return response.data;
+};
+
+export const alterarSenha = async ({
+  senhaAntiga,
+  novaSenha,
+}: AlterarSenhaBody) => {
+  const token = Cookies.get('token');
+  if (!token) throw new Error('Usuário não autenticado');
+
+  const response = await instanciaAPI.put(
+    '/aluno/alterar-senha',
+    { senhaAntiga, novaSenha },
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      withCredentials: true,
+    }
+  );
 
   return response.data;
 };
