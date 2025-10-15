@@ -62,7 +62,10 @@ export function PortalDoAlunoPerfil() {
           <CardTitle className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <User className="text-secondary size-6" />
-              <span className="text-lg font-semibold">Perfil do Aluno</span>
+              <span className="flex items-center gap-1 text-lg font-semibold">
+                <p>Perfil do Aluno</p>{' '}
+                <p className="text-tertiary capitalize">{aluno?.nome}</p>
+              </span>
             </div>
             {aluno?.tipo_cartao ? (
               <BadgeCartao tipo={aluno.tipo_cartao} />

@@ -131,3 +131,14 @@ export const tipoCartao = (tipoCartao: any) => {
       };
   }
 };
+
+export const instrucoesUpload: Record<string, string> = {
+  formulario_educard: 'Envie o Formulário Educard no formato PDF.',
+  declaracao_matricula: 'Envie a Declaração de matrícula em formato PDF.',
+  comprovante_pagamento:
+    'Envie o Comprovante de Pagamento em imagem (JPG, JPEG ou PNG).',
+  comprovante_residencia:
+    'Envie o Comprovante de Residência em imagem (JPG, JPEG ou PNG).',
+  rg_frente_ou_verso:
+    'Envie as imagens da Frente e Verso do RG (JPG, JPEG ou PNG).',
+};
