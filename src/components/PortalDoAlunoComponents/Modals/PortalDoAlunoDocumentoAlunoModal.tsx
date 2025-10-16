@@ -12,6 +12,7 @@ import type { AlunoDocumentoInterface } from '@/utils/interfaces.interface';
 import { criarAlunoDocumento } from '@/services/ChamadasApi/apiDocumentos';
 import { DialogClose } from '@radix-ui/react-dialog';
 import { X } from 'lucide-react';
+import { formatCpf, formatRg } from '@/utils/normalizacao';
 
 interface DocumentoModalProps {
   open: boolean;
@@ -32,6 +33,11 @@ export function DocumentoModal({
     documentoAtual?.orgao_emissor ?? ''
   );
 
+  const [rgVisual, setRgVisual] = useState(formatRg(documentoAtual?.rg ?? ''));
+  const [cpfVisual, setCpfVisual] = useState(
+    formatCpf(documentoAtual?.cpf ?? '')
+  );
+
   const [erros, setErros] = useState({
     rg: false,
     cpf: false,
@@ -39,6 +45,18 @@ export function DocumentoModal({
   });
 
   const { criarDocumento, loading } = criarAlunoDocumento();
+
+  const handleRgChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value.replace(/\D/g, '');
+    setRg(value);
+    setRgVisual(formatRg(value));
+  };
+
+  const handleCpfChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value.replace(/\D/g, '');
+    setCpf(value);
+    setCpfVisual(formatCpf(value));
+  };
 
   const handleSubmit = async () => {
     const novosErros = {
@@ -51,16 +69,14 @@ export function DocumentoModal({
 
     if (Object.values(novosErros).some(Boolean)) return;
 
-    try {
-      const novoDoc = await criarDocumento({
-        rg: rg.trim(),
-        cpf: cpf.trim(),
-        orgao_emissor: orgaoEmissor.trim(),
-      });
+    const novoDoc = await criarDocumento({
+      rg: rg.trim(),
+      cpf: cpf.trim(),
+      orgao_emissor: orgaoEmissor.trim(),
+    });
 
-      onSave(novoDoc);
-      onClose();
-    } catch (error: any) {}
+    onSave(novoDoc);
+    onClose();
   };
 
   return (
@@ -74,16 +90,18 @@ export function DocumentoModal({
             <X className="size-5" />
           </button>
         </DialogClose>
+
         <DialogHeader>
           <DialogTitle>Adicionar Documentos</DialogTitle>
         </DialogHeader>
+
         <div className="flex flex-col gap-3">
           <div>
             <span className="ml-2 text-sm font-medium text-zinc-700">RG</span>
             <Input
               placeholder="Ex: 11.222.333-4"
-              value={rg}
-              onChange={(e) => setRg(e.target.value)}
+              value={rgVisual}
+              onChange={handleRgChange}
               className={erros.rg ? 'border-red-500' : ''}
             />
           </div>
@@ -92,8 +110,8 @@ export function DocumentoModal({
             <span className="ml-2 text-sm font-medium text-zinc-700">CPF</span>
             <Input
               placeholder="Ex: 111.222.333-44"
-              value={cpf}
-              onChange={(e) => setCpf(e.target.value)}
+              value={cpfVisual}
+              onChange={handleCpfChange}
               className={erros.cpf ? 'border-red-500' : ''}
             />
           </div>

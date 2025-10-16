@@ -8,6 +8,7 @@ import { AlertCircle, IdCard, Home, Users } from 'lucide-react';
 import { DocumentoModal } from './Modals/PortalDoAlunoDocumentoAlunoModal';
 import { EnderecoModal } from './Modals/PortalDoAlunoEnderecoAlunoModal';
 import { ResponsavelModal } from './Modals/PortalDoAlunoResponsavelAlunoModal';
+import { formatCpf, formatRg } from '@/utils/normalizacao';
 
 export const PortalDoAlunoPerfilCards = ({ aluno }: any) => {
   const [alunoData, setAlunoData] = useState(aluno);
@@ -35,13 +36,16 @@ export const PortalDoAlunoPerfilCards = ({ aluno }: any) => {
                   </h2>
                   <div className="flex flex-col gap-1.5">
                     <p className="text-muted-foreground text-xs">
-                      RG: {alunoData.aluno_documento.rg}
+                      RG: {formatRg(alunoData.aluno_documento.rg)}
                     </p>
                     <p className="text-muted-foreground text-xs">
-                      CPF: {alunoData.aluno_documento.cpf}
+                      CPF: {formatCpf(alunoData.aluno_documento.cpf)}
                     </p>
                     <p className="text-muted-foreground text-xs">
-                      Órgão emissor: {alunoData.aluno_documento.orgao_emissor}
+                      Órgão emissor:{' '}
+                      <span className="uppercase">
+                        {alunoData.aluno_documento.orgao_emissor}
+                      </span>
                     </p>
                   </div>
                 </section>
@@ -97,7 +101,8 @@ export const PortalDoAlunoPerfilCards = ({ aluno }: any) => {
                   </h2>
                   <div className="flex flex-col gap-1.5">
                     <p className="text-muted-foreground text-xs">
-                      CPF da Mãe: {alunoData.aluno_responsavel.cpf_mae}
+                      CPF da Mãe:{' '}
+                      {formatCpf(alunoData.aluno_responsavel.cpf_mae)}
                     </p>
                     <p className="text-muted-foreground text-xs">
                       Nome da Mãe: {alunoData.aluno_responsavel.nome_mae}

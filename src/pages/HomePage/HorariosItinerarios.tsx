@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ChevronRight, Clock } from 'lucide-react';
 import { horariosItinerarios } from '@/utils/objetosHorariosItinerarios/listaHorarios';
-import { slugify } from '@/utils/slugfy';
+import { slugify } from '@/utils/normalizacao';
 
 export const HorariosItinerarios = () => {
   return (
