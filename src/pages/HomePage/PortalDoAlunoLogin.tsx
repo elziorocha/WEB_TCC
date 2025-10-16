@@ -86,9 +86,9 @@ export const PortalDoAlunoLogin = () => {
               </div>
             </div>
 
-            <span className="text-quarter hover:text-tertiary mt-1 mr-1 cursor-pointer self-end text-sm font-medium">
+            {/* <span className="text-quarter hover:text-tertiary mt-1 mr-1 cursor-pointer self-end text-sm font-medium">
               Esqueci minha senha
-            </span>
+            </span> */}
           </section>
 
           <section className="mt-6 flex flex-col gap-2">

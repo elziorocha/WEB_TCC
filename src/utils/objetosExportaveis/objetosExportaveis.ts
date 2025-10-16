@@ -52,11 +52,11 @@ export const navUsuarios = [
     icon: BookUserIcon,
     label: 'Portal do Aluno',
   },
-  {
-    key: 'area-do-colaborador',
-    icon: BusFrontIcon,
-    label: 'Área do Colaborador',
-  },
+  // {
+  //   key: 'area-do-colaborador',
+  //   icon: BusFrontIcon,
+  //   label: 'Área do Colaborador',
+  // },
 ];
 
 export const cardsDashboardPortalAluno = [
