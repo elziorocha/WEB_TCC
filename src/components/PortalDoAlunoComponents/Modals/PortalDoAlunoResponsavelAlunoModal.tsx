@@ -12,6 +12,7 @@ import type { AlunoResponsavelInterface } from '@/utils/interfaces.interface';
 import { criarAlunoResponsavel } from '@/services/ChamadasApi/apiResponsaveis';
 import { DialogClose } from '@radix-ui/react-dialog';
 import { X } from 'lucide-react';
+import { formatCpf } from '@/utils/normalizacao';
 
 interface ResponsavelModalProps {
   open: boolean;
@@ -98,8 +99,13 @@ export function ResponsavelModal({
             <Input
               name="cpf_mae"
               placeholder="Ex: 111.222.333-44"
-              value={form.cpf_mae}
-              onChange={handleChange}
+              value={formatCpf(form.cpf_mae)}
+              onChange={(e) => {
+                const digitsOnly = e.target.value.replace(/\D/g, '');
+                setForm((prev) => ({ ...prev, cpf_mae: digitsOnly }));
+                if (erros.cpf_mae)
+                  setErros((prev) => ({ ...prev, cpf_mae: false }));
+              }}
               className={erros.cpf_mae ? 'border-red-500' : ''}
             />
           </div>
