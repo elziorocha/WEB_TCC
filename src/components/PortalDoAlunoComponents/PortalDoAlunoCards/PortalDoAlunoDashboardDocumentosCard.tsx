@@ -18,10 +18,10 @@ export const PortalDoAlunoDashboardDocumentosCard = ({ aluno }: alunoProps) => {
 
   if (!alunoProcesso) {
     return (
-      <Card className="max-w-3xl rounded-2xl border-none shadow-md">
+      <Card className="max-w-3xl min-w-2xl rounded-2xl border-none shadow-md">
         <CardContent className="flex items-center gap-3 py-6">
-          <IdCardIcon className="size-5 text-amber-500" />
-          <p className="text-muted-foreground text-sm font-medium">
+          <IdCardIcon className="size-8 text-amber-500" />
+          <p className="text-muted-foreground text-base font-medium">
             Nenhum processo encontrado!
           </p>
         </CardContent>
@@ -74,7 +74,7 @@ export const PortalDoAlunoDashboardDocumentosCard = ({ aluno }: alunoProps) => {
 
       <hr className="border-dashed border-zinc-300" />
 
-      <CardContent className="min-h-42 self-center px-4 pt-3 pb-5 sm:max-h-42">
+      <CardContent className="max-h-42 min-h-42 px-4 pt-4 pb-5">
         {documentosPendentesOuAnalise.length === 0 ? (
           <p className="text-tertiary font-semibold">
             Todos os documentos foram aprovados
@@ -84,9 +84,9 @@ export const PortalDoAlunoDashboardDocumentosCard = ({ aluno }: alunoProps) => {
             {documentosPendentesOuAnalise.map((doc, index) => (
               <div
                 key={index}
-                className="border-secondary/30 bg-secondary/5 flex min-w-76 items-center justify-between rounded-xl border px-3 py-2 text-xs shadow-sm"
+                className="border-secondary/30 bg-secondary/5 flex items-center justify-between rounded-xl border px-3 py-2 shadow-sm"
               >
-                <span className="text-tertiary font-bold">{doc.nome}</span>
+                <span className="text-tertiary font-medium">{doc.nome}</span>
                 <span className="ml-2">
                   {getStatusDocumentoBadge(!!doc.enviado, doc.validado)}
                 </span>

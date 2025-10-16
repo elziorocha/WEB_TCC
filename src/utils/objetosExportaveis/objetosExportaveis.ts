@@ -126,7 +126,7 @@ export const tipoCartao = (tipoCartao: any) => {
       };
     default:
       return {
-        css: 'text-red-600 border-red-300 bg-red-50',
+        css: 'text-red-600 border-red-500 bg-red-200',
         cartao: 'Sem cartão definido',
       };
   }

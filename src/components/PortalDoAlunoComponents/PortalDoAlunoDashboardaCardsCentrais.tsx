@@ -40,7 +40,7 @@ export const PortalDoAlunoDashboardaCardsCentrais = ({ aluno }: alunoProps) => {
           <p>
             {alunoProcesso
               ? getStatusProcessoBadgeDashboard(alunoProcesso)
-              : 'Sem processo encontrado'}
+              : 'Sem processo'}
           </p>
         </div>
       </div>
