@@ -8,7 +8,7 @@ import { AlertCircle, IdCard, Home, Users } from 'lucide-react';
 import { DocumentoModal } from './Modals/PortalDoAlunoDocumentoAlunoModal';
 import { EnderecoModal } from './Modals/PortalDoAlunoEnderecoAlunoModal';
 import { ResponsavelModal } from './Modals/PortalDoAlunoResponsavelAlunoModal';
-import { formatCpf, formatRg } from '@/utils/normalizacao';
+import { formatCep, formatCpf, formatRg } from '@/utils/normalizacao';
 
 export const PortalDoAlunoPerfilCards = ({ aluno }: any) => {
   const [alunoData, setAlunoData] = useState(aluno);
@@ -69,15 +69,21 @@ export const PortalDoAlunoPerfilCards = ({ aluno }: any) => {
                   </h2>
                   <div className="flex flex-col gap-1.5">
                     <p className="text-muted-foreground text-xs">
-                      {alunoData.aluno_endereco.rua}, nº{' '}
-                      {alunoData.aluno_endereco.numero}
+                      Rua:{' '}
+                      <span className="capitalize">
+                        {alunoData.aluno_endereco.rua}
+                      </span>
+                      , Nº {alunoData.aluno_endereco.numero}
                     </p>
                     <p className="text-muted-foreground text-xs">
-                      {alunoData.aluno_endereco.bairro} -{' '}
-                      {alunoData.aluno_endereco.cidade}
+                      Bairro:{' '}
+                      <span className="capitalize">
+                        {alunoData.aluno_endereco.bairro}
+                      </span>{' '}
+                      - {alunoData.aluno_endereco.cidade}
                     </p>
                     <p className="text-muted-foreground text-xs">
-                      CEP: {alunoData.aluno_endereco.cep}
+                      CEP: {formatCep(alunoData.aluno_endereco.cep)}
                     </p>
                   </div>
                 </section>

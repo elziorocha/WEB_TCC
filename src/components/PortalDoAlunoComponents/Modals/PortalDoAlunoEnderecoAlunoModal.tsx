@@ -12,6 +12,7 @@ import type { AlunoEnderecoInterface } from '@/utils/interfaces.interface';
 import { X } from 'lucide-react';
 import { DialogClose } from '@radix-ui/react-dialog';
 import { criarAlunoEndereco } from '@/services/ChamadasApi/apiEndereco';
+import { formatCep } from '@/utils/normalizacao';
 
 interface EnderecoModalProps {
   open: boolean;
@@ -43,6 +44,8 @@ export function EnderecoModal({
   const { criarEndereco, loading } = criarAlunoEndereco();
 
   const handleSubmit = async () => {
+    const cepLimpo = cep.replace(/\D/g, '');
+
     const novosErros = {
       cep: !cep.trim(),
       cidade: !cidade.trim(),
@@ -57,7 +60,7 @@ export function EnderecoModal({
 
     try {
       const novoEndereco = await criarEndereco({
-        cep: cep.trim(),
+        cep: cepLimpo,
         cidade: cidade.trim(),
         bairro: bairro.trim(),
         rua: rua.trim(),
@@ -89,7 +92,7 @@ export function EnderecoModal({
             <span className="ml-2 text-sm font-medium text-zinc-700">CEP</span>
             <Input
               placeholder="Ex: 85070-000"
-              value={cep}
+              value={formatCep(cep)}
               onChange={(e) => setCep(e.target.value)}
               className={erros.cep ? 'border-red-500' : ''}
             />
