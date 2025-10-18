@@ -43,24 +43,6 @@ export const alterarSenha = async ({
   return response.data;
 };
 
-export const definirAlunoTipoCartao = async (tipo_cartao: string) => {
-  const token = Cookies.get('token');
-  if (!token) throw new Error('Usuário não autenticado');
-
-  const response = await instanciaAPI.patch(
-    '/aluno/alterar-cartao',
-    { tipo_cartao },
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      withCredentials: true,
-    }
-  );
-
-  return response.data;
-};
-
 export const alterarCartao = async (tipoCartao: string) => {
   const token = Cookies.get('token');
   if (!token) throw new Error('Usuário não autenticado');

@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { apiError } from '../apiError';
 import type { AlunoInterface } from '@/utils/interfaces.interface';
-import { definirAlunoTipoCartao } from '../api';
 import toast from 'react-hot-toast';
 import type { TipoCartao } from '@/utils/intarfaces-enum';
+import { alterarCartao } from '../api';
 
 export function useAlunoTipoCartao(
   aluno: AlunoInterface | null,
@@ -28,7 +28,7 @@ export function useAlunoTipoCartao(
 
     try {
       setLoadingCartao(true);
-      await definirAlunoTipoCartao(tipoCartao);
+      await alterarCartao(tipoCartao);
 
       if (aluno && onAlunoUpdate) {
         const alunoAtualizado: AlunoInterface = {
