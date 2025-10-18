@@ -48,7 +48,7 @@ export const definirAlunoTipoCartao = async (tipo_cartao: string) => {
   if (!token) throw new Error('Usuário não autenticado');
 
   const response = await instanciaAPI.patch(
-    '/aluno/alterar-tipo-cartao',
+    '/aluno/alterar-cartao',
     { tipo_cartao },
     {
       headers: {
