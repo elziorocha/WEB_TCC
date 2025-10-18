@@ -4,7 +4,6 @@ import {
   MapPinIcon,
   SquareUserRoundIcon,
   BookUserIcon,
-  BusFrontIcon,
   ClockIcon,
   HistoryIcon,
   Home,
@@ -52,11 +51,6 @@ export const navUsuarios = [
     icon: BookUserIcon,
     label: 'Portal do Aluno',
   },
-  // {
-  //   key: 'area-do-colaborador',
-  //   icon: BusFrontIcon,
-  //   label: 'Área do Colaborador',
-  // },
 ];
 
 export const cardsDashboardPortalAluno = [
