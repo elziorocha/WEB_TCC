@@ -31,7 +31,7 @@ export const PortalDoAlunoDashboardMatriculaCard = () => {
 
   if (!matriculaAtiva) {
     return (
-      <Card className="max-w-5xl min-w-2xl rounded-2xl border-none shadow-md">
+      <Card className="rounded-2xl border-none md:min-w-2xl xl:min-w-0 2xl:min-w-lg">
         <CardContent className="flex items-center gap-3 py-6">
           <AlertCircle className="size-8 text-amber-500" />
           <p className="text-muted-foreground text-base font-medium">

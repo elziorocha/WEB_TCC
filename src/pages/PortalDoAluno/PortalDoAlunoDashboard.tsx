@@ -12,7 +12,7 @@ export function PortalDoAlunoDashboard() {
 
   return (
     <main className="flex flex-col gap-5 p-6">
-      <div className="bg-primary absolute -top-10 -left-24 rounded-[41%_59%_75%_25%_/_58%_40%_60%_42%] sm:size-72"></div>
+      <div className="bg-primary absolute -top-10 -left-24 rounded-[41%_59%_75%_25%_/_58%_40%_60%_42%] sm:size-58 lg:size-72"></div>
       <div className="flex flex-col gap-1 sm:text-center">
         <h2 className="text-2xl font-bold sm:text-4xl">
           Olá,{' '}
@@ -26,7 +26,9 @@ export function PortalDoAlunoDashboard() {
 
       <PortalDoAlunoDashboardCards aluno={aluno} />
 
-      <section className="mt-10 flex w-full flex-col items-center justify-center gap-8 sm:flex-row">
+      <hr className="via-primary my-6 h-1 w-10/12 self-center border-0 bg-gradient-to-r from-transparent to-transparent" />
+
+      <section className="flex w-full flex-col items-center justify-center gap-8 xl:flex-row">
         <PortalDoAlunoDashboardMatriculaCard />
 
         <PortalDoAlunoDashboardaCardsCentrais aluno={aluno} />

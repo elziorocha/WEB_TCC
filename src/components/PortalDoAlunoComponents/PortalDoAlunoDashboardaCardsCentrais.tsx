@@ -36,8 +36,8 @@ export const PortalDoAlunoDashboardaCardsCentrais = ({ aluno }: alunoProps) => {
           <IdCardIcon className="text-secondary size-8" />
         </div>
         <div className="flex w-full flex-col items-center justify-between gap-2 text-lg font-bold tracking-wide sm:flex-row">
-          <h3 className="text-secondary">Status do processo:</h3>
-          <p>
+          <h3 className="text-quarter">Status do processo:</h3>
+          <p className={!alunoProcesso ? 'text-tertiary' : ''}>
             {alunoProcesso
               ? getStatusProcessoBadgeDashboard(alunoProcesso)
               : 'Sem processo'}

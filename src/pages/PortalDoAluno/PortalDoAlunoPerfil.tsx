@@ -62,9 +62,11 @@ export function PortalDoAlunoPerfil() {
           <CardTitle className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <User className="text-secondary size-6" />
-              <span className="flex items-center gap-1 text-lg font-semibold">
-                <p>Perfil do Aluno</p>{' '}
-                <p className="text-tertiary capitalize">{aluno?.nome}</p>
+              <span className="flex flex-col text-lg font-semibold sm:flex-row sm:items-center sm:gap-1">
+                <p className="text-zinc-800">Perfil do Aluno</p>
+                <p className="text-tertiary capitalize sm:ml-1">
+                  {aluno?.nome}
+                </p>
               </span>
             </div>
             {aluno?.tipo_cartao ? (
@@ -204,6 +206,8 @@ export function PortalDoAlunoPerfil() {
 
         <div className="bg-primary absolute -right-16 -bottom-12 size-36 rounded-[54%_46%_50%_50%_/_58%_100%_0%_42%]"></div>
       </Card>
+
+      <hr className="via-primary my-2 h-1 w-8/12 self-center border-0 bg-gradient-to-r from-transparent to-transparent" />
 
       <PortalDoAlunoPerfilCards aluno={aluno} />
     </main>
