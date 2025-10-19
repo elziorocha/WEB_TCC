@@ -28,7 +28,7 @@ export function PortalDoAlunoDashboard() {
 
       <hr className="via-primary my-6 h-1 w-10/12 self-center border-0 bg-gradient-to-r from-transparent to-transparent" />
 
-      <section className="flex w-full flex-col items-center justify-center gap-8 xl:flex-row">
+      <section className="flex w-full flex-col items-center justify-center gap-8 2xl:flex-row">
         <PortalDoAlunoDashboardMatriculaCard />
 
         <PortalDoAlunoDashboardaCardsCentrais aluno={aluno} />

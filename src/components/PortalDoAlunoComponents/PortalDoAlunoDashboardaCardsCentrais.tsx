@@ -18,14 +18,14 @@ export const PortalDoAlunoDashboardaCardsCentrais = ({ aluno }: alunoProps) => {
   const { css, cartao } = tipoCartao(aluno?.tipo_cartao);
 
   return (
-    <main className="flex flex-col items-center justify-between gap-12">
+    <main className="flex flex-col items-center justify-between gap-12 xl:flex-row 2xl:flex-col">
       <div
         className={`flex min-w-xs items-center gap-3 self-center rounded-2xl border px-6 py-5 shadow-sm transition hover:shadow-md sm:min-w-md sm:self-start ${css}`}
       >
         <div className="flex items-center justify-center rounded-xl bg-white/60 p-2 shadow-inner">
           <IdCardIcon className="size-8" />
         </div>
-        <div className="flex w-full flex-col items-center gap-2 text-lg font-bold tracking-wide sm:flex-row">
+        <div className="flex w-full flex-col items-center justify-between gap-2 text-lg font-bold tracking-wide sm:flex-row">
           <h3>Seu cartão:</h3>
           <p>{cartao}</p>
         </div>

@@ -32,7 +32,7 @@ export const PortalDoAlunoAlterarCartao = () => {
 
       <hr className="mt-1 mb-2 border border-dashed border-zinc-400" />
 
-      <CardContent className="mt-1 flex h-full flex-col gap-6">
+      <CardContent className="mt-1 flex h-full flex-col justify-between">
         <p className="text-sm text-gray-700">
           Ao confirmar a troca, os documentos vinculados ao cartão atual serão
           expirados!
@@ -49,9 +49,9 @@ export const PortalDoAlunoAlterarCartao = () => {
 
         <form
           onSubmit={alterarTipoCartaoAluno}
-          className="flex h-full flex-col justify-between"
+          className="flex flex-col justify-between gap-1"
         >
-          <section className="flex flex-col items-center justify-between gap-4 sm:flex-row">
+          <section className="mb-2 flex flex-col items-center justify-between gap-4 sm:flex-row">
             <div className="flex w-full items-center gap-2">
               <Checkbox
                 checked={confirmado}
