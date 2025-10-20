@@ -58,24 +58,40 @@ export function PortalDoAlunoPerfil() {
       </Link>
 
       <Card className="relative max-w-5xl gap-2 overflow-hidden rounded-2xl border-none pt-4 pb-0 shadow-md sm:w-14/12 sm:self-center">
-        <CardHeader className="px-4">
-          <CardTitle className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <User className="text-secondary size-6" />
-              <span className="flex flex-col text-lg font-semibold sm:flex-row sm:items-center sm:gap-1">
-                <p className="text-zinc-800">Perfil do Aluno</p>
-                <p className="text-tertiary capitalize sm:ml-1">
-                  {aluno?.nome}
-                </p>
-              </span>
+        <CardHeader className="px-4 sm:py-1">
+          <CardTitle className="flex w-full flex-col sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
+              <div className="flex w-full items-center justify-between gap-2 sm:w-auto">
+                <div className="flex items-center gap-2">
+                  <User className="text-secondary size-6" />
+                  <p className="text-zinc-800">Perfil do Aluno</p>
+                </div>
+
+                <div className="sm:hidden">
+                  {aluno?.tipo_cartao ? (
+                    <BadgeCartao tipo={aluno.tipo_cartao} />
+                  ) : (
+                    <span className="rounded-full border border-gray-300 bg-gray-200 px-4 py-1 text-sm font-medium text-gray-800">
+                      Sem Cartão
+                    </span>
+                  )}
+                </div>
+              </div>
+
+              <p className="text-tertiary mt-2 capitalize sm:mt-0">
+                {aluno?.nome}
+              </p>
             </div>
-            {aluno?.tipo_cartao ? (
-              <BadgeCartao tipo={aluno.tipo_cartao} />
-            ) : (
-              <span className="rounded-full border border-gray-300 bg-gray-200 px-4 py-1 text-sm font-medium text-gray-800">
-                Sem Cartão
-              </span>
-            )}
+
+            <div className="hidden sm:block">
+              {aluno?.tipo_cartao ? (
+                <BadgeCartao tipo={aluno.tipo_cartao} />
+              ) : (
+                <span className="rounded-full border border-gray-300 bg-gray-200 px-4 py-1 text-sm font-medium text-gray-800">
+                  Sem Cartão
+                </span>
+              )}
+            </div>
           </CardTitle>
         </CardHeader>
 

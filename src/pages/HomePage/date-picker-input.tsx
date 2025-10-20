@@ -1,5 +1,5 @@
 import type { DatePickerInputPropsInterface } from '@/utils/interfaces.interface';
-import { CalendarDaysIcon, ChevronLeft, ChevronRight } from 'lucide-react';
+import { CalendarDaysIcon, ChevronLeft, ChevronRight, X } from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
 
 export const DatePickerInput = ({
@@ -86,6 +86,10 @@ export const DatePickerInput = ({
     setViewDate(new Date(viewDate.getFullYear() + 1, viewDate.getMonth(), 1));
   };
 
+  const handleClose = () => {
+    setIsOpen(false);
+  };
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -99,6 +103,19 @@ export const DatePickerInput = ({
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
+
+  // Prevenir scroll do body quando o calendário estiver aberto
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen]);
 
   const dias = getDaysInMonth(viewDate);
   const diasDaSemana = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
@@ -121,88 +138,189 @@ export const DatePickerInput = ({
       </div>
 
       {isOpen && (
-        <div className="absolute top-full left-0 z-50 mt-2 w-full rounded-2xl border border-zinc-300 bg-white p-4 shadow-2xl sm:w-80">
-          <div className="mb-3 flex items-center justify-between">
-            <button
-              type="button"
-              onClick={handlePrevYear}
-              className="rounded-lg p-1.5 transition-colors hover:bg-gray-200"
-            >
-              <ChevronLeft className="size-4" />
-            </button>
-            <span className="text-sm font-semibold text-gray-700">
-              {viewDate.getFullYear()}
-            </span>
-            <button
-              type="button"
-              onClick={handleNextYear}
-              className="rounded-lg p-1.5 transition-colors hover:bg-gray-200"
-            >
-              <ChevronRight className="size-4" />
-            </button>
-          </div>
+        <>
+          <div className="fixed inset-0 z-40 bg-black/50 sm:hidden" />
 
-          <div className="mb-4 flex items-center justify-between">
-            <button
-              type="button"
-              onClick={handlePrevMonth}
-              className="rounded-lg p-1.5 transition-colors hover:bg-gray-200"
-            >
-              <ChevronLeft className="size-4" />
-            </button>
-            <span className="text-sm font-semibold text-gray-700">
-              {meses[viewDate.getMonth()]}
-            </span>
-            <button
-              type="button"
-              onClick={handleNextMonth}
-              className="rounded-lg p-1.5 transition-colors hover:bg-gray-200"
-            >
-              <ChevronRight className="size-4" />
-            </button>
-          </div>
-
-          <div className="mb-2 grid grid-cols-7 gap-1">
-            {diasDaSemana.map((day) => (
-              <div
-                key={day}
-                className="text-center text-xs font-medium text-gray-500"
-              >
-                {day}
-              </div>
-            ))}
-          </div>
-
-          {/* Calendar Days */}
-          <div className="grid grid-cols-7 gap-1">
-            {dias.map((day, index) => {
-              if (day === null) {
-                return <div key={`empty-${index}`} />;
-              }
-
-              const isSelected =
-                selectedDate &&
-                selectedDate.getDate() === day &&
-                selectedDate.getMonth() === viewDate.getMonth() &&
-                selectedDate.getFullYear() === viewDate.getFullYear();
-
-              return (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:hidden">
+            <div className="flex w-full max-w-sm flex-col rounded-2xl border border-zinc-300 bg-white shadow-2xl">
+              <div className="flex items-center justify-between border-b border-zinc-200 p-4">
+                <h3 className="text-lg font-semibold text-gray-800">
+                  Selecionar Data
+                </h3>
                 <button
+                  onClick={handleClose}
+                  className="rounded-full p-1 transition-colors hover:bg-gray-100"
+                >
+                  <X className="size-5 text-gray-600" />
+                </button>
+              </div>
+
+              <div className="p-4">
+                <div className="mb-3 flex items-center justify-between">
+                  <button
+                    type="button"
+                    onClick={handlePrevYear}
+                    className="rounded-lg p-1.5 transition-colors hover:bg-gray-200"
+                  >
+                    <ChevronLeft className="size-4" />
+                  </button>
+                  <span className="text-sm font-semibold text-gray-700">
+                    {viewDate.getFullYear()}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={handleNextYear}
+                    className="rounded-lg p-1.5 transition-colors hover:bg-gray-200"
+                  >
+                    <ChevronRight className="size-4" />
+                  </button>
+                </div>
+
+                <div className="mb-4 flex items-center justify-between">
+                  <button
+                    type="button"
+                    onClick={handlePrevMonth}
+                    className="rounded-lg p-1.5 transition-colors hover:bg-gray-200"
+                  >
+                    <ChevronLeft className="size-4" />
+                  </button>
+                  <span className="text-sm font-semibold text-gray-700">
+                    {meses[viewDate.getMonth()]}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={handleNextMonth}
+                    className="rounded-lg p-1.5 transition-colors hover:bg-gray-200"
+                  >
+                    <ChevronRight className="size-4" />
+                  </button>
+                </div>
+
+                <div className="mb-2 grid grid-cols-7 gap-1">
+                  {diasDaSemana.map((day) => (
+                    <div
+                      key={day}
+                      className="text-center text-xs font-medium text-gray-500"
+                    >
+                      {day}
+                    </div>
+                  ))}
+                </div>
+
+                <div className="grid grid-cols-7 gap-1">
+                  {dias.map((day, index) => {
+                    if (day === null) {
+                      return <div key={`empty-${index}`} />;
+                    }
+
+                    const isSelected =
+                      selectedDate &&
+                      selectedDate.getDate() === day &&
+                      selectedDate.getMonth() === viewDate.getMonth() &&
+                      selectedDate.getFullYear() === viewDate.getFullYear();
+
+                    return (
+                      <button
+                        key={day}
+                        type="button"
+                        onClick={() => handleDateSelect(day)}
+                        className={`rounded-lg py-2 text-sm transition-all ${
+                          isSelected
+                            ? 'from-quarter to-tertiary bg-gradient-to-bl font-semibold text-white shadow-md'
+                            : 'hover:bg-primary/25 text-gray-700'
+                        }`}
+                      >
+                        {day}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="absolute top-full left-0 z-50 mt-2 hidden w-full rounded-2xl border border-zinc-300 bg-white p-4 shadow-2xl sm:block sm:w-80">
+            <div className="mb-3 flex items-center justify-between">
+              <button
+                type="button"
+                onClick={handlePrevYear}
+                className="rounded-lg p-1.5 transition-colors hover:bg-gray-200"
+              >
+                <ChevronLeft className="size-4" />
+              </button>
+              <span className="text-sm font-semibold text-gray-700">
+                {viewDate.getFullYear()}
+              </span>
+              <button
+                type="button"
+                onClick={handleNextYear}
+                className="rounded-lg p-1.5 transition-colors hover:bg-gray-200"
+              >
+                <ChevronRight className="size-4" />
+              </button>
+            </div>
+
+            <div className="mb-4 flex items-center justify-between">
+              <button
+                type="button"
+                onClick={handlePrevMonth}
+                className="rounded-lg p-1.5 transition-colors hover:bg-gray-200"
+              >
+                <ChevronLeft className="size-4" />
+              </button>
+              <span className="text-sm font-semibold text-gray-700">
+                {meses[viewDate.getMonth()]}
+              </span>
+              <button
+                type="button"
+                onClick={handleNextMonth}
+                className="rounded-lg p-1.5 transition-colors hover:bg-gray-200"
+              >
+                <ChevronRight className="size-4" />
+              </button>
+            </div>
+
+            <div className="mb-2 grid grid-cols-7 gap-1">
+              {diasDaSemana.map((day) => (
+                <div
                   key={day}
-                  type="button"
-                  onClick={() => handleDateSelect(day)}
-                  className={`rounded-lg py-2 text-sm transition-all ${
-                    isSelected
-                      ? 'from-quarter to-tertiary bg-gradient-to-bl font-semibold text-white shadow-md'
-                      : 'hover:bg-primary/25 text-gray-700'
-                  }`}
+                  className="text-center text-xs font-medium text-gray-500"
                 >
                   {day}
-                </button>
-              );
-            })}
+                </div>
+              ))}
+            </div>
+
+            <div className="grid grid-cols-7 gap-1">
+              {dias.map((day, index) => {
+                if (day === null) {
+                  return <div key={`empty-${index}`} />;
+                }
+
+                const isSelected =
+                  selectedDate &&
+                  selectedDate.getDate() === day &&
+                  selectedDate.getMonth() === viewDate.getMonth() &&
+                  selectedDate.getFullYear() === viewDate.getFullYear();
+
+                return (
+                  <button
+                    key={day}
+                    type="button"
+                    onClick={() => handleDateSelect(day)}
+                    className={`rounded-lg py-2 text-sm transition-all ${
+                      isSelected
+                        ? 'from-quarter to-tertiary bg-gradient-to-bl font-semibold text-white shadow-md'
+                        : 'hover:bg-primary/25 text-gray-700'
+                    }`}
+                  >
+                    {day}
+                  </button>
+                );
+              })}
+            </div>
           </div>
-        </div>
+        </>
       )}
     </div>
   );
