@@ -1,8 +1,13 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
+const baseURL =
+  window.location.hostname === 'localhost'
+    ? import.meta.env.VITE_API_BASE_URL_DEV
+    : import.meta.env.VITE_API_BASE_URL_PROD;
+
 const instanciaAPI = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL,
+  baseURL,
   withCredentials: true,
 });
 

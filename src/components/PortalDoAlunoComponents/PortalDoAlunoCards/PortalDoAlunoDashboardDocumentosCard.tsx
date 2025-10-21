@@ -66,7 +66,7 @@ export const PortalDoAlunoDashboardDocumentosCard = ({ aluno }: alunoProps) => {
       <CardHeader className="px-4">
         <CardTitle className="flex items-center gap-2">
           <IdCardIcon className="text-secondary size-6" />
-          <span className="text-lg font-semibold">
+          <span className="text-tertiary text-lg font-semibold">
             Documentos Pendentes / Em Análise
           </span>
         </CardTitle>

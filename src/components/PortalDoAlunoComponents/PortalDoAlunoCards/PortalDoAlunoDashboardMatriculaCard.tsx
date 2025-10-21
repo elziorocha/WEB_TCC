@@ -47,7 +47,9 @@ export const PortalDoAlunoDashboardMatriculaCard = () => {
       <CardHeader className="px-4">
         <CardTitle className="flex items-center gap-2">
           <School2Icon className="text-secondary size-6" />
-          <span className="text-lg font-semibold">Matrícula Ativa</span>
+          <span className="text-tertiary text-lg font-semibold">
+            Matrícula Ativa
+          </span>
         </CardTitle>
       </CardHeader>
 
@@ -68,11 +70,23 @@ export const PortalDoAlunoDashboardMatriculaCard = () => {
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <section className="flex items-center gap-1">
               <BookOpen className="text-muted-foreground size-4" />
-              <span className="text-muted-foreground font-medium">Curso:</span>
+              <span className="text-muted-foreground font-medium">
+                {matriculaAtiva.curso
+                  ? 'Curso:'
+                  : matriculaAtiva.cgm
+                    ? 'CGM:'
+                    : ''}
+              </span>
 
-              <p className="text-tertiary ml-0.5 font-semibold">
-                {matriculaAtiva.curso}
-              </p>
+              {matriculaAtiva.curso ? (
+                <p className="text-tertiary ml-0.5 font-semibold">
+                  {matriculaAtiva.curso}
+                </p>
+              ) : matriculaAtiva.cgm ? (
+                <p className="text-tertiary ml-0.5 font-semibold">
+                  {matriculaAtiva.cgm}
+                </p>
+              ) : null}
             </section>
 
             <section className="flex items-center gap-1">
