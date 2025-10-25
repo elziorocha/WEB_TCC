@@ -70,23 +70,21 @@ export const PortalDoAlunoDashboardMatriculaCard = () => {
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <section className="flex items-center gap-1">
               <BookOpen className="text-muted-foreground size-4" />
+
               <span className="text-muted-foreground font-medium">
                 {matriculaAtiva.curso
                   ? 'Curso:'
                   : matriculaAtiva.cgm
                     ? 'CGM:'
-                    : ''}
+                    : 'Grau de Escolaridade:'}
               </span>
-
-              {matriculaAtiva.curso ? (
-                <p className="text-tertiary ml-0.5 font-semibold">
-                  {matriculaAtiva.curso}
-                </p>
-              ) : matriculaAtiva.cgm ? (
-                <p className="text-tertiary ml-0.5 font-semibold">
-                  {matriculaAtiva.cgm}
-                </p>
-              ) : null}
+              <p className="text-tertiary ml-0.5 font-semibold">
+                {matriculaAtiva.curso
+                  ? matriculaAtiva.curso
+                  : matriculaAtiva.cgm
+                    ? matriculaAtiva.cgm
+                    : matriculaAtiva.grau_escolaridade || 'Não informado'}
+              </p>
             </section>
 
             <section className="flex items-center gap-1">

@@ -241,7 +241,7 @@ export const PortalDoAlunoDocumentoProcesso = ({
                         <img
                           src={previewUrl ?? urlLocal ?? ''}
                           alt="Pré-visualização"
-                          className="h-full w-full rounded object-contain"
+                          className="h-full w-full rounded object-contain sm:max-h-full"
                         />
                       )}
                       <button
@@ -280,13 +280,21 @@ export const PortalDoAlunoDocumentoProcesso = ({
               )}
             </div>
 
-            <footer className="mt-auto flex justify-center border-t-2 border-dashed border-zinc-400 p-3">
-              <button
+            <footer className="mt-4 flex items-center justify-center gap-4 border-t-2 border-dashed border-zinc-400 px-3 py-5">
+              <Button
                 onClick={fecharModal}
-                className="bg-secondary hover:bg-tertiary text-whiteText mt-1 cursor-pointer rounded px-5 py-2 text-base font-medium transition-colors"
+                disabled={loading}
+                className="bg-secondary hover:bg-tertiary text-whiteText cursor-pointer rounded px-5 py-2 text-base font-medium transition-colors"
               >
                 Fechar
-              </button>
+              </Button>
+              <Button
+                onClick={() => setOpenDialogDelete(true)}
+                disabled={loading}
+                className="cursor-pointer rounded bg-red-600 text-base text-white hover:bg-red-700"
+              >
+                Remover
+              </Button>
             </footer>
           </div>
         </div>
