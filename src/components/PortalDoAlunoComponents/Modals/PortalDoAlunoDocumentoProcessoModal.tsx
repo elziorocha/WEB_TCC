@@ -69,10 +69,6 @@ export const PortalDoAlunoDocumentoProcesso = ({
 
   const abrirModal = (e: React.MouseEvent) => {
     e.stopPropagation();
-    if (isMobile && urlLocal && isPdf) {
-      window.open(urlLocal, '_blank');
-      return;
-    }
     setOpen(true);
   };
 
@@ -85,9 +81,22 @@ export const PortalDoAlunoDocumentoProcesso = ({
 
   const handleModalClick = (e: React.MouseEvent) => e.stopPropagation();
 
-  const handleArquivoSelecionado = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const arquivo = e.target.files?.[0];
-    if (arquivo) setArquivoSelecionado(arquivo);
+  const handleArquivoSelecionado = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const file = event.target.files?.[0];
+
+    if (file) {
+      setArquivoSelecionado(file);
+
+      if (file.type.startsWith('image/')) {
+        setPreviewUrl(URL.createObjectURL(file));
+      } else if (file.type === 'application/pdf') {
+        setPreviewUrl('pdf');
+      } else {
+        setPreviewUrl(null);
+      }
+    }
   };
 
   const handleUploadClick = async (e: React.MouseEvent) => {
@@ -174,7 +183,7 @@ export const PortalDoAlunoDocumentoProcesso = ({
             <div className="flex-1 overflow-y-auto p-3 sm:p-4">
               {urlLocal && !previewUrl ? (
                 <div className="relative flex h-[70vh] w-full flex-col items-center justify-center rounded-lg bg-gray-200">
-                  {!isMobile && isPdf && (
+                  {isPdf && (
                     <div className="absolute top-3 right-3 z-10">
                       <button
                         onClick={handleAbrirNovaGuia}
@@ -230,18 +239,33 @@ export const PortalDoAlunoDocumentoProcesso = ({
                     </label>
                   ) : (
                     <div className="relative flex aspect-video w-full max-w-[24rem] items-center justify-center rounded-xl border border-dashed border-zinc-300 bg-gray-50">
-                      {arquivoSelecionado?.type === 'application/pdf' ||
-                      (previewUrl ?? urlLocal)?.endsWith('.pdf') ? (
-                        <iframe
-                          src={`${previewUrl ?? urlLocal ?? ''}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
-                          title="Pré-visualização do PDF"
-                          className="h-full w-full rounded"
-                        />
+                      {arquivoSelecionado?.type === 'application/pdf' ? (
+                        <div className="flex h-full w-full flex-col items-center justify-center p-4">
+                          <FileText className="mb-2 size-12 text-red-500" />
+                          <span className="text-base font-medium text-zinc-700">
+                            {arquivoSelecionado?.name}
+                          </span>
+                          <span className="mt-0.5 text-xs text-zinc-500">
+                            PDF -{' '}
+                            {(arquivoSelecionado?.size / (1024 * 1024)).toFixed(
+                              2
+                            )}{' '}
+                            MB
+                          </span>
+                          <a
+                            href={previewUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:bg-quarter hover:text-whiteText mt-2 rounded-md px-3 py-1.5 text-sm font-medium text-blue-600 transition-colors"
+                          >
+                            Visualizar PDF
+                          </a>
+                        </div>
                       ) : (
                         <img
-                          src={previewUrl ?? urlLocal ?? ''}
+                          src={previewUrl}
                           alt="Pré-visualização"
-                          className="h-full w-full rounded object-contain sm:max-h-full"
+                          className="h-full w-full rounded object-contain"
                         />
                       )}
                       <button
