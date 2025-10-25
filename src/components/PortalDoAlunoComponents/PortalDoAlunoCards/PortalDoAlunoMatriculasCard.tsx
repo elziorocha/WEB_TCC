@@ -22,9 +22,6 @@ const PortalDoAlunoMatriculasCard = ({
 }) => {
   const mostrarDadosCEEBJA =
     alunoMatricula.grau_escolaridade?.includes('CEEBJA');
-  const mostrarCurso =
-    alunoMatricula.grau_escolaridade === 'Ensino Superior' ||
-    alunoMatricula.grau_escolaridade?.includes('Técnico');
 
   return (
     <Card className="mb-8 gap-2 overflow-hidden rounded-2xl border-none pt-4 pb-0 shadow-md">
@@ -69,7 +66,8 @@ const PortalDoAlunoMatriculasCard = ({
                 {alunoMatricula.serie_ou_periodo}º
               </p>
             </div>
-            {mostrarCurso ? (
+
+            {alunoMatricula.curso ? (
               <div className="-mt-1.5 flex items-center gap-2">
                 <BookOpen className="text-muted-foreground size-4" />
                 <span className="text-muted-foreground font-medium">
@@ -78,7 +76,15 @@ const PortalDoAlunoMatriculasCard = ({
                 <p className="font-semibold">{alunoMatricula.curso}</p>
               </div>
             ) : (
-              <></>
+              <div className="-mt-1.5 flex items-center gap-2">
+                <BookOpen className="text-muted-foreground size-4" />
+                <span className="text-muted-foreground font-medium">
+                  Grau de Escolaridade:
+                </span>
+                <p className="text-xs font-semibold">
+                  {alunoMatricula.grau_escolaridade || 'Não informado'}
+                </p>
+              </div>
             )}
           </div>
 

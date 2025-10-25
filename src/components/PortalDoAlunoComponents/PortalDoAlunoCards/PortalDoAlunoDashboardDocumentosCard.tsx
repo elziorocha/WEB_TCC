@@ -74,7 +74,7 @@ export const PortalDoAlunoDashboardDocumentosCard = ({ aluno }: alunoProps) => {
 
       <hr className="border-dashed border-zinc-300" />
 
-      <CardContent className="max-h-42 min-h-42 px-4 pt-4 pb-5">
+      <CardContent className="min-h-42 px-4 pt-4 pb-5">
         {documentosPendentesOuAnalise.length === 0 ? (
           <p className="text-tertiary font-semibold">
             Todos os documentos foram aprovados

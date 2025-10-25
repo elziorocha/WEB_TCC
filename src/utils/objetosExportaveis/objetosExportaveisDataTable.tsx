@@ -70,6 +70,15 @@ export const colunasAlunoMatriculaDataTable: ColumnDef<AlunoMatriculaInterface>[
       ),
     },
     {
+      accessorKey: 'grau_escolaridade',
+      header: 'Grau de Escolaridade',
+      cell: ({ row }) => (
+        <div className="text-center font-medium">
+          {row.getValue('grau_escolaridade')}
+        </div>
+      ),
+    },
+    {
       accessorKey: 'instituicao',
       header: 'Instituição',
       cell: ({ row }) => {
@@ -100,13 +109,19 @@ export const colunasAlunoMatriculaDataTable: ColumnDef<AlunoMatriculaInterface>[
       },
     },
     {
-      accessorKey: 'curso',
-      header: 'Curso',
-      cell: ({ row }) => (
-        <div className="font-medium" title={row.getValue('curso')}>
-          {row.getValue('curso') ?? '-'}
-        </div>
-      ),
+      accessorKey: 'curso/cgm',
+      header: 'Curso/CGM',
+      cell: ({ row }) => {
+        const curso = row.original.curso;
+        const cgm = row.original.cgm;
+        const cursoOuCGM = curso || cgm || '-';
+
+        return (
+          <div className="font-medium" title={cursoOuCGM}>
+            {cursoOuCGM}
+          </div>
+        );
+      },
     },
     {
       accessorKey: 'serie_ou_periodo',
