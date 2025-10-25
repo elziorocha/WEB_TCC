@@ -45,7 +45,7 @@ export const PortalDoAlunoDocumentoProcesso = ({
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [urlLocal, setUrlLocal] = useState<string | null>(arquivoUrl ?? null);
-  const [isMobile, setIsMobile] = useState(false);
+  const [_isMobile, setIsMobile] = useState(false);
 
   const isImage = (urlLocal ?? previewUrl)?.match(/\.(jpg|jpeg|png)$/i);
   const isPdf = (urlLocal ?? previewUrl)?.match(/\.pdf$/i);
