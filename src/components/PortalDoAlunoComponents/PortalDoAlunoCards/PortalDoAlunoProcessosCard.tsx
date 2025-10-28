@@ -32,7 +32,9 @@ export const PortalDoAlunoProcessosCard = ({
     <Card className="mb-6 gap-2 overflow-hidden rounded-2xl border-none pt-4 pb-0 shadow-md">
       <CardHeader className="px-4">
         <CardTitle className="flex items-center justify-between">
-          <span className="text-lg font-semibold">Processo Digital</span>
+          <span className="text-tertiary text-lg font-semibold">
+            Processo Digital
+          </span>
           {getStatusProcessoBadge(alunoProcesso)}
         </CardTitle>
       </CardHeader>

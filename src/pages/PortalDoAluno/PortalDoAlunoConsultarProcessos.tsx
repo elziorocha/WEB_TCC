@@ -1,4 +1,4 @@
-import { ArrowLeftIcon } from 'lucide-react';
+import { ArrowLeftIcon, FileText } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { DataTable } from '../../components/PortalDoAlunoComponents/PortalDoAlunoDataTable';
 import TelaCarregando from '@/components/componentesUI/TelaCarregando';
@@ -68,6 +68,13 @@ export const PortalDoAlunoConsultarProcessos = () => {
           />
         )}
       />
+
+      <p className="mt-2 flex flex-col items-center justify-center gap-1 text-sm text-zinc-600">
+        <span className="flex items-center gap-1">
+          Clique no ícone de <FileText className="size-5 text-zinc-600" />
+        </span>
+        <span>para abrir a seleção de documentos.</span>
+      </p>
     </main>
   );
 };
