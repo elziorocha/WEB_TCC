@@ -7,6 +7,14 @@ export const register = async (userData: any) => {
     withCredentials: true,
   });
 
+  return response.data;
+};
+
+export const verifyEmail = async (userData: any) => {
+  const response = await instanciaAPI.post('aluno/verificar-email', userData, {
+    withCredentials: true,
+  });
+
   Cookies.set('token', response.data.token, {
     expires: 0.25,
     secure: true,
@@ -14,6 +22,15 @@ export const register = async (userData: any) => {
   });
 
   return response.data.aluno;
+};
+
+export const resendVerificationEmail = async (email: string) => {
+  const response = await instanciaAPI.post(
+    'aluno/reenviar-verificacao',
+    { email },
+    { withCredentials: false }
+  );
+  return response.data;
 };
 
 export const login = async (credentials: AlunoLoginInterface) => {

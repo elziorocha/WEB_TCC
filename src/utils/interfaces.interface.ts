@@ -39,6 +39,9 @@ export interface AlunoInterface {
   aluno_documentoId: number | null;
   aluno_enderecoId: number | null;
   aluno_responsavelId: number | null;
+  email_verificado: boolean | null;
+  codigo_verificacao: string | null;
+  codigo_expira_em: Date | null;
 }
 
 export interface AlunoDocumentoInterface {

@@ -6,6 +6,7 @@ import { FaleConosco } from './pages/HomePage/FaleConosco';
 import { Tarifas } from './pages/HomePage/Tarifas';
 import { HorariosItinerarios } from './pages/HomePage/HorariosItinerarios';
 import { PortalDoAlunoRegistro } from './pages/HomePage/PortalDoAlunoRegistro';
+import { PortalDoAlunoVerificarEmail } from './components/PortalDoAlunoComponents/PortalDoAlunoVerificarEmail';
 import { PortalDoAlunoLogin } from './pages/HomePage/PortalDoAlunoLogin';
 import { RotaProtegida } from './utils/rotaProtegida';
 import { PortalDoAlunoDashboard } from './pages/PortalDoAluno/PortalDoAlunoDashboard';
@@ -34,6 +35,10 @@ export const router = createBrowserRouter([
       {
         path: 'portal-do-aluno/registrar',
         element: <PortalDoAlunoRegistro />,
+      },
+      {
+        path: 'portal-do-aluno/verificar-email',
+        element: <PortalDoAlunoVerificarEmail />,
       },
     ],
   },

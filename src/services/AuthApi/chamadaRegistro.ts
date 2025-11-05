@@ -1,3 +1,4 @@
+import toast from 'react-hot-toast';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { register } from './auth';
@@ -18,13 +19,20 @@ export const chamadaRegistro = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const registrarAluno = async (e?: React.FormEvent<HTMLFormElement>) => {
-    if (e) e.preventDefault();
-
+  const registrarAluno = async (event?: React.FormEvent<HTMLFormElement>) => {
+    if (event) event.preventDefault();
     setLoading(true);
+
     try {
       await register(formData);
-      navigate('/portal-do-aluno/dashboard');
+
+      toast.success(
+        'E-mail de verificação enviado! Verifique sua caixa de entrada.'
+      );
+
+      navigate('/portal-do-aluno/verificar-email', {
+        state: { email: formData.email },
+      });
     } catch (err) {
       apiError(err, 'Falha ao registrar conta');
     } finally {

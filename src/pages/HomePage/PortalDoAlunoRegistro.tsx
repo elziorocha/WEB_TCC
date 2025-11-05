@@ -33,7 +33,7 @@ export const PortalDoAlunoRegistro = () => {
   };
 
   return (
-    <main className="-mb-8 flex items-center justify-center p-6">
+    <main className="mb-8 flex items-center justify-center p-6">
       <div className="flex w-full max-w-2xl flex-col gap-3">
         <section className="flex flex-col items-center gap-2">
           <div className="flex flex-col gap-1 text-center">
