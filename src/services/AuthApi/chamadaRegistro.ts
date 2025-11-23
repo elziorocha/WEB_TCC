@@ -26,13 +26,9 @@ export const chamadaRegistro = () => {
     try {
       await register(formData);
 
-      toast.success(
-        'E-mail de verificação enviado! Verifique sua caixa de entrada.'
-      );
+      toast.success('Conta criada com sucesso!');
 
-      navigate('/portal-do-aluno/verificar-email', {
-        state: { email: formData.email },
-      });
+      navigate('/portal-do-aluno/login');
     } catch (err) {
       apiError(err, 'Falha ao registrar conta');
     } finally {
